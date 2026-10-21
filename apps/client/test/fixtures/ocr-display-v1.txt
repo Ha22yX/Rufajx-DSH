@@ -1,0 +1,34 @@
+function rufaOcrDisplayContent(content) {
+  const header = /<attached_file name=("(?:\\.|[^"\\])*") kind=("(?:\\.|[^"\\])*")(?: size=(\d+) chars=(\d+))?>\n/g;
+  const close = '\n</attached_file>';
+  let changed = false;
+  const result = [];
+  for (const block of content) {
+    if (block?.type !== 'text' || typeof block.text !== 'string') { result.push(block); continue; }
+    const text = block.text, files = [], visible = [];
+    let cursor = 0, match;
+    header.lastIndex = 0;
+    while ((match = header.exec(text)) !== null) {
+      const start = header.lastIndex;
+      const end = match[4] === undefined ? text.indexOf(close, start) : start + Number(match[4]);
+      const bytes = match[3] === undefined ? undefined : Number(match[3]);
+      if (end < start || !Number.isSafeInteger(end) || text.slice(end, end + close.length) !== close
+        || (bytes !== undefined && !Number.isSafeInteger(bytes))) continue;
+      let name, kind;
+      try { name = JSON.parse(match[1]); kind = JSON.parse(match[2]); } catch { continue; }
+      if (typeof name !== 'string' || !name || typeof kind !== 'string' || !kind) continue;
+      visible.push(text.slice(cursor, match.index));
+      // This metadata is consumed only by the native file-card renderer, which
+      // reads name/bytes. Do not invent a file id, path or downloadable payload.
+      files.push({ type: 'file', attachment: { name, ...(bytes === undefined ? {} : { bytes }) } });
+      cursor = end + close.length; header.lastIndex = cursor;
+    }
+    if (files.length === 0) { result.push(block); continue; }
+    changed = true;
+    visible.push(text.slice(cursor));
+    const remaining = visible.join('').replace(/\n{3,}/g, '\n\n').trim();
+    if (remaining) result.push({ ...block, text: remaining });
+    result.push(...files);
+  }
+  return changed ? result : content;
+}

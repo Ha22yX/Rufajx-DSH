@@ -1,0 +1,31 @@
+{
+  "output": "<acceptance-root>\\surface-20261020-043404",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_ExtrudedSurface_created",
+      "passed": false
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_surface.py\", line 6, in <module>\n    f=r.feature(d.FeatureManager.FeatureExtruRefSurface2(True,False,False,0,0,.08,0.,False,False,False,False,0.,0.,False,False,False,False,False,False,False,False),'Rufa_ExtrudedSurface')\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 49, in feature\n    self.check(name+'_created',f is not None)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Rufa_ExtrudedSurface_created\n"
+}

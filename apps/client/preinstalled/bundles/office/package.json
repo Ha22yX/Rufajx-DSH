@@ -1,0 +1,8 @@
+{
+  "name": "@rufa/dsh-office-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Office 文档、表格与演示文稿技能",
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

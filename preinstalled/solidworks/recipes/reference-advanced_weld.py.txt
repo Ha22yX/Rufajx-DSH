@@ -1,0 +1,34 @@
+from advanced_common import *
+r=Run('weld');error=None
+try:
+    d=r.new()
+    sk,segs=r.sketch(d,'Rufa_FramePath',draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.3,.2,0.))
+    d.ClearSelection2(True)
+    r.feature(get(d.FeatureManager,'InsertWeldmentFeature'),'Rufa_Weldment')
+    group=get(d.FeatureManager,'CreateStructuralMemberGroup')
+    group.Segments=VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,list(segs))
+    group.ApplyCornerTreatment=True;group.CornerTreatmentType=1;group.Angle=0.;group.GapWithinGroup=0.
+    profile=Path('D:/Program Files/Solidworks/SOLIDWORKS/lang/english/weldment profiles/iso/square tube/20 x 20 x 2.sldlfp')
+    r.check('installed_2016_profile',profile.is_file())
+    f=r.feature(d.FeatureManager.InsertStructuralWeldment4(str(profile),1,False,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,[group])),'Rufa_Frame20')
+    d.ForceRebuild3(False)
+    bodies=r.bodies(d);r.check('four_mitered_members',len(bodies)==4,body_count=len(bodies))
+    fd=get(f,'GetDefinition');r.check('structural_group_preserved',get(fd,'GetGroupsCount')==1)
+    vol=r.volume(d);r.check('frame_has_material',vol>100000 and vol<160000,volume_mm3=vol)
+    for feat in r.features(d):
+        if get(feat,'GetTypeName2')=='SolidBodyFolder':
+            folder=get(feat,'GetSpecificFeature2');folder.SetAutomaticCutList(True);get(folder,'UpdateCutList')
+    folders=[]
+    def walk(feat):
+        if get(feat,'GetTypeName2')=='CutListFolder':
+            bf=get(feat,'GetSpecificFeature2');folders.append({'name':feat.Name,'bodies':get(bf,'GetBodyCount'),'properties':list(get(get(feat,'CustomPropertyManager'),'GetNames') or [])})
+        sub=get(feat,'GetFirstSubFeature')
+        while sub is not None:
+            walk(sub);sub=get(sub,'GetNextSubFeature')
+    for feat in r.features(d):walk(feat)
+    r.check('cut_list_generated',len(folders)>=2 and sum(x['bodies'] for x in folders)>=4,folders=folders)
+    p=r.save(d,'Rufa_welded_frame_300x200.SLDPRT');d=r.reopen(d,p)
+    r.check('weldment_reopen',len(r.bodies(d))==4 and abs(r.volume(d)-vol)<.1)
+    r.preview(d,'welded-frame')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

@@ -1,0 +1,23 @@
+{
+  "name": "rufa-dsh-enterprise",
+  "version": "0.1.0",
+  "private": true,
+  "description": "如发机械 DSH 企业客户端与集中管理服务",
+  "workspaces": [
+    "apps/server",
+    "apps/client"
+  ],
+  "engines": {
+    "node": ">=24.16.0"
+  },
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test:integration": "tsx --test tests/*.test.ts",
+    "test:history-safety": "npm run build --workspace @rufa/server && npm run build --workspace @rufa/client && node scripts/history-safety-gate.mjs"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "@rufa/dsh-remotion-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Remotion 视频制作技能（按需加载）",
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

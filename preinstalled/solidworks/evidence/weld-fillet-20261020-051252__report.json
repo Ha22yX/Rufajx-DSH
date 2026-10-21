@@ -1,0 +1,89 @@
+{
+  "output": "<acceptance-root>\\weld-fillet-20261020-051252",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件48"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BasePlate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_UprightPlate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Upright_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Upright_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "Rufa_Weldment_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "fillet_weld_bodies_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_FilletWeld_created",
+      "passed": false
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\weld-fillet-20261020-051252\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "零件48",
+      "path": ""
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_weld.py\", line 34, in <module>\n    f=r.feature(d.FeatureManager.InsertFilletBeadFeature2(0,.003,0.,2,0.,0.,0,0.,0.,2,0.,0,1,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_I4,[0]),0,EMPTY),'Rufa_FilletWeld')\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 49, in feature\n    self.check(name+'_created',f is not None)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Rufa_FilletWeld_created\n"
+}

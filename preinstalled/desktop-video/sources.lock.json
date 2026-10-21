@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "platform": "win32-x64",
+  "computerUse": {
+    "name": "dsh-computer-use-win",
+    "version": "0.4.3",
+    "repository": "https://github.com/Yu-tao-Li/dsh-computer-use-win",
+    "commit": "c0ad0ed88c3207839f25fedb0dead5a347b2b71b"
+  },
+  "browser": {
+    "version": "157.0.8080.0",
+    "url": "https://storage.googleapis.com/chrome-for-testing-public/157.0.8080.0/win64/chrome-headless-shell-win64.zip",
+    "sha256": "ad0fe78fbe0783035fd71f81cd876a2e81962a40ac7de6b4f7afcbeb00901c11",
+    "executable": "browser/chrome-headless-shell-win64/chrome-headless-shell.exe"
+  },
+  "skill": {
+    "repository": "https://github.com/haidrrrry/claude-remotion-skill",
+    "commit": "1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+    "url": "https://codeload.github.com/haidrrrry/claude-remotion-skill/zip/1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383",
+    "sha256": "56e94d88484bc3d48a3879df838185c7b3ae5bd166269f16ab665e530d4c9fb0"
+  }
+}

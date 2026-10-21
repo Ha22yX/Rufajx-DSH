@@ -1,0 +1,149 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-separated",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件38"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_drawing-section-separated-Tube.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_drawing",
+      "passed": true
+    },
+    {
+      "check": "parent_view_created",
+      "passed": true
+    },
+    {
+      "check": "activate_parent_view",
+      "passed": true
+    },
+    {
+      "check": "section_cut_line",
+      "passed": true
+    },
+    {
+      "check": "section_view_created",
+      "passed": true
+    },
+    {
+      "check": "native_section_data",
+      "passed": true
+    },
+    {
+      "check": "section_label",
+      "passed": true,
+      "label": "A"
+    },
+    {
+      "check": "correct_view_type",
+      "passed": true
+    },
+    {
+      "check": "nonempty_projected_geometry",
+      "passed": true,
+      "outline": [
+        0.05906,
+        0.034059999999999965,
+        0.12093999999999999,
+        0.10594000000000005
+      ]
+    },
+    {
+      "check": "views_do_not_overlap",
+      "passed": true,
+      "parent_outline": [
+        0.047029999999999995,
+        0.13906000000000002,
+        0.13297,
+        0.20094
+      ],
+      "derived_outline": [
+        0.05906,
+        0.034059999999999965,
+        0.12093999999999999,
+        0.10594000000000005
+      ]
+    },
+    {
+      "check": "save_drawing-section-separated-section.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_drawing-section-separated-section.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "derived_view_survives_reopen",
+      "passed": true,
+      "view_count": 2
+    },
+    {
+      "check": "reopened_section_label",
+      "passed": true
+    },
+    {
+      "check": "native_drawing_preview",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-separated\\cleanup-0.SLDDRW"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "b669a9a543a820f826c67b02e2ada5d45eec46dae0b7a89eb6908f1e51ce0b40",
+  "options": {
+    "mode": "section"
+  },
+  "view_type": 2,
+  "view_scale": 1.0,
+  "closed_test_documents": [
+    {
+      "title": "drawing-section-separated-section - 图纸1",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-separated\\drawing-section-separated-section.SLDDRW"
+    },
+    {
+      "title": "drawing-section-separated-Tube.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-separated\\drawing-section-separated-Tube.SLDPRT"
+    }
+  ]
+}

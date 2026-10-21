@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "platform": "win32-x64",
+  "python": "3.12.10",
+  "version": "1.0.0",
+  "wheels": [
+    {
+      "name": "pywin32",
+      "version": "311",
+      "file": "pywin32-311-cp312-cp312-win_amd64.whl",
+      "url": "https://files.pythonhosted.org/packages/d1/a8/a0e8d07d4d051ec7502cd58b291ec98dcc0c3fff027caad0470b72cfcc2f/pywin32-311-cp312-cp312-win_amd64.whl",
+      "sha256": "b8c095edad5c211ff31c05223658e71bf7116daa0ecf3ad85f3201ea3190d067"
+    }
+  ]
+}

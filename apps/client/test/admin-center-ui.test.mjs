@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+import { spawn } from 'node:child_process';
+import { mkdir, mkdtemp, readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const client=fileURLToPath(new URL('../',import.meta.url));
+test('real management DOM preserves full read-only history, lifecycle isolation and account workflows',{timeout:60000},async t=>{
+  const base=join(process.env.LOCALAPPDATA,'RufaDSH/Development/admin-acceptance-20261021');await mkdir(base,{recursive:true});
+  const output=await mkdtemp(join(base,'ui-'));
+  const dependencyRoot=process.env.RUFA_TEST_CLIENT_ROOT||client;
+  const electron=process.env.RUFA_TEST_ELECTRON_PATH||createRequire(join(dependencyRoot,'package.json'))('electron');
+  const env={...process.env};delete env.ELECTRON_RUN_AS_NODE;
+  const child=spawn(electron,[join(client,'test/fixtures/admin-center-ui.cjs'),output,client],{env,windowsHide:true,stdio:['ignore','pipe','pipe']});
+  let log='';for(const stream of[child.stdout,child.stderr])stream.on('data',chunk=>{log=(log+chunk).slice(-4000)});
+  t.after(()=>{if(child.exitCode===null)child.kill()});
+  const code=await new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',resolve)});
+  const report=JSON.parse(await readFile(join(output,'report.json'),'utf8'));
+  assert.equal(code,0,JSON.stringify(report)+'\n'+log);assert.equal(report.passed,true);assert.equal(report.checks.length,10);
+  t.diagnostic('Actual Electron DOM, synthetic IPC/accounts only: '+output);
+});

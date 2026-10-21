@@ -1,0 +1,54 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948\\body-copy",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件12"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\body-copy\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 44512,
+  "source_sha256": "31f5a01aba0c28df56985b2486f68caeccb370c97ff06cbe77dec88fe3515c01",
+  "options": {
+    "mode": "copy"
+  },
+  "closed_test_documents": [
+    {
+      "title": "零件12",
+      "path": ""
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_bodies.py\", line 14, in run\n    r.check('copy_body_selected',b.Select2(False,1))\n                                 ^^^^^^^^^^^^^^^^^^\n  File \"<COMObject GetBodies2>\", line 2, in Select2\nTypeError: The Python instance can not be converted to a COM object\n"
+}

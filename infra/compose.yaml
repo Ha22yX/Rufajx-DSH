@@ -1,0 +1,50 @@
+name: rufa-dsh
+services:
+  postgres:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: rufa
+      POSTGRES_USER: rufa
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private env file}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rufa -d rufa"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+  server:
+    build:
+      context: ..
+      dockerfile: infra/server.Dockerfile
+    environment:
+      RUFA_DATABASE_DRIVER: postgres
+      DATABASE_URL: postgresql://rufa:${POSTGRES_PASSWORD}@postgres:5432/rufa
+      HOST: 0.0.0.0
+      PORT: 8787
+      RUFA_UPSTREAM_BASE_URL: ${RUFA_UPSTREAM_BASE_URL:-https://api.deepseek.com}
+      RUFA_UPSTREAM_API_KEY: ${RUFA_UPSTREAM_API_KEY:-}
+      RUFA_ALLOWED_MODELS: ${RUFA_ALLOWED_MODELS:-deepseek-flash}
+      RUFA_MAX_CONCURRENT: ${RUFA_MAX_CONCURRENT:-12}
+      RUFA_MAX_USER_CONCURRENT: ${RUFA_MAX_USER_CONCURRENT:-4}
+      RUFA_MAX_OUTPUT_TOKENS: ${RUFA_MAX_OUTPUT_TOKENS:-131072}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${RUFA_LOCAL_PORT:-8787}:8787"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/health/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+volumes:
+  postgres-data:

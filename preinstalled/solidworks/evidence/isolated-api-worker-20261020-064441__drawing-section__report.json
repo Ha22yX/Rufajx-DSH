@@ -1,0 +1,59 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件30"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_drawing-section-Tube.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_drawing",
+      "passed": false
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "02d71c7c84a8bbdc2f73313efec2fd9ef5f1f4a360b8d8ef5b0e6d832ca04484",
+  "options": {
+    "mode": "section"
+  },
+  "closed_test_documents": [
+    {
+      "title": "drawing-section-Tube.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section\\drawing-section-Tube.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_drawing_views.py\", line 7, in run\n    r.check('new_drawing',d is not None);r.owned.add(get(d,'GetTitle'))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: new_drawing\n"
+}

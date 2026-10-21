@@ -1,0 +1,212 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_pid_matches_launch",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_no_documents",
+      "passed": true
+    },
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "private_journal_created",
+      "passed": true
+    },
+    {
+      "check": "isolated_documents_closed",
+      "passed": true
+    },
+    {
+      "check": "owned_process_exited",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-064441\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-064441\\recovery"
+    }
+  ],
+  "launched_pid": 33212,
+  "owned_pid": 33212,
+  "execution_mode": "Native COM cases in dedicated serial instance, with authorized Computer Use for native UI diagnostics and informational notices",
+  "cases": [
+    {
+      "case": "cam-ui",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\report.json"
+    },
+    {
+      "case": "body-mirror-fixed",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-mirror-fixed\\report.json"
+    },
+    {
+      "case": "body-copy-fixed",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-copy-fixed\\report.json"
+    },
+    {
+      "case": "body-rotate-fixed",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-fixed\\report.json"
+    },
+    {
+      "case": "loft-geometry",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\loft-geometry\\report.json"
+    },
+    {
+      "case": "edge-flange",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\edge-flange\\report.json"
+    },
+    {
+      "case": "cam-ui2",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui2\\report.json"
+    },
+    {
+      "case": "cam-capsule-ui",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-ui\\report.json"
+    },
+    {
+      "case": "body-rotate-definition",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-definition\\report.json"
+    },
+    {
+      "case": "gear-reopen",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\gear-reopen\\report.json"
+    },
+    {
+      "case": "cam-capsule-api",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\report.json"
+    },
+    {
+      "case": "gear-reopen-final",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\gear-reopen-final\\report.json"
+    },
+    {
+      "case": "cam-ui-inspection",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui-inspection\\report.json"
+    },
+    {
+      "case": "cam-capsule-antialigned",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\report.json"
+    },
+    {
+      "case": "pack-go",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go\\report.json"
+    },
+    {
+      "case": "drawing-section",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section\\report.json"
+    },
+    {
+      "case": "drawing-detail",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail\\report.json"
+    },
+    {
+      "case": "pack-go-typed",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-typed\\report.json"
+    },
+    {
+      "case": "drawing-section-path",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-path\\report.json"
+    },
+    {
+      "case": "drawing-detail-path",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-path\\report.json"
+    },
+    {
+      "case": "pack-go-ui-diagnostic",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-ui-diagnostic\\report.json"
+    },
+    {
+      "case": "drawing-section-separated",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-section-separated\\report.json"
+    },
+    {
+      "case": "drawing-detail-separated",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-separated\\report.json"
+    },
+    {
+      "case": "pack-go-dotnet",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-dotnet\\report.json"
+    },
+    {
+      "case": "pack-go-reopened",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\report.json"
+    },
+    {
+      "case": "final-audit",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-064441\\final-audit\\report.json"
+    }
+  ],
+  "execution_mode_correction": {
+    "previous_label": "Native COM only; hidden owned instance; no computer use",
+    "reason": "Legacy worker label did not reflect user-authorized Computer Use during this run.",
+    "scope": "Owned test instance only; startup, native cam and Pack and Go diagnostics, drawing font notices. Original user instance not controlled."
+  },
+  "protected_preexisting_pid": 39288,
+  "remaining_documents": [],
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ],
+  "preexisting_pids_still_running": [
+    39288
+  ]
+}

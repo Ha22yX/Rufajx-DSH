@@ -1,0 +1,136 @@
+"""Isolated SW2016 acceptance: all writes are to new test documents and this folder."""
+import json
+import math
+import time
+import traceback
+from pathlib import Path
+import pythoncom
+import win32com.client
+from win32com.client import VARIANT
+
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / ("run-" + time.strftime("%Y%m%d-%H%M%S"))
+OUT.mkdir()
+report = {"output": str(OUT), "checks": [], "complete": False}
+
+def member(obj, name, *args):
+    value = getattr(obj, name)
+    if hasattr(value, '_oleobj_') and not args:
+        return value
+    return value(*args) if callable(value) else value
+
+def check(name, ok, **details):
+    record = {"check": name, "passed": bool(ok), **details}
+    report["checks"].append(record)
+    (OUT / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps(record, ensure_ascii=False), flush=True)
+    if not ok:
+        raise RuntimeError("Acceptance failed: " + name)
+
+def save(doc, path):
+    if path.exists():
+        raise FileExistsError(path)
+    errors = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    warnings = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    ok = doc.Extension.SaveAs(str(path), 0, 1, VARIANT(pythoncom.VT_DISPATCH, None), errors, warnings)
+    check("save_" + path.suffix, ok and not errors.value and path.is_file() and path.stat().st_size > 0,
+          path=str(path), errors=errors.value, warnings=warnings.value,
+          bytes=path.stat().st_size if path.exists() else 0)
+
+def sketch(doc, name):
+    doc.ClearSelection2(True)
+    ok = doc.Extension.SelectByID2("前视基准面", "PLANE", 0., 0., 0., False, 0,
+                                  VARIANT(pythoncom.VT_DISPATCH, None), 0)
+    check("select_front_plane_" + name, ok)
+    doc.SketchManager.InsertSketch(True)
+    active = member(doc.SketchManager, "ActiveSketch")
+    check('active_sketch_' + name, active is not None)
+    return name
+
+def end_sketch(doc, feature):
+    doc.SketchManager.InsertSketch(True)
+    requested_name = feature
+    feature = doc.FeatureByPositionReverse(0)
+    check('closed_sketch_feature_' + requested_name,
+          feature is not None and member(feature, 'GetTypeName2') == 'ProfileFeature')
+    feature.Name = requested_name
+    doc.ClearSelection2(True)
+    check("select_sketch_" + str(feature.Name), feature.Select2(False, 0))
+
+def geometry(doc, expected_volume, label):
+    doc.ClearSelection2(True)
+    doc.ForceRebuild3(False)
+    bodies = doc.GetBodies2(0, False) or []
+    props = member(doc.Extension, "CreateMassProperty")
+    volume = float(member(props, "Volume")) * 1e9
+    check(label, len(bodies) == 1 and abs(volume - expected_volume) < .05,
+          bodies=len(bodies), volume_mm3=volume, expected_mm3=expected_volume)
+
+pythoncom.CoInitialize()
+try:
+    app = win32com.client.GetActiveObject("SldWorks.Application.24")
+    revision = str(member(app, "RevisionNumber"))
+    check("version_2016", revision.startswith("24."), revision=revision)
+    originals = {str(member(d, "GetTitle")) for d in (member(app, "GetDocuments") or [])}
+    template = str(Path("C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates/gb_part.prtdot"))
+    doc = app.NewDocument(template, 0, 0., 0.)
+    check("new_isolated_document", doc is not None and str(member(doc, "GetTitle")) not in originals,
+          title=str(member(doc, "GetTitle")) if doc is not None else None)
+    base_sketch = sketch(doc, "Rufa_BaseSketch")
+    edges = doc.SketchManager.CreateCornerRectangle(0., 0., 0., .120, .080, 0.)
+    check("rectangle", len(edges) == 4)
+    end_sketch(doc, base_sketch)
+    boss = doc.FeatureManager.FeatureExtrusion3(
+        True, False, False, 0, 0, .008, 0.,
+        False, False, False, False, 0., 0., False, False, False, False,
+        True, False, True, 0, 0., False)
+    check("extrude_8mm", boss is not None)
+    boss.Name = "Rufa_Base"
+    geometry(doc, 120 * 80 * 8, "base_volume")
+    holes = sketch(doc, "Rufa_HoleSketch")
+    for x, y in [(10, 10), (110, 10), (10, 70), (110, 70)]:
+        circle = doc.SketchManager.CreateCircleByRadius(x / 1000, y / 1000, 0., .0045)
+        check("circle_%s_%s" % (x, y), circle is not None)
+    end_sketch(doc, holes)
+    cut = doc.FeatureManager.FeatureCut3(
+        True, False, True, 1, 0, .01, 0.,
+        False, False, False, False, 0., 0.,
+        False, False, False, False, False, True, True, False, False, False, 0, 0., False)
+    check("2016_cut3_four_through_holes", cut is not None)
+    cut.Name = "Rufa_Holes"
+    area = 120 * 80 - 4 * math.pi * 4.5 ** 2
+    geometry(doc, area * 8, "cut_volume")
+    dim = doc.Parameter("D1@Rufa_Base")
+    check("editable_native_depth_dimension", dim is not None)
+    dim.SystemValue = .010
+    member(doc, "EditRebuild3")
+    geometry(doc, area * 10, "depth_edit_10mm_volume")
+    doc.ShowNamedView2("*等轴测", 7)
+    member(doc, "ViewZoomtofit2")
+    native = OUT / "Rufa_SW2016_plate_120x80x10_4x9.SLDPRT"
+    save(doc, native)
+    save(doc, OUT / "Rufa_SW2016_plate.step")
+    save(doc, OUT / "Rufa_SW2016_plate.stl")
+    title = str(member(doc, "GetTitle"))
+    check("safe_close_target", title not in originals and Path(str(member(doc, "GetPathName"))).resolve() == native.resolve())
+    app.CloseDoc(title)
+    errors = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    warnings = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    doc = app.OpenDoc6(str(native), 1, 1, "", errors, warnings)
+    check("reopen_native", doc is not None and not errors.value, errors=errors.value, warnings=warnings.value)
+    geometry(doc, area * 10, "reopened_volume")
+    check("reopened_editable_dimension", abs(float(doc.Parameter("D1@Rufa_Base").SystemValue) - .010) < 1e-9)
+    doc.ShowNamedView2("*等轴测", 7)
+    member(doc, "ViewZoomtofit2")
+    original_now = {str(member(d, "GetTitle")) for d in (member(app, "GetDocuments") or [])}
+    check("preexisting_documents_preserved", originals.issubset(original_now))
+    report["complete"] = True
+except Exception:
+    report["error"] = traceback.format_exc()
+    print(report["error"], flush=True)
+finally:
+    (OUT / "report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("REPORT=" + str(OUT / "report.json"), flush=True)
+    pythoncom.CoUninitialize()
+if not report["complete"]:
+    raise SystemExit(1)

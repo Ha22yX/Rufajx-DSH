@@ -1,0 +1,100 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_uniform",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件8"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "Rufa_Scale_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Scale_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "exact_volume",
+      "passed": true,
+      "actual_mm3": 191999.99999999997,
+      "expected_mm3": 192000
+    },
+    {
+      "check": "single_solid",
+      "passed": true
+    },
+    {
+      "check": "save_scale_uniform-scale_uniform.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_scale_uniform-scale_uniform.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "feature_survives_reopen",
+      "passed": true,
+      "type": "Scale"
+    },
+    {
+      "check": "volume_survives_reopen",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_uniform\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 44512,
+  "source_sha256": "81addf8d3caa04c52352d2df5f0c0e1e5a152742b64ef0ef86b2f8bbafcb3312",
+  "options": {
+    "mode": "scale_uniform"
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_uniform\\scale_uniform.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "scale_uniform-scale_uniform.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_uniform\\scale_uniform-scale_uniform.SLDPRT"
+    }
+  ]
+}

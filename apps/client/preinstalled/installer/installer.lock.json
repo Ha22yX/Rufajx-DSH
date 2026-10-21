@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "decoder": "7-Zip / Nsis7z 19.00",
+  "sources": {
+    "7z1900-src.7z": "https://www.7-zip.org/a/7z1900-src.7z",
+    "Nsis7z_19.00.7z": "https://nsis.sourceforge.io/mediawiki/images/6/69/Nsis7z_19.00.7z"
+  },
+  "toolchain": "MSVC 14.51.36231, v145, Windows SDK 10.0.26100.0, Release Unicode Win32, static CRT",
+  "originalPluginSha256": "b393f05e8ff919ef071181050e1873c9a776e1a0ae8329aefff7007d0cadf592",
+  "originalSourceSha256": "6e99ce3cef822ef32da6d3bf0827cd6c6c71af4e090759035094d12c17e631cd",
+  "patchedSourceSha256": "d09c18f66512ea9a6eb6ecc350646d4bdf41f494a920b3445f235c479860a251",
+  "files": {
+    "7z1900-src.7z": "9ba70a5e8485cf9061b30a2a84fe741de5aeb8dd271aab8889da0e9b3bf1868e",
+    "Nsis7z_19.00.7z": "6f2f3730049926f40442ee0c8b7d3e3dee7ace544d82467ff8059ea3f4201c58",
+    "x86-unicode/RufaNsis7z.dll": "26a049e4b33b94acdc7bf8bf14ae9188bbbb47e4a019328f36bc7e7be5ef1b1a",
+    "x86-unicode/RufaUpgradeTemp.dll": "656c474579b1cb636164c3f7eb73bf7a01a4dc09f2dcb1868db4e3ccd9802984"
+  }
+}

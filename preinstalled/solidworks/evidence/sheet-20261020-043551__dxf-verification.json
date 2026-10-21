@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "check": "four_outline_lines",
+      "passed": true
+    },
+    {
+      "check": "one_bend_line",
+      "passed": true
+    },
+    {
+      "check": "dxf_geometry_60_by_150_283",
+      "passed": true,
+      "extents_mm": [
+        60.0,
+        150.2831853072
+      ]
+    },
+    {
+      "check": "outline_closed",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

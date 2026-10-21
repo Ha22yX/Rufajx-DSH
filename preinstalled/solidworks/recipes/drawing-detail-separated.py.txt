@@ -1,0 +1,39 @@
+from more_common import *
+
+def run(r,options):
+    p=r.new();r.sketch(p,'Rufa_Ring',draw=lambda sm:[sm.CreateCircleByRadius(0.,0.,0.,.025),sm.CreateCircleByRadius(0.,0.,0.,.012)])
+    extrude(r,p,.06,'Rufa_Tube');pp=r.save(p,'Tube.SLDPRT')
+    d=r.app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates/gb_a3.drwdot')),0,0.,0.)
+    r.check('new_drawing',d is not None);r.owned.add(get(d,'GetTitle'))
+    v=d.CreateDrawViewFromModelView3(str(pp),'*前视',.09,.17,0.)
+    r.check('parent_view_created',v is not None);v.UseSheetScale=False;v.ScaleDecimal=1.
+    r.check('activate_parent_view',d.ActivateView(v.Name));d.ClearSelection2(True)
+    if options['mode']=='section':
+        line=d.SketchManager.CreateLine(-.04,0.,0.,.04,0.,0.)
+        r.check('section_cut_line',line is not None)
+        view=d.CreateSectionViewAt5(.09,.07,0.,'A',0,NULL,0.)
+        r.check('section_view_created',view is not None)
+        data=get(view,'GetSection');r.check('native_section_data',data is not None)
+        data.SetAutoHatch(True)
+        label=get(data,'GetLabel');r.check('section_label',label=='A',label=label)
+        expected_type=2
+    else:
+        circle=d.SketchManager.CreateCircleByRadius(.02,0.,0.,.01)
+        r.check('detail_circle',circle is not None)
+        view=d.CreateDetailViewAt3(.22,.17,0.,0,2.,1.,'B',1,0)
+        r.check('detail_view_created',view is not None)
+        expected_type=3
+    r.report['view_type']=get(view,'Type');r.report['view_scale']=view.ScaleDecimal;r.flush()
+    r.check('correct_view_type',get(view,'Type')==expected_type)
+    target_name=view.Name;outline=list(get(view,'GetOutline'))
+    r.check('nonempty_projected_geometry',outline[2]-outline[0]>.005 and outline[3]-outline[1]>.005,outline=outline)
+    parent_outline=list(get(v,'GetOutline'))
+    r.check('views_do_not_overlap',outline[2]+.005<parent_outline[0] or parent_outline[2]+.005<outline[0] or outline[3]+.005<parent_outline[1] or parent_outline[3]+.005<outline[1],parent_outline=parent_outline,derived_outline=outline)
+    dp=r.save(d,options['mode']+'.SLDDRW');d=r.reopen(d,dp,3)
+    views=[];view=get(get(d,'GetFirstView'),'GetNextView')
+    while view is not None:views.append(view);view=get(view,'GetNextView')
+    match=[v for v in views if v.Name==target_name]
+    r.check('derived_view_survives_reopen',len(match)==1 and get(match[0],'Type')==expected_type,view_count=len(views))
+    if options['mode']=='section':r.check('reopened_section_label',get(get(match[0],'GetSection'),'GetLabel')=='A')
+    else:r.check('reopened_detail_scale_2',abs(match[0].ScaleDecimal-2)<1e-6)
+    get(d,'ViewZoomtofit2');r.check('native_drawing_preview',d.SaveBMP(str(r.out/(options['mode']+'.bmp')),1200,850))

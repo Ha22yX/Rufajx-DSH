@@ -1,0 +1,44 @@
+from advanced_common import *
+import shutil
+class MoreRun(Run):
+    def save(self,d,filename):return super().save(d,self.out.name+'-'+filename)
+    def finish(self,error=None):
+        if error:
+            self.report['error']=error
+            self.flush()
+        docs=[]
+        for d in get(self.app,'GetDocuments') or []:
+            title=get(d,'GetTitle');path=get(d,'GetPathName');kind=get(d,'GetType')
+            if (path and Path(path).resolve().is_relative_to(self.out.resolve())) or (not path and title in self.owned and title not in self.originals):docs.append((kind,title,path))
+        for kind,title,path in sorted(docs,reverse=True):
+            d=next((v for v in get(self.app,'GetDocuments') or [] if get(v,'GetTitle')==title and get(v,'GetPathName')==path),None)
+            if d is not None:
+                try:self.close_owned(d)
+                except Exception:
+                    error=(error or '')+'\nCLEANUP ERROR\n'+traceback.format_exc()
+        current={get(d,'GetTitle') for d in get(self.app,'GetDocuments') or []}
+        self.check('original_documents_preserved',self.originals.issubset(current))
+        self.report['remaining_documents']=sorted(current)
+        if error:self.report['error']=error;print(error,flush=True)
+        self.report['complete']=error is None and all(c['passed'] for c in self.report['checks'])
+        self.flush();print('REPORT='+str(self.out/'report.json'),flush=True);pythoncom.CoUninitialize()
+    def copy_open(self,source,name,kind=1):
+        source=Path(source).resolve();assert source.is_file()
+        dest=self.out/(self.out.name+'-'+name);assert not dest.exists();shutil.copy2(source,dest)
+        e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+        d=self.app.OpenDoc6(str(dest),kind,1,'',e,w)
+        self.check('open_copy',d is not None and e.value==0,source=str(source),copy=str(dest),warnings=w.value)
+        assert Path(get(d,'GetPathName')).resolve()==dest
+        self.owned.add(get(d,'GetTitle'));return d
+def extrude(r,d,depth,name,merge=True):
+    return r.feature(d.FeatureManager.FeatureExtrusion3(True,False,False,0,0,depth,0.,False,False,False,False,0.,0.,False,False,False,False,merge,False,True,0,0.,False),name)
+def cut(r,d,name):
+    return r.feature(d.FeatureManager.FeatureCut3(True,False,True,1,0,.5,0.,False,False,False,False,0.,0.,False,False,False,False,False,True,True,True,True,False,0,0.,False),name)
+def sel(d,obj,mark=0,append=False):
+    data=get(d.SelectionManager,'CreateSelectData');data.Mark=mark
+    try:return obj.Select4(append,data)
+    except AttributeError:
+        try:return obj.Select2(append,mark)
+        except Exception:return obj.Select2(append,data)
+def cylfaces(r,d,radius):
+    return [f for b in r.bodies(d) for f in get(b,'GetFaces') or [] if get(get(f,'GetSurface'),'IsCylinder') and abs(get(get(f,'GetSurface'),'CylinderParams')[6]-radius)<1e-7]

@@ -1,0 +1,81 @@
+from more_common import *
+from comtypes.typeinfo import LoadTypeLibEx, REGKIND_NONE
+r=MoreRun('explode-bom');error=None
+def as_interface(obj,name):
+    lib=LoadTypeLibEx('D:/Program Files/Solidworks/SOLIDWORKS/sldworks.tlb',REGKIND_NONE)
+    for i in range(lib.GetTypeInfoCount()):
+        if lib.GetDocumentation(i)[0]==name:
+            guid=str(lib.GetTypeInfo(i).GetTypeAttr().guid)
+            return win32com.client.Dispatch(obj._oleobj_.QueryInterface(pythoncom.MakeIID(guid),pythoncom.IID_IDispatch))
+    raise RuntimeError(name)
+def pos(c):
+    return list(get(c.GetTotalTransform(True),'ArrayData')[9:12])
+def table_data(bom,config):
+    table=as_interface(bom,'ITableAnnotation');table._FlagAsMethod('Text')
+    cells=[[table.Text(i,j) for j in range(table.ColumnCount)] for i in range(table.RowCount)]
+    counts=[]
+    for row in range(table.RowCount):
+        comps=bom.GetComponents2(row,config)
+        if comps:
+            counts.append({'row':row,'count':len(comps),'paths':[get(c,'GetPathName') for c in comps]})
+    return cells,counts
+try:
+    base=r.new();r.sketch(base,'Rufa_Plate',draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.08,.05,0.))
+    extrude(r,base,.01,'Rufa_BasePlate');bp=r.save(base,'BasePlate.SLDPRT')
+    washer=r.new();r.sketch(washer,'Rufa_Ring',draw=lambda sm:[sm.CreateCircleByRadius(0.,0.,0.,.01),sm.CreateCircleByRadius(0.,0.,0.,.003)])
+    extrude(r,washer,.005,'Rufa_Washer');wp=r.save(washer,'Washer.SLDPRT')
+    asm=r.new('assembly')
+    cb=asm.AddComponent5(str(bp),0,'',False,'',0.,0.,0.)
+    c1=asm.AddComponent5(str(wp),0,'',False,'',.02,.025,.01)
+    c2=asm.AddComponent5(str(wp),0,'',False,'',.06,.025,.01)
+    r.check('three_bom_components',len(asm.GetComponents(True))==3)
+    name1=c1.Name2;name2=c2.Name2
+    initial=[pos(c1),pos(c2)]
+    r.check('create_exploded_view',get(asm,'CreateExplodedView'))
+    ev=get(asm,'GetExplodedViewNames')[0]
+    asm.ShowExploded2(True,ev)
+    cfg=get(asm.ConfigurationManager,'ActiveConfiguration');cfgname=cfg.Name
+    initial_steps=get(cfg,'GetNumberOfExplodeSteps')
+    edge=next(e for e in get(r.bodies(get(cb,'GetModelDoc2'))[0],'GetEdges') if abs(get(get(e,'GetEndVertex'),'GetPoint')[2]-get(get(e,'GetStartVertex'),'GetPoint')[2])>.009)
+    r.check('explode_direction',sel(asm,cb.GetCorresponding(edge),1))
+    r.check('explode_component',c1.Select4(True,get(asm.SelectionManager,'CreateSelectData'),False))
+    # Component selections use a distinct mark from the direction.
+    asm.ClearSelection2(True);sel(asm,cb.GetCorresponding(edge),1)
+    sd=get(asm.SelectionManager,'CreateSelectData');sd.Mark=2
+    r.check('explode_marked_component',c1.Select4(True,sd,False))
+    step=cfg.AddExplodeStep(.05,False,False,False)
+    r.check('explode_step_created',step is not None and get(cfg,'GetNumberOfExplodeSteps')==initial_steps+1,created=step is not None,initial_count=initial_steps,count=get(cfg,'GetNumberOfExplodeSteps'),selections=[asm.SelectionManager.GetSelectedObjectCount2(x) for x in [1,2]])
+    asm.ClearSelection2(True);asm.ShowExploded2(True,ev);get(asm,'GraphicsRedraw2')
+    exploded=pos(asm.GetComponentByName(name1))
+    r.check('actual_exploded_displacement50',abs(math.dist(initial[0],exploded)-.05)<1e-6,initial=initial[0],exploded=exploded)
+    r.check('unselected_component_stays',math.dist(initial[1],pos(asm.GetComponentByName(name2)))<1e-6)
+    r.preview(asm,'exploded')
+    asm.ShowExploded2(False,ev)
+    r.check('collapse_restores_position',math.dist(initial[0],pos(asm.GetComponentByName(name1)))<1e-6)
+    ap=r.save(asm,'ExplodedAssembly.SLDASM');asm=r.reopen(asm,ap,2)
+    r.check('reopen_exploded_view',get(asm,'GetExplodedViewCount')==1)
+    asm.ShowExploded2(True,ev)
+    r.check('reopen_exploded_displacement',abs(math.dist(initial[0],pos(asm.GetComponentByName(name1)))-.05)<1e-6)
+    asm.ShowExploded2(False,ev)
+    drawing=r.app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates/gb_a3.drwdot')),0,0.,0.)
+    r.check('new_drawing',drawing is not None)
+    r.owned.add(get(drawing,'GetTitle'))
+    view=drawing.CreateDrawViewFromModelView3(str(ap),'*等轴测',.16,.15,0.)
+    r.check('drawing_assembly_view',view is not None)
+    bom=view.InsertBomTable4(False,.02,.27,1,1,cfgname,str(Path('D:/Program Files/Solidworks/SOLIDWORKS/lang/chinese-simplified/bom-standard.sldbomtbt')),False,0,False)
+    r.check('native_bom_table',bom is not None)
+    cells,counts=table_data(bom,cfgname);r.report['bom_cells']=cells;r.report['bom_counts']=counts
+    r.check('bom_two_items_quantity_1_and_2',sorted(v['count'] for v in counts)==[1,2],cells=cells,counts=counts)
+    r.check('bom_exact_files',set(p for row in counts for p in row['paths'])=={str(bp),str(wp)})
+    dp=r.save(drawing,'AssemblyBOM.SLDDRW');drawing=r.reopen(drawing,dp,3)
+    boms=[]
+    for f in r.features(drawing):
+        if get(f,'GetTypeName2')=='BomFeat':
+            boms.extend(get(get(f,'GetSpecificFeature2'),'GetTableAnnotations') or [])
+    r.check('reopen_native_bom',len(boms)==1)
+    cells2,counts2=table_data(boms[0],cfgname)
+    r.check('reopen_bom_values',cells2==cells and sorted(v['count'] for v in counts2)==[1,2])
+    get(drawing,'ViewZoomtofit2')
+    r.check('drawing_preview',drawing.SaveBMP(str(r.out/'bom.bmp'),1200,850))
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

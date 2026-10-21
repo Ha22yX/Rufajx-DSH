@@ -1,0 +1,115 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件28"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-Block0.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件29"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-Block1.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体8"
+    },
+    {
+      "check": "insert_component_0",
+      "passed": true
+    },
+    {
+      "check": "insert_component_1",
+      "passed": true
+    },
+    {
+      "check": "insert_component_2",
+      "passed": true
+    },
+    {
+      "check": "save_pack-go-Assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "5a41cc1821263ce23481b74ebec0a000763183f3bc3956b49bf0183b4177d03b",
+  "options": {
+    "mode": "pack"
+  },
+  "closed_test_documents": [
+    {
+      "title": "pack-go-Assembly.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go\\pack-go-Assembly.SLDASM"
+    },
+    {
+      "title": "pack-go-Block0.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go\\pack-go-Block0.SLDPRT"
+    },
+    {
+      "title": "pack-go-Block1.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go\\pack-go-Block1.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_pack_go.py\", line 12, in run\n    pg=get(a.Extension,'GetPackAndGo');pg.IncludeDrawings=False;pg.IncludeSimulationResults=False;pg.IncludeToolboxComponents=False;pg.FlattenToSingleFolder=True\n       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 13, in get\n    return value if hasattr(value, '_oleobj_') and not args else value(*args) if callable(value) else value\n                                                                 ^^^^^^^^^^^^\n  File \"<COMObject <unknown>>\", line 2, in GetPackAndGo\npywintypes.com_error: (-2147352561, '非选择性的参数。', None, None)\n"
+}

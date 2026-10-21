@@ -1,0 +1,82 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-fixed",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件6"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "rotate_body_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyRotate_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyRotate_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "actual_body_positions",
+      "passed": false,
+      "boxes_mm": [
+        [
+          10.0,
+          -40.0,
+          0.0,
+          30.0,
+          1.8369701987210296e-15,
+          30.000000000000004
+        ]
+      ]
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-fixed\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "dadcf748d1bb90566ae5afda625727d5b332bcaa3b4c8253a6ebdc473a6a64e4",
+  "options": {
+    "mode": "rotate"
+  },
+  "closed_test_documents": [
+    {
+      "title": "零件6",
+      "path": ""
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_bodies.py\", line 25, in run\n    verify(d)\n  File \"<acceptance-root>\\case_bodies.py\", line 23, in verify\n    r.check('actual_body_positions',len(boxes)==len(target) and all(max(abs(x-y) for x,y in zip(a,b))<.001 for a,b in zip(boxes,target)),boxes_mm=boxes)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: actual_body_positions\n"
+}

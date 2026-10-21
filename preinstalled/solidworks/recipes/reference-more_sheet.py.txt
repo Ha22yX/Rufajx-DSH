@@ -1,0 +1,38 @@
+from more_common import *
+import sys
+r=MoreRun('sheet-'+sys.argv[1]);error=None
+try:
+    d=r.new()
+    sk,_=r.sketch(d,'Rufa_SheetProfile',draw=lambda sm:sm.CreateCornerRectangle(-.06,-.04,0.,.06,.04,0.))
+    cba=get(d.FeatureManager,'CreateCustomBendAllowance');cba.Type=2;cba.KFactor=.5
+    base=r.feature(d.FeatureManager.InsertSheetMetalBaseFlange2(.002,False,.003,.06,0.,False,0,0,1,cba,False,2,.001,.001,.5,True,False,True,True),'Rufa_SheetBase')
+    v0=r.volume(d)
+    r.check('flat_base_geometry',len(r.bodies(d))==1 and get(r.bodies(d)[0],'IsSheetMetal') and abs(v0-19200)<.01,volume=v0)
+    if sys.argv[1]=='hem':
+        edges=[]
+        for edge in get(r.bodies(d)[0],'GetEdges'):
+            vertices=[get(get(edge,x),'GetPoint') for x in ['GetStartVertex','GetEndVertex']]
+            if all(abs(p[1]-.04)<1e-6 and abs(p[2])<1e-6 for p in vertices):edges.append(edge)
+        r.check('hem_edge_selected',len(edges)==1 and sel(d,edges[0]))
+        f=r.feature(d.FeatureManager.InsertSheetMetalHem2(0,0,False,.012,.003,math.pi,.002,.001,cba,True,0,0,False,.5,.001,.001),'Rufa_OpenHem')
+        definition=get(f,'GetDefinition')
+        r.check('hem_native_parameters',abs(definition.Length-.012)<1e-8 and abs(definition.GapDistance-.003)<1e-8,length=definition.Length,gap=definition.GapDistance)
+    else:
+        face=max(get(r.bodies(d)[0],'GetFaces'),key=lambda f:(round(get(f,'GetArea'),8),sum(get(f,'GetBox')[2::3])))
+        r.check('forming_face_selected',sel(d,face))
+        source=Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/design library/forming tools/embosses/dimple.sldprt')
+        local=r.out/'forming-tool-dimple.sldprt';shutil.copy2(source,local)
+        f=r.feature(d.FeatureManager.InsertFormToolFeature(str(local),False,0.,'',False,True,True,True,False),'Rufa_Dimple')
+    v=r.volume(d)
+    r.check('sheet_shape_changed',len(r.bodies(d))==1 and get(r.bodies(d)[0],'IsSheetMetal') and abs(v-v0)>1e-3,base_volume=v0,volume=v,box=r.box(r.bodies(d)[0]))
+    flat=next(f for f in r.features(d) if get(f,'GetTypeName2')=='FlatPattern')
+    r.check('flatten_feature',flat.SetSuppression2(1,1,EMPTY));d.ForceRebuild3(False)
+    r.check('flatten_feature_error_free',flat.GetErrorCode2(VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False))==0)
+    r.preview(d,'flat')
+    r.check('refold_feature',flat.SetSuppression2(0,1,EMPTY));d.ForceRebuild3(False)
+    r.check('refold_volume',abs(r.volume(d)-v)<.01)
+    p=r.save(d,'sheet-'+sys.argv[1]+'.SLDPRT');d=r.reopen(d,p)
+    r.check('sheet_reopen_geometry',abs(r.volume(d)-v)<.01)
+    r.preview(d,'folded')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

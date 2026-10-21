@@ -1,0 +1,88 @@
+{
+  "output": "<acceptance-root>\\parametric-20261020-042010",
+  "checks": [
+    {
+      "check": "version",
+      "passed": true
+    },
+    {
+      "check": "new_document",
+      "passed": true
+    },
+    {
+      "check": "select_plane",
+      "passed": true
+    },
+    {
+      "check": "select_dimension_datum_4",
+      "passed": true
+    },
+    {
+      "check": "select_dimension_datum_2",
+      "passed": true
+    },
+    {
+      "check": "two_dimension_datums",
+      "passed": true
+    },
+    {
+      "check": "native_sketch_auto_dimensions",
+      "passed": true,
+      "status": 0
+    },
+    {
+      "check": "fully_constrained_sketch",
+      "passed": true,
+      "status": 3
+    },
+    {
+      "check": "real_sketch_dimensions",
+      "passed": true,
+      "dimensions": [
+        {
+          "name": "D1@Rufa_ParametricRectangle@零件6.Part",
+          "value_mm": 120.0
+        },
+        {
+          "name": "D2@Rufa_ParametricRectangle@零件6.Part",
+          "value_mm": 80.0
+        }
+      ]
+    },
+    {
+      "check": "width_dimension_found",
+      "passed": true
+    },
+    {
+      "check": "select_dimensioned_sketch",
+      "passed": true
+    },
+    {
+      "check": "extrude_dimensioned_sketch",
+      "passed": true
+    },
+    {
+      "check": "width_edit_changes_geometry",
+      "passed": true,
+      "volume_mm3": 95999.99999999999
+    },
+    {
+      "check": "save_.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\parametric-20261020-042010\\Rufa_parametric_150x80x8.SLDPRT"
+    },
+    {
+      "check": "drawing_views",
+      "passed": true
+    },
+    {
+      "check": "drawing_imports_real_dimensions",
+      "passed": false,
+      "count": 0
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\smoke_parametric.py\", line 84, in <module>\n    check('drawing_imports_real_dimensions',len(imported)>=3,count=len(imported))\n  File \"<acceptance-root>\\smoke_parametric.py\", line 22, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: drawing_imports_real_dimensions\n"
+}

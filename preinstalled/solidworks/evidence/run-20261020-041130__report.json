@@ -1,0 +1,16 @@
+{
+  "output": "<acceptance-root>\\run-20261020-041130",
+  "checks": [
+    {
+      "check": "version_2016",
+      "passed": true,
+      "revision": "24.5.0"
+    },
+    {
+      "check": "new_isolated_document",
+      "passed": false
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\smoke_part.py\", line 71, in <module>\n    check(\"new_isolated_document\", doc is not None and str(member(doc, \"GetTitle\")) not in originals)\n  File \"<acceptance-root>\\smoke_part.py\", line 26, in check\n    raise RuntimeError(\"Acceptance failed: \" + name)\nRuntimeError: Acceptance failed: new_isolated_document\n"
+}

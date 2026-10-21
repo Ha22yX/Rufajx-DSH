@@ -1,0 +1,25 @@
+from more_common import *
+r=MoreRun('patterns');error=None
+try:
+    d=r.new();r.sketch(d,'Rufa_Plate',draw=lambda sm:sm.CreateCornerRectangle(-.06,-.04,0.,.06,.04,0.));extrude(r,d,.01,'Rufa_Base')
+    edge=next(e for b in r.bodies(d) for e in get(b,'GetEdges') or [] if get(get(e,'GetCurve'),'IsLine') and abs(get(get(e,'GetEndVertex'),'GetPoint')[0]-get(get(e,'GetStartVertex'),'GetPoint')[0])>.1)
+    r.sketch(d,'Rufa_Hole',draw=lambda sm:sm.CreateCircleByRadius(.015,.015,0.,.003));hole=cut(r,d,'Rufa_Hole6')
+    d.ClearSelection2(True);r.check('pattern_selection',sel(d,edge,1) and hole.Select2(True,4))
+    pat=r.feature(d.FeatureManager.FeatureLinearPattern3(3,.015,1,0.,False,False,'','',False,False),'Rufa_Linear3')
+    r.check('three_holes',len(cylfaces(r,d,.003))==3,centers=[get(get(f,'GetSurface'),'CylinderParams')[:3] for f in cylfaces(r,d,.003)])
+    d.ClearSelection2(True);r.check('mirror_selection',hole.Select2(False,1) and pat.Select2(True,1) and d.FeatureByName('上视基准面').Select2(True,2))
+    r.feature(d.FeatureManager.InsertMirrorFeature2(False,False,False,False,0),'Rufa_MirrorHoles')
+    expected=96000-6*math.pi*3**2*10
+    r.check('six_symmetric_holes',len(cylfaces(r,d,.003))==6 and abs(r.volume(d)-expected)<.1,volume=r.volume(d),expected=expected)
+    centers=[get(get(f,'GetSurface'),'CylinderParams')[:3] for f in cylfaces(r,d,.003)]
+    r.check('mirrored_coordinates',all(any(abs(a[0]-b[0])<1e-7 and abs(a[1]+b[1])<1e-7 for b in centers) for a in centers),centers=centers)
+    p=r.save(d,'pattern_mirror.SLDPRT');d=r.reopen(d,p);r.check('pattern_mirror_reopen',len(cylfaces(r,d,.003))==6 and abs(r.volume(d)-expected)<.1);r.preview(d,'pattern-mirror');r.close_owned(d)
+    d=r.new();r.sketch(d,'Rufa_Disk',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.04));extrude(r,d,.008,'Rufa_DiskBase')
+    r.sketch(d,'Rufa_SeedHole',draw=lambda sm:sm.CreateCircleByRadius(.025,0.,0.,.003));hole=cut(r,d,'Rufa_SeedCut')
+    axis=cylfaces(r,d,.04)[0];d.ClearSelection2(True);r.check('circular_selection',sel(d,axis,1) and hole.Select2(True,4))
+    r.feature(d.FeatureManager.FeatureCircularPattern4(4,2*math.pi,False,'',False,True,False),'Rufa_Circular4')
+    expected=math.pi*(40**2-4*3**2)*8
+    r.check('four_circular_holes',len(cylfaces(r,d,.003))==4 and abs(r.volume(d)-expected)<.1,volume=r.volume(d),expected=expected)
+    p=r.save(d,'circular_pattern.SLDPRT');d=r.reopen(d,p);r.check('circular_reopen',len(cylfaces(r,d,.003))==4);r.preview(d,'circular-pattern')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

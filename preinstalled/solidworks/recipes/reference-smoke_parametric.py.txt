@@ -1,0 +1,99 @@
+import json, time, traceback
+from pathlib import Path
+import pythoncom
+import win32com.client
+from win32com.client import VARIANT
+
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / ('parametric-' + time.strftime('%Y%m%d-%H%M%S'))
+OUT.mkdir()
+report = {'output': str(OUT), 'checks': [], 'complete': False}
+NULL = VARIANT(pythoncom.VT_DISPATCH, None)
+
+def get(obj, name, *args):
+    value = getattr(obj, name)
+    return value if hasattr(value, '_oleobj_') and not args else value(*args) if callable(value) else value
+
+def check(name, ok, **data):
+    item = {'check': name, 'passed': bool(ok), **data}
+    report['checks'].append(item)
+    print(json.dumps(item, ensure_ascii=False), flush=True)
+    (OUT/'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+    if not ok: raise RuntimeError(name)
+
+def save(doc, path):
+    if path.exists(): raise FileExistsError(path)
+    e,w = VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0), VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+    ok = doc.Extension.SaveAs(str(path),0,1,NULL,e,w)
+    check('save_'+path.suffix,ok and e.value == 0 and path.is_file(), errors=e.value,warnings=w.value,path=str(path))
+
+pythoncom.CoInitialize()
+try:
+    app=win32com.client.GetActiveObject('SldWorks.Application.24')
+    check('version', str(get(app,'RevisionNumber')).startswith('24.'))
+    originals={get(d,'GetTitle') for d in get(app,'GetDocuments') or []}
+    doc=app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates/gb_part.prtdot')),0,0.,0.)
+    check('new_document',doc is not None and get(doc,'GetTitle') not in originals)
+    check('select_plane',doc.Extension.SelectByID2('前视基准面','PLANE',0.,0.,0.,False,0,NULL,0))
+    doc.SketchManager.InsertSketch(True)
+    edges=doc.SketchManager.CreateCornerRectangle(0.,0.,0.,.12,.08,0.)
+    sketch=get(doc.SketchManager,'ActiveSketch')
+    doc.ClearSelection2(True)
+    selected=0
+    for edge in edges:
+        start,end=get(edge,'GetStartPoint2'),get(edge,'GetEndPoint2')
+        x1,y1=float(get(start,'X')),float(get(start,'Y'))
+        x2,y2=float(get(end,'X')),float(get(end,'Y'))
+        if abs(x1)<1e-8 and abs(x2)<1e-8:
+            data=get(doc.SelectionManager,'CreateSelectData'); data.Mark=2
+        elif abs(y1)<1e-8 and abs(y2)<1e-8:
+            data=get(doc.SelectionManager,'CreateSelectData'); data.Mark=4
+        else: continue
+        check('select_dimension_datum_'+str(data.Mark),edge.Select4(selected>0,data))
+        selected+=1
+    check('two_dimension_datums',selected==2)
+    result=sketch.AutoDimension2(1,1,-1,1,-1)
+    check('native_sketch_auto_dimensions',result==0,status=result)
+    constraint=get(sketch,'GetConstrainedStatus')
+    check('fully_constrained_sketch',constraint==3,status=constraint)
+    doc.SketchManager.InsertSketch(True)
+    feat=doc.FeatureByPositionReverse(0); feat.Name='Rufa_ParametricRectangle'
+    dimensions=[]; dimension_objects=[]
+    display=get(feat,'GetFirstDisplayDimension')
+    while display is not None:
+        dim=display.GetDimension2(0)
+        dimensions.append({'name':get(dim,'FullName'),'value_mm':float(dim.SystemValue)*1000})
+        dimension_objects.append(dim)
+        display=feat.GetNextDisplayDimension(display)
+    check('real_sketch_dimensions',len(dimensions)>=2,dimensions=dimensions)
+    width=[d for d in dimension_objects if abs(float(d.SystemValue)-.12)<1e-8]
+    check('width_dimension_found',len(width)==1)
+    width[0].SystemValue=.15
+    get(doc,'EditRebuild3')
+    doc.ClearSelection2(True); check('select_dimensioned_sketch',feat.Select2(False,0))
+    boss=doc.FeatureManager.FeatureExtrusion3(True,False,False,0,0,.008,0.,False,False,False,False,0.,0.,False,False,False,False,True,False,True,0,0.,False)
+    check('extrude_dimensioned_sketch',boss is not None)
+    mass=get(doc.Extension,'CreateMassProperty'); vol=float(get(mass,'Volume'))*1e9
+    check('width_edit_changes_geometry',abs(vol-150*80*8)<.05,volume_mm3=vol)
+    native=OUT/'Rufa_parametric_150x80x8.SLDPRT'
+    doc.ShowNamedView2('*等轴测',7);get(doc,'ViewZoomtofit2')
+    save(doc,native)
+    drawing=app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates/gb_a3.drwdot')),0,0.,0.)
+    check('drawing_views',drawing is not None and drawing.Create1stAngleViews2(str(native)))
+    drawing.ForceRebuild3(False)
+    first_view=get(get(drawing,'GetFirstView'),'GetNextView')
+    check('activate_drawing_view',first_view is not None and drawing.ActivateView(get(first_view,'Name')))
+    imported=drawing.InsertModelAnnotations3(0,32768,True,False,False,False) or []
+    check('drawing_imports_real_dimensions',len(imported)>=3,count=len(imported))
+    drawing.ForceRebuild3(False);get(drawing,'ViewZoomtofit2')
+    save(drawing,OUT/'Rufa_dimensioned.SLDDRW')
+    save(drawing,OUT/'Rufa_dimensioned.pdf')
+    now={get(d,'GetTitle') for d in get(app,'GetDocuments') or []}
+    check('original_documents_preserved',originals.issubset(now))
+    report['complete']=True
+except Exception:
+    report['error']=traceback.format_exc();print(report['error'],flush=True)
+finally:
+    (OUT/'report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+    print('REPORT='+str(OUT/'report.json'),flush=True)
+    pythoncom.CoUninitialize()

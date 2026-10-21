@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/deepseek-ai/deepseek-harness.git",
+  "commit": "687f282e8625c6b8d11ff58211a90524be2e4317",
+  "sourceVersion": "0.2.1-rc.2",
+  "packageManager": "pnpm@11.28.5",
+  "note": "Use this exact source revision. Published npm versions may differ; do not mix their plugin APIs. Local checkout is a rebuildable cache, not the canonical enterprise source."
+}

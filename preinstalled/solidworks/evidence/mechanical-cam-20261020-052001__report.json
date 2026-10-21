@@ -1,0 +1,175 @@
+{
+  "output": "<acceptance-root>\\mechanical-cam-20261020-052001",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件66"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-052001-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件67"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-052001-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件68"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-052001-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体16"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_front_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_horizontal_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_horizontal_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_orientation_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_orientation_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "cam_follower_selection",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "SW2016 COM server disconnected during AddMate5 CAMFOLLOWER after selections. Original process exited; a new process was observed. Cleanup could not run on the disconnected instance.",
+  "crash_recovery_record": "recovery-after-cam-failure.json"
+}

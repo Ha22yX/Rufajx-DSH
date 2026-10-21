@@ -1,0 +1,35 @@
+{
+  "output": "<acceptance-root>\\sheet-20261020-043528",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BentProfile",
+      "passed": true
+    },
+    {
+      "check": "select_sheet_profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseFlange_created",
+      "passed": false
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_sheet.py\", line 10, in <module>\n    f=r.feature(d.FeatureManager.InsertSheetMetalBaseFlange2(.002,False,.003,.06,0.,False,0,0,0,cba,True,1,.001,.001,.5,False,True,False,True),'Rufa_BaseFlange')\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 49, in feature\n    self.check(name+'_created',f is not None)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Rufa_BaseFlange_created\n"
+}

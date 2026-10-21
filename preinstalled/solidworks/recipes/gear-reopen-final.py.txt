@@ -1,0 +1,211 @@
+from more_common import *
+
+def run(r,options):
+    angle_mates={}
+    def mate_features(doc):
+        result=[]
+        for group in r.features(doc):
+            if get(group,'GetTypeName2')!='MateGroup':continue
+            sf=get(group,'GetFirstSubFeature')
+            while sf is not None:
+                result.append(sf);sf=get(sf,'GetNextSubFeature')
+        return result
+    def native_mate_type(feature):
+        try:return int(get(get(feature,'GetSpecificFeature2'),'Type'))
+        except Exception:return None
+    def plane(c,name):return c.GetCorresponding(get(c,'GetModelDoc2').FeatureByName(name))
+    def axis(c,radius):return c.GetCorresponding(cylfaces(r,get(c,'GetModelDoc2'),radius)[0])
+    def mate(asm,a,b,kind,name,ratio=(0.,0.),mark=1,follower_mark=None):
+        asm.ClearSelection2(True);r.check(name+'_selection',sel(asm,a,mark) and sel(asm,b,mark if follower_mark is None else follower_mark,True))
+        e=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+        if kind==9 and options.get('cam_api')=='AddMate3':
+            m=asm.AddMate3(kind,0,False,0.,0.,0.,0.,0.,0.,0.,0.,False,e)
+        else:
+            m=asm.AddMate5(kind,options.get('gear_alignment',0) if kind==10 else 0,kind==10,0.,0.,0.,ratio[0],ratio[1],0.,0.,0.,False,False,0,e)
+        r.check(name+'_native_mate',m is not None and e.value==1,error=e.value)
+        asm.ClearSelection2(True);get(asm,'EditRebuild3');return m
+    def angle(c):
+        x=get(get(c,'Transform2'),'ArrayData');return math.atan2(x[1],x[0])
+    def origin(c):return list(get(get(c,'Transform2'),'ArrayData')[9:12])
+    def rotate(c,theta):
+        if options.get('driver')=='angle':
+            if c.Name2 in angle_mates:
+                status=angle_mates[c.Name2].SetSystemValue3(theta,1,EMPTY)
+                get(asm,'EditRebuild3')
+                return status==0
+            asm.ClearSelection2(True)
+            r.check('angle_driver_selection',sel(asm,plane(groundc,'右视基准面'),1) and sel(asm,plane(c,'右视基准面'),1,True))
+            e=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+            m=asm.AddMate5(6,0,False,0.,0.,0.,0.,0.,theta,theta,theta,False,False,0,e)
+            r.report['angle_mate_error']=e.value;r.flush()
+            if m is not None:
+                angle_mates[c.Name2]=get(m.DisplayDimension2(0),'GetDimension2',0)
+            asm.ClearSelection2(True);get(asm,'EditRebuild3')
+            return m is not None and e.value==1
+        if options.get('driver','transform')=='transform':
+            raw=list(get(get(c,'Transform2'),'ArrayData'));co,si=math.cos(theta),math.sin(theta)
+            raw[:9]=[co,si,0.,-si,co,0.,0.,0.,1.]
+            mu=get(r.app,'GetMathUtility');mu._FlagAsMethod('CreateTransform')
+            return c.SetTransformAndSolve2(mu.CreateTransform(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,raw)))
+        delta=theta-angle(c);steps=max(1,int(abs(math.degrees(delta))))
+        mu=get(r.app,'GetMathUtility')
+        mu._FlagAsMethod('CreatePoint');mu._FlagAsMethod('CreateVector')
+        center=mu.CreatePoint(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,origin(c)))
+        axisv=mu.CreateVector(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,[0.,0.,1.]))
+        t=mu.CreateTransformRotateAxis(center,axisv,delta/steps)
+        drag=get(asm,'GetDragOperator');drag.AddComponent(c,False)
+        drag.CollisionDetectionEnabled=False;drag.DynamicClearanceEnabled=False;drag.TransformType=1;drag.DragMode=options.get('drag_mode',2);drag.IsDragSpecific=True;drag.IsRelaxationEval=False;drag.UseAbsoluteTransform=False;drag.GraphicsRedrawEnabled=False
+        success=get(drag,'BeginDrag')
+        try:
+            for i in range(steps):success=drag.Drag(t) and success
+        finally:success=get(drag,'EndDrag') and success
+        return success
+    def part(name,radius,hole=0.,offset=0.):
+        d=r.new()
+        def draw(sm):
+            sm.AddToDB=True
+            try:
+                if name=='driver' and options.get('profile')=='capsule':
+                    out=[sm.CreateArc(.015,0.,0.,.015,-.01,0.,.015,.01,0.,1),sm.CreateLine(.015,.01,0.,-.005,.01,0.),sm.CreateArc(-.005,0.,0.,-.005,.01,0.,-.005,-.01,0.,1),sm.CreateLine(-.005,-.01,0.,.015,-.01,0.)]
+                else:out=[sm.CreateCircleByRadius(offset,0.,0.,radius)]
+                if hole:out.append(sm.CreateCircleByRadius(0.,0.,0.,hole))
+            finally:sm.AddToDB=False
+            return out
+        r.sketch(d,'Rufa_'+name+'Profile',draw=draw);extrude(r,d,.01,'Rufa_'+name)
+        return d,r.save(d,name+'.SLDPRT')
+
+    if options.get('visible'):r.app.Visible=True
+    ground=r.new()
+    r.sketch(ground,'Rufa_SupportProfile',draw=lambda sm:sm.CreateCornerRectangle(-.02,-.02,0.,.11,.02,0.))
+    extrude(r,ground,.01,'Rufa_SupportBase')
+    r.sketch(ground,'Rufa_Axes',draw=lambda sm:[sm.CreateCircleByRadius(0.,0.,0.,.003),sm.CreateCircleByRadius(.09,0.,0.,.003)])
+    extrude(r,ground,.03,'Rufa_TwoShafts')
+    gp=r.save(ground,'support.SLDPRT')
+    mode=options.get('mode','gear')
+    one,op=part('driver',.04 if mode=='gear' else .02,.003,0. if mode=='gear' else .005)
+    two,tp=part('driven',.02 if mode=='gear' else .005,.003 if mode=='gear' else 0.)
+    asm=r.new('assembly')
+    r.report['assembly_rebuild_suspended']=asm.EnableAssemblyRebuild;r.flush()
+    groundc=asm.AddComponent5(str(gp),0,'',False,'',0.,0.,0.)
+    c1=asm.AddComponent5(str(op),0,'',False,'',0.,0.,.01)
+    c2=asm.AddComponent5(str(tp),0,'',False,'',.09 if mode=='gear' else .03,0.,.01)
+    r.check('assembly_insert_components',all(x is not None for x in [groundc,c1,c2]))
+    ground_faces=cylfaces(r,ground,.003)
+    ground_faces.sort(key=lambda f:get(get(f,'GetSurface'),'CylinderParams')[0])
+    mate(asm,groundc.GetCorresponding(ground_faces[0]),axis(c1,.003),1,'driver_axis')
+    mate(asm,plane(groundc,'前视基准面'),plane(c1,'前视基准面'),0,'driver_front')
+    if mode=='gear':
+        ground_faces=cylfaces(r,get(groundc,'GetModelDoc2'),.003)
+        ground_faces.sort(key=lambda f:get(get(f,'GetSurface'),'CylinderParams')[0])
+        mate(asm,groundc.GetCorresponding(ground_faces[1]),axis(c2,.003),1,'driven_axis')
+        mate(asm,plane(groundc,'前视基准面'),plane(c2,'前视基准面'),0,'driven_front')
+        gm=mate(asm,axis(c1,.04),axis(c2,.02),10,'gear_ratio_2_to_1',(.04,.02))
+        r.report['gear_mate']={'type':gm.Type,'entities':get(gm,'GetMateEntityCount'),'components':[get(gm.MateEntity(i),'ReferenceComponent').Name2 for i in range(2)]};r.flush()
+        r.check('native_gear_type',gm.Type==10)
+        r.report['options']=options;r.flush()
+        r.report['component_constraints']=[{'name':c.Name2,'fixed':get(c,'IsFixed'),'constraint_status':get(c,'GetConstrainedStatus'),'transform':list(get(get(c,'Transform2'),'ArrayData'))} for c in [groundc,c1,c2]]
+        r.report['gear_dims']=[list(get(gm.DisplayDimension2(i),'GetDimension2',0).GetSystemValue3(1,EMPTY)) for i in range(2)]
+        r.report['mate_features']=[]
+        f=get(asm,'FirstFeature')
+        while f is not None:
+            if get(f,'GetTypeName2')=='MateGroup':
+                sf=get(f,'GetFirstSubFeature')
+                while sf is not None:
+                    warn=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False)
+                    r.report['mate_features'].append({'name':get(sf,'Name'),'type':get(sf,'GetTypeName2'),'error':sf.GetErrorCode2(warn),'suppressed':get(sf,'IsSuppressed')})
+                    sf=get(sf,'GetNextSubFeature')
+            f=get(f,'GetNextFeature')
+        r.flush()
+        n1,n2=c1.Name2,c2.Name2
+        a0,b0=angle(c1),angle(c2)
+        r.check('drive_gear_rotation',rotate(c1,a0+math.pi/6))
+        r.report['before_rebuild_angles']=[angle(asm.GetComponentByName(n1)),angle(asm.GetComponentByName(n2))]
+        asm.ForceRebuild3(False)
+        c1=asm.GetComponentByName(n1);c2=asm.GetComponentByName(n2)
+        da=(angle(c1)-a0+math.pi)%(2*math.pi)-math.pi
+        db=(angle(c2)-b0+math.pi)%(2*math.pi)-math.pi
+        r.check('gear_real_motion_ratio',abs(da)>0.01 and abs(abs(db/da)-2)<1e-5,driver_deg=math.degrees(da),driven_deg=math.degrees(db))
+        if options.get('driver')=='angle':
+            for degrees in [15,60,45]:
+                r.check('drive_gear_'+str(degrees),rotate(c1,math.radians(degrees)))
+                asm.ForceRebuild3(False)
+                c1=asm.GetComponentByName(n1);c2=asm.GetComponentByName(n2)
+                da=angle(c1)-a0;db=angle(c2)-b0
+                r.check('gear_ratio_at_'+str(degrees),abs(abs(da)-math.radians(degrees))<1e-6 and abs(db/da+2)<1e-5,driver_deg=math.degrees(da),driven_deg=math.degrees(db))
+    else:
+        mate(asm,plane(groundc,'前视基准面'),plane(c2,'前视基准面'),0,'follower_front')
+        mate(asm,plane(groundc,'上视基准面'),plane(c2,'上视基准面'),0,'follower_horizontal')
+        mate(asm,plane(groundc,'右视基准面'),plane(c2,'右视基准面'),3,'follower_orientation')
+        # SW2016 Edit Mate example: cam profile mark 1, follower mark 8.
+        if options.get('cam_api')=='ui':
+            p=r.save(asm,'Rufa_Cam_UI_Only.SLDASM')
+            asm.ClearSelection2(True)
+            groundc.Visible=0
+            asm.ShowNamedView2('*等轴测',7);get(asm,'ViewZoomtofit2')
+            r.report['ui_wait']='Create native cam-follower mate in this owned test assembly only';r.flush()
+            deadline=time.monotonic()+900
+            while not (r.out/'CONTINUE').exists() and time.monotonic()<deadline:
+                pythoncom.PumpWaitingMessages();time.sleep(.2)
+            r.check('ui_mate_finished',(r.out/'CONTINUE').exists())
+            cam_features=[]
+            for group in r.features(asm):
+                if get(group,'GetTypeName2')!='MateGroup':continue
+                f=get(group,'GetFirstSubFeature')
+                while f is not None:
+                    if native_mate_type(f)==9:
+                        cam_features.append(get(f,'Name'))
+                    f=get(f,'GetNextSubFeature')
+            r.check('native_cam_feature_exists',len(cam_features)==1,names=cam_features)
+        else:
+            r.check('cam_geometry_precondition',options.get('profile')=='capsule')
+            candidates=cylfaces(r,get(c1,'GetModelDoc2'),.01)
+            candidates.sort(key=lambda f:get(get(f,'GetSurface'),'CylinderParams')[0],reverse=True)
+            r.check('capsule_has_two_tangent_arcs',len(candidates)==2)
+            cm=mate(asm,c1.GetCorresponding(candidates[0]),axis(c2,.005),9,'cam_follower',mark=1,follower_mark=8)
+            r.check('native_cam_mate_type',cm.Type==9)
+        r.report['native_mate_features']=[{'name':get(f,'Name'),'type':get(f,'GetTypeName2')} for f in mate_features(asm)];r.flush()
+        initial=origin(c2)[0]
+        samples=[]
+        for deg in [30,60,90]:
+            r.check('rotate_cam_'+str(deg),rotate(c1,math.radians(deg)));asm.ForceRebuild3(False)
+            a=angle(c1);p=origin(c1);q=origin(c2)
+            if options.get('profile')=='capsule':
+                projection=(q[0]-p[0])*math.cos(a)+(q[1]-p[1])*math.sin(a)
+                projection=max(-.005,min(.015,projection))
+                center=[p[0]+projection*math.cos(a),p[1]+projection*math.sin(a),p[2]]
+                expected=.015
+            else:
+                center=[p[0]+.005*math.cos(a),p[1]+.005*math.sin(a),p[2]];expected=.025
+            separation=math.dist(center,q)
+            r.check('cam_contact_'+str(deg),abs(separation-expected)<1e-6 and abs(q[1]-p[1])<1e-6,cam_deg=math.degrees(a),follower_x_mm=q[0]*1000,distance_mm=separation*1000)
+            samples.append({'angle_degrees':math.degrees(a),'follower':q})
+        r.check('follower_displacement',abs(origin(c2)[0]-initial)>.001,initial_x_mm=initial*1000,final_x_mm=origin(c2)[0]*1000)
+        r.report['cam_samples']=samples
+    positions=[origin(c) for c in [c1,c2]];angles=[angle(c) for c in [c1,c2]];names=[c.Name2 for c in [c1,c2]]
+    p=r.save(asm,mode+'.SLDASM');asm=r.reopen(asm,p,2)
+    r.check('mechanical_reopen_components',len(asm.GetComponents(True))==3)
+    for index,name in enumerate(names):
+        c=asm.GetComponentByName(name)
+        r.check('mechanical_reopen_pose_'+str(index),math.dist(origin(c),positions[index])<1e-6 and abs(angle(c)-angles[index])<1e-6)
+    if options.get('driver')=='angle':
+        asm.ForceRebuild3(False)
+        fs=mate_features(asm)
+        r.report['reopened_mates']=[{'name':get(f,'Name'),'type':get(f,'GetTypeName2'),'error':f.GetErrorCode2(VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False))} for f in fs];r.flush()
+        r.check('reopened_mates_error_free',all(x['error']==0 for x in r.report['reopened_mates']))
+        angle_feats=[f for f in fs if native_mate_type(f)==6]
+        r.check('reopened_angle_driver',len(angle_feats)==1)
+        am=get(angle_feats[0],'GetSpecificFeature2')
+        angle_mates[names[0]]=get(am.DisplayDimension2(0),'GetDimension2',0)
+        c1=asm.GetComponentByName(names[0]);c2=asm.GetComponentByName(names[1])
+        r.check('drive_after_reopen',rotate(c1,math.pi/4));asm.ForceRebuild3(False)
+        c1=asm.GetComponentByName(names[0]);c2=asm.GetComponentByName(names[1])
+        if mode=='gear':
+            r.check('gear_ratio_after_reopen',abs(angle(c1)-math.pi/4)<1e-6 and abs(angle(c2)+math.pi/2)<1e-6,angles_degrees=[math.degrees(angle(c)) for c in [c1,c2]])
+        else:
+            a=angle(c1);p=origin(c1);q=origin(c2);projection=max(-.005,min(.015,(q[0]-p[0])*math.cos(a)+(q[1]-p[1])*math.sin(a)))
+            center=[p[0]+projection*math.cos(a),p[1]+projection*math.sin(a),p[2]]
+            r.check('cam_contact_after_reopen',abs(a-math.pi/4)<1e-6 and abs(math.dist(center,q)-.015)<1e-6,follower_x_mm=q[0]*1000)
+        p2=r.save(asm,mode+'-verified.SLDASM')
+        asm=r.reopen(asm,p2,2);asm.ForceRebuild3(False)
+        r.check('second_reopen_mates_error_free',all(f.GetErrorCode2(VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False))==0 for f in mate_features(asm)))
+    r.preview(asm,mode)

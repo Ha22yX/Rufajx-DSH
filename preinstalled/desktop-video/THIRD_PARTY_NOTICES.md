@@ -1,0 +1,8 @@
+# Desktop control and video creation
+
+- dsh-computer-use-win 0.4.3, Yu-tao-Li, MIT. Original LICENSE and THIRD_PARTY.md remain in its package. Uses the pinned official Harness MCP bridge, Windows PowerShell/UI Automation, and no additional model service.
+- claude-remotion-skill, haidrrrry, revision 1dcbe5e3fc6cf970bd10d3cc05f0a8a5d19d0383, MIT. Full skill/references/theme and supporting source examples preserved; demo videos/GIFs are not required at runtime. Original skill license: REMOTION-SKILL-LICENSE. Rufajx exposes it through the native lazy skill provider with offline command guidance.
+- Remotion 4.0.537 and its packages: original licenses remain under node_modules. The skill's MIT license does not replace the Remotion License. The bundled Remotion version permits evaluation; commercial use by companies with more than three employees requires the applicable Company License. See https://www.remotion.dev/docs/license/pricing and node_modules/remotion/LICENSE.md. Rufajx does not claim to supply a commercial license.
+- Chrome Headless Shell 157.0.8080.0, Google/Chromium contributors; original browser LICENSE resources are retained. Download URL and SHA-256 are pinned in SOURCES-LOCK.json.
+- Remotion's Windows compositor includes FFmpeg and shared libraries. Original upstream package, notices, package versions and npm integrity records are retained. This runtime is for video creation; it is separate from direct video preview and does not reintroduce preview transcoding.
+- React, React DOM, Webpack and other dependencies retain their original package license files. package-lock.json fixes every distributed dependency. Installation scripts are disabled during preparation. No employee login invokes npm or downloads a browser.

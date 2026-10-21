@@ -1,0 +1,122 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948\\intersect",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件5"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BlockProfile0",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block0_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block0_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BlockProfile1",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block1_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block1_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "two_bodies_before_combine",
+      "passed": true
+    },
+    {
+      "check": "Rufa_intersect_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_intersect_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "exact_volume",
+      "passed": true,
+      "actual_mm3": 4000.0000000000005,
+      "expected_mm3": 4000.0
+    },
+    {
+      "check": "single_solid",
+      "passed": true
+    },
+    {
+      "check": "save_intersect-intersect.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_intersect-intersect.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "feature_survives_reopen",
+      "passed": true,
+      "type": "CombineBodies"
+    },
+    {
+      "check": "volume_survives_reopen",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\intersect\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 44512,
+  "source_sha256": "81addf8d3caa04c52352d2df5f0c0e1e5a152742b64ef0ef86b2f8bbafcb3312",
+  "options": {
+    "mode": "intersect"
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\intersect\\intersect.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "intersect-intersect.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-063948\\intersect\\intersect-intersect.SLDPRT"
+    }
+  ]
+}

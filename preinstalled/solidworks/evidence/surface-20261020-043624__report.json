@@ -1,0 +1,187 @@
+{
+  "output": "<acceptance-root>\\surface-20261020-043624",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "extruded_surface_feature_type",
+      "passed": true
+    },
+    {
+      "check": "Rufa_ExtrudedSurface_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_ExtrudedSurface_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "surface_only",
+      "passed": true
+    },
+    {
+      "check": "surface_area_120x80",
+      "passed": true,
+      "area_mm2": 9600.0
+    },
+    {
+      "check": "select_surface_for_offset",
+      "passed": true
+    },
+    {
+      "check": "offset_surface_created",
+      "passed": true,
+      "return_value": null
+    },
+    {
+      "check": "offset_surface_distance_5mm",
+      "passed": true,
+      "boxes_mm": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          120.0,
+          0.0,
+          80.0
+        ],
+        [
+          0.0,
+          -5.0,
+          0.0,
+          120.0,
+          -5.0,
+          80.0
+        ]
+      ]
+    },
+    {
+      "check": "select_thicken_mark_1",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Thicken3_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Thicken3_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "thickened_solid",
+      "passed": true
+    },
+    {
+      "check": "thickened_volume",
+      "passed": true,
+      "volume_mm3": 28800.000000000004
+    },
+    {
+      "check": "save_Rufa_surface_offset_thicken.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_surface_offset_thicken.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "surface_native_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_surface-thickened",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Circle30",
+      "passed": true
+    },
+    {
+      "check": "loft_offset_plane",
+      "passed": true
+    },
+    {
+      "check": "select_Rufa_Plane80",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Circle15",
+      "passed": true
+    },
+    {
+      "check": "loft_surface_created",
+      "passed": true
+    },
+    {
+      "check": "loft_conical_surface_area",
+      "passed": true,
+      "area_mm2": 11506.820218607936,
+      "expected_mm2": 11506.820218607938
+    },
+    {
+      "check": "Rufa_LoftSurface_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_LoftSurface_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Rufa_loft_surface.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_loft_surface.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "loft_reopen_area",
+      "passed": true
+    },
+    {
+      "check": "preview_loft-surface",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

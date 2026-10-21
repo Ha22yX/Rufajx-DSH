@@ -1,0 +1,119 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-path",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件35"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_drawing-detail-path-Tube.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_drawing",
+      "passed": true
+    },
+    {
+      "check": "parent_view_created",
+      "passed": true
+    },
+    {
+      "check": "activate_parent_view",
+      "passed": true
+    },
+    {
+      "check": "detail_circle",
+      "passed": true
+    },
+    {
+      "check": "detail_view_created",
+      "passed": true
+    },
+    {
+      "check": "correct_view_type",
+      "passed": true
+    },
+    {
+      "check": "nonempty_projected_geometry",
+      "passed": true,
+      "outline": [
+        0.197118783611097,
+        0.14012826711583756,
+        0.2423638164329907,
+        0.20000816322494172
+      ]
+    },
+    {
+      "check": "save_drawing-detail-path-detail.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_drawing-detail-path-detail.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "derived_view_survives_reopen",
+      "passed": true,
+      "view_count": 2
+    },
+    {
+      "check": "reopened_detail_scale_2",
+      "passed": true
+    },
+    {
+      "check": "native_drawing_preview",
+      "passed": true
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "6afc2b16fc83954502d5613c50368bb21c77ec7e85e2fd9a9700066bd24e9402",
+  "options": {
+    "mode": "detail"
+  },
+  "view_type": 3,
+  "view_scale": 2.0,
+  "closed_test_documents": [
+    {
+      "title": "drawing-detail-path-detail - 图纸1",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-path\\drawing-detail-path-detail.SLDDRW"
+    },
+    {
+      "title": "drawing-detail-path-Tube.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-path\\drawing-detail-path-Tube.SLDPRT"
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "output": "<acceptance-root>\\finishing-20261020-044608",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件34"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CylinderProfile",
+      "passed": true
+    },
+    {
+      "check": "open_cylinder_surface",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.0",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.0",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.08",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.08",
+      "passed": true
+    },
+    {
+      "check": "three_surface_bodies",
+      "passed": true
+    },
+    {
+      "check": "knit_select_0",
+      "passed": true
+    },
+    {
+      "check": "knit_select_1",
+      "passed": true
+    },
+    {
+      "check": "knit_select_2",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSurface_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSurface_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "knit_single_shell",
+      "passed": true,
+      "surface_count": 1,
+      "solid_count": 0
+    },
+    {
+      "check": "select_closed_knit",
+      "passed": true
+    },
+    {
+      "check": "Rufa_FillKnitVolume_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_FillKnitVolume_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "knit_closed_solid",
+      "passed": true,
+      "volume_mm3": 226194.6710584651,
+      "expected_mm3": 226194.6710584651
+    },
+    {
+      "check": "save_Rufa_capped_knit_cylinder.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_capped_knit_cylinder.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "knit_solid_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_knit-solid",
+      "passed": true
+    },
+    {
+      "check": "open_isolated_copy",
+      "passed": true
+    },
+    {
+      "check": "sheet_definition_found",
+      "passed": true,
+      "types": [
+        "FavoriteFolder",
+        "HistoryFolder",
+        "SelectionSetFolder",
+        "SensorFolder",
+        "DocsFolder",
+        "DetailCabinet",
+        "EnvFolder",
+        "SolidBodyFolder",
+        "SurfaceBodyFolder",
+        "CommentsFolder",
+        "EqnFolder",
+        "MaterialFolder",
+        "RefPlane",
+        "RefPlane",
+        "RefPlane",
+        "OriginProfileFeature",
+        "ProfileFeature",
+        "SheetMetal",
+        "SMBaseFlange",
+        "FlatPattern"
+      ]
+    },
+    {
+      "check": "sheet_access_definition",
+      "passed": true
+    },
+    {
+      "check": "sheet_modify_definition",
+      "passed": true
+    },
+    {
+      "check": "sheet_thickness_parameter3",
+      "passed": true,
+      "thickness_mm": 3.0
+    },
+    {
+      "check": "edited_sheet_unfold",
+      "passed": true
+    },
+    {
+      "check": "edited_sheet_flat_thickness3",
+      "passed": true,
+      "sizes_mm": [
+        3.0000000000000027,
+        60.0,
+        151.06858347057707
+      ]
+    },
+    {
+      "check": "edited_sheet_refold",
+      "passed": true
+    },
+    {
+      "check": "save_Rufa_sheet_edited_3mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_sheet_edited_3mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "sheet_edited_reopen",
+      "passed": true
+    },
+    {
+      "check": "open_isolated_copy",
+      "passed": true
+    },
+    {
+      "check": "unique_cut_list_four_members",
+      "passed": true,
+      "cut_list": {
+        "切割清单项目1": {
+          "bodies": 2,
+          "properties": {
+            "长度": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "角度1": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "角度2": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "UNIT_OF_MEASURE": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "DESCRIPTION": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "MATERIAL": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "QUANTITY": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "TOTAL LENGTH": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            }
+          }
+        },
+        "切割清单项目2": {
+          "bodies": 2,
+          "properties": {
+            "长度": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "角度1": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "角度2": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "UNIT_OF_MEASURE": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "DESCRIPTION": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "MATERIAL": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "QUANTITY": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            },
+            "TOTAL LENGTH": {
+              "value": "",
+              "resolved": true,
+              "status": 2
+            }
+          }
+        }
+      }
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_finishing.py\", line 72, in <module>\n    lengths=sorted(float(x['properties']['长度']['value']) for x in unique.values())\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_finishing.py\", line 72, in <genexpr>\n    lengths=sorted(float(x['properties']['长度']['value']) for x in unique.values())\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: could not convert string to float: ''\n"
+}

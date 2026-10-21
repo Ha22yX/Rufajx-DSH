@@ -1,0 +1,266 @@
+{
+  "output": "<acceptance-root>\\patterns-20261020-050200",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件37"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Plate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Hole",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole6_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole6_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "pattern_selection",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Linear3_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Linear3_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "three_holes",
+      "passed": true,
+      "centers": [
+        [
+          -0.015,
+          0.015,
+          0.01
+        ],
+        [
+          0.015,
+          0.015,
+          0.01
+        ],
+        [
+          0.0,
+          0.015,
+          0.01
+        ]
+      ]
+    },
+    {
+      "check": "mirror_selection",
+      "passed": true
+    },
+    {
+      "check": "Rufa_MirrorHoles_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_MirrorHoles_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "six_symmetric_holes",
+      "passed": true,
+      "volume": 94303.53996706152,
+      "expected": 94303.53996706152
+    },
+    {
+      "check": "mirrored_coordinates",
+      "passed": true,
+      "centers": [
+        [
+          -0.015,
+          0.015,
+          0.01
+        ],
+        [
+          0.015,
+          0.015,
+          0.01
+        ],
+        [
+          0.0,
+          0.015,
+          0.01
+        ],
+        [
+          0.015,
+          -0.015,
+          0.01
+        ],
+        [
+          0.0,
+          -0.015,
+          0.01
+        ],
+        [
+          -0.015,
+          -0.015,
+          0.01
+        ]
+      ]
+    },
+    {
+      "check": "save_patterns-20261020-050200-pattern_mirror.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_patterns-20261020-050200-pattern_mirror.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "pattern_mirror_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_pattern-mirror",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\patterns-20261020-050200\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件38"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Disk",
+      "passed": true
+    },
+    {
+      "check": "Rufa_DiskBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_DiskBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SeedHole",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SeedCut_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SeedCut_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "circular_selection",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Circular4_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Circular4_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "four_circular_holes",
+      "passed": true,
+      "volume": 39307.6072817155,
+      "expected": 39307.60728171549
+    },
+    {
+      "check": "save_patterns-20261020-050200-circular_pattern.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_patterns-20261020-050200-circular_pattern.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "circular_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_circular-pattern",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "patterns-20261020-050200-pattern_mirror.SLDPRT",
+      "path": "<acceptance-root>\\patterns-20261020-050200\\patterns-20261020-050200-pattern_mirror.SLDPRT"
+    },
+    {
+      "title": "patterns-20261020-050200-circular_pattern.SLDPRT",
+      "path": "<acceptance-root>\\patterns-20261020-050200\\patterns-20261020-050200-circular_pattern.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ]
+}

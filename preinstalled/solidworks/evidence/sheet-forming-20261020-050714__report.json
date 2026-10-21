@@ -1,0 +1,125 @@
+{
+  "output": "<acceptance-root>\\sheet-forming-20261020-050714",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件40"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SheetProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "flat_base_geometry",
+      "passed": true,
+      "volume": 19200.000000000004
+    },
+    {
+      "check": "forming_face_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Dimple_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Dimple_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "sheet_shape_changed",
+      "passed": true,
+      "base_volume": 19200.000000000004,
+      "volume": 19332.906683283563,
+      "box": [
+        -60.0,
+        -40.0,
+        -2.0,
+        60.0,
+        40.0,
+        0.0
+      ]
+    },
+    {
+      "check": "flatten_feature",
+      "passed": true
+    },
+    {
+      "check": "flatten_feature_error_free",
+      "passed": true
+    },
+    {
+      "check": "preview_flat",
+      "passed": true
+    },
+    {
+      "check": "refold_feature",
+      "passed": true
+    },
+    {
+      "check": "refold_volume",
+      "passed": true
+    },
+    {
+      "check": "save_sheet-forming-20261020-050714-sheet-forming.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_sheet-forming-20261020-050714-sheet-forming.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "sheet_reopen_geometry",
+      "passed": true
+    },
+    {
+      "check": "preview_folded",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\sheet-forming-20261020-050714\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "sheet-forming-20261020-050714-sheet-forming.SLDPRT",
+      "path": "<acceptance-root>\\sheet-forming-20261020-050714\\sheet-forming-20261020-050714-sheet-forming.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ]
+}

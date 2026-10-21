@@ -1,0 +1,16 @@
+from isolated_common import get
+
+def run(r, options):
+    r.check('same_owned_instance', int(get(r.app,'GetProcessID')) == 33212)
+    r.check('no_documents_at_final_audit', not list(get(r.app,'GetDocuments') or []))
+    previous = r.owner.report.get('execution_mode')
+    r.owner.report['execution_mode_correction'] = {
+        'previous_label': previous,
+        'reason': 'Legacy worker label did not reflect user-authorized Computer Use during this run.',
+        'scope': 'Owned test instance only; startup, native cam and Pack and Go diagnostics, drawing font notices. Original user instance not controlled.'
+    }
+    r.owner.report['execution_mode'] = 'Native COM cases in dedicated serial instance, with authorized Computer Use for native UI diagnostics and informational notices'
+    r.owner.report['protected_preexisting_pid'] = 39288
+    r.owner.flush()
+    r.report['execution_mode_corrected'] = True
+    r.flush()

@@ -1,0 +1,150 @@
+{
+  "output": "<acceptance-root>\\run-20261020-041443",
+  "checks": [
+    {
+      "check": "version_2016",
+      "passed": true,
+      "revision": "24.5.0"
+    },
+    {
+      "check": "new_isolated_document",
+      "passed": true,
+      "title": "零件5"
+    },
+    {
+      "check": "select_front_plane_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "active_sketch_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "rectangle",
+      "passed": true
+    },
+    {
+      "check": "closed_sketch_feature_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "select_sketch_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "extrude_8mm",
+      "passed": true
+    },
+    {
+      "check": "base_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 76800.0,
+      "expected_mm3": 76800
+    },
+    {
+      "check": "select_front_plane_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "active_sketch_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "circle_10_10",
+      "passed": true
+    },
+    {
+      "check": "circle_110_10",
+      "passed": true
+    },
+    {
+      "check": "circle_10_70",
+      "passed": true
+    },
+    {
+      "check": "circle_110_70",
+      "passed": true
+    },
+    {
+      "check": "closed_sketch_feature_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "select_sketch_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "2016_cut3_four_through_holes",
+      "passed": true
+    },
+    {
+      "check": "cut_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 74764.24796047382,
+      "expected_mm3": 74764.24796047382
+    },
+    {
+      "check": "editable_native_depth_dimension",
+      "passed": true
+    },
+    {
+      "check": "depth_edit_10mm_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 93455.30995059227,
+      "expected_mm3": 93455.30995059227
+    },
+    {
+      "check": "save_.SLDPRT",
+      "passed": true,
+      "path": "<acceptance-root>\\run-20261020-041443\\Rufa_SW2016_plate_120x80x10_4x9.SLDPRT",
+      "errors": 0,
+      "warnings": 0,
+      "bytes": 71057
+    },
+    {
+      "check": "save_.step",
+      "passed": true,
+      "path": "<acceptance-root>\\run-20261020-041443\\Rufa_SW2016_plate.step",
+      "errors": 0,
+      "warnings": 0,
+      "bytes": 37143
+    },
+    {
+      "check": "save_.stl",
+      "passed": true,
+      "path": "<acceptance-root>\\run-20261020-041443\\Rufa_SW2016_plate.stl",
+      "errors": 0,
+      "warnings": 0,
+      "bytes": 31884
+    },
+    {
+      "check": "safe_close_target",
+      "passed": true
+    },
+    {
+      "check": "reopen_native",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopened_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 93455.30995059227,
+      "expected_mm3": 93455.30995059227
+    },
+    {
+      "check": "reopened_editable_dimension",
+      "passed": true
+    },
+    {
+      "check": "preexisting_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

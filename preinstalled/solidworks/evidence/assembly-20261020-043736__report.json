@@ -1,0 +1,174 @@
+{
+  "output": "<acceptance-root>\\assembly-20261020-043736",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BaseProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseSolid_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseSolid_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_ShaftHole",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole20_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole20_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Base.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_ShaftProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Shaft100_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Shaft100_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Shaft.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CollarProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Collar10_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Collar10_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Collar.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true
+    },
+    {
+      "check": "three_components",
+      "passed": true
+    },
+    {
+      "check": "base_fixed",
+      "passed": true
+    },
+    {
+      "check": "shaft_concentric_selection",
+      "passed": true
+    },
+    {
+      "check": "shaft_concentric_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "shaft_coincident_selection",
+      "passed": true
+    },
+    {
+      "check": "shaft_coincident_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_concentric_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_concentric_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_distance_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_distance_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_angle30_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_angle30_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_assembly.py\", line 64, in <module>\n    pbase,paxis,pcollar=world(cbase,[.05,.03,0.]),world(cshaft,[0.,0.,0.]),world(ccollar,[0.,0.,0.])\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_assembly.py\", line 31, in world\n    p=mu.CreatePoint(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,point))\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 214, in __call__\n    self._oleobj_.Invoke(*allArgs), self._olerepr_.defaultDispatchName, None\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npywintypes.com_error: (-2147352573, '找不到成员。', None, None)\n"
+}

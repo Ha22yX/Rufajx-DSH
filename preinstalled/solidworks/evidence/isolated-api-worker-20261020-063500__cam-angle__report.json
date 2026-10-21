@@ -1,0 +1,176 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063500\\cam-angle",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件10"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-angle-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件11"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-angle-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件12"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-angle-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体4"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_front_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_horizontal_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_horizontal_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_orientation_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_orientation_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "cam_follower_selection",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 43260,
+  "assembly_rebuild_enabled": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 49, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_mechanical.py\", line 123, in run\n    mate(asm,axis(c1,.02),axis(c2,.005),9,'cam_follower',mark=1,follower_mark=8)\n  File \"<acceptance-root>\\case_mechanical.py\", line 10, in mate\n    m=asm.AddMate5(kind,options.get('gear_alignment',0) if kind==10 else 0,kind==10,0.,0.,0.,ratio[0],ratio[1],0.,0.,0.,False,False,0,e)\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<COMObject <unknown>>\", line 2, in AddMate5\npywintypes.com_error: (-2147023170, '远程过程调用失败。', None, None)\n\nCLEANUP ERROR\nTraceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 22, in finish\n    for title,path in [(get(d,'GetTitle'),get(d,'GetPathName')) for d in get(self.app,'GetDocuments') or [] if get(d,'GetType')==kind]:\n                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 12, in get\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetDocuments\n"
+}

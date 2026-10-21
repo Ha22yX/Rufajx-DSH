@@ -1,0 +1,10 @@
+{
+  "name": "@rufa/dsh-read-pdf-bundle",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "exports": { ".": "./index.mjs", "./package.json": "./package.json" },
+  "description": "PDF 查找、信息、文字提取、OCR 与页面渲染",
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+}

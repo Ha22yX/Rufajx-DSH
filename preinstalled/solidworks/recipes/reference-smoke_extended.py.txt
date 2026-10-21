@@ -1,0 +1,167 @@
+"""Extended live SW2016 checks. Inputs are only artifacts authored by smoke_part.py."""
+import json
+import math
+import shutil
+import time
+import traceback
+from pathlib import Path
+import pythoncom
+import win32com.client
+from win32com.client import VARIANT
+
+ROOT = Path(__file__).resolve().parent
+SOURCE = ROOT / 'run-20261020-041443/Rufa_SW2016_plate_120x80x10_4x9.SLDPRT'
+OUT = ROOT / ('extended-' + time.strftime('%Y%m%d-%H%M%S'))
+OUT.mkdir()
+report = {'output': str(OUT), 'checks': [], 'failures': {}}
+EMPTY = VARIANT(pythoncom.VT_EMPTY, None)
+NULL = VARIANT(pythoncom.VT_DISPATCH, None)
+
+def member(obj, name, *args):
+    value = getattr(obj, name)
+    if hasattr(value, '_oleobj_') and not args:
+        return value
+    return value(*args) if callable(value) else value
+
+def write_report():
+    (OUT / 'report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+
+def check(name, ok, **details):
+    result = {'check': name, 'passed': bool(ok), **details}
+    report['checks'].append(result)
+    print(json.dumps(result, ensure_ascii=False), flush=True)
+    write_report()
+    if not ok:
+        raise RuntimeError(name)
+
+def open_doc(path, kind):
+    errors = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    warnings = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    doc = app.OpenDoc6(str(path), kind, 1, '', errors, warnings)
+    check('open_' + path.suffix, doc is not None and errors.value == 0, errors=errors.value, warnings=warnings.value)
+    return doc
+
+def new_doc(template):
+    before = {member(d, 'GetTitle') for d in member(app, 'GetDocuments') or []}
+    doc = app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates') / template), 0, 0., 0.)
+    check('new_' + template, doc is not None and member(doc, 'GetTitle') not in before)
+    return doc
+
+def save(doc, path):
+    if path.exists():
+        raise FileExistsError(path)
+    errors = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    warnings = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    ok = doc.Extension.SaveAs(str(path), 0, 1, NULL, errors, warnings)
+    check('save_' + path.suffix, ok and errors.value == 0 and path.exists() and path.stat().st_size > 0,
+          errors=errors.value, warnings=warnings.value, path=str(path))
+
+def volume(doc):
+    doc.ClearSelection2(True)
+    doc.ForceRebuild3(False)
+    return float(member(member(doc.Extension, 'CreateMassProperty'), 'Volume')) * 1e9
+
+def feature_check(feature, name):
+    warning = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_BOOL, False)
+    error = feature.GetErrorCode2(warning)
+    check(name, error == 0, code=error, is_warning=warning.value)
+
+def editing():
+    working = OUT / 'Rufa_editing_working.SLDPRT'
+    shutil.copy2(SOURCE, working)
+    doc = open_doc(working, 1)
+    initial = volume(doc)
+    hole = doc.FeatureByName('Rufa_Holes')
+    check('suppress_hole_feature', hole.SetSuppression2(0, 1, EMPTY))
+    suppressed = volume(doc)
+    check('suppressed_geometry', abs(suppressed - 96000) < .05, volume_mm3=suppressed)
+    check('unsuppress_hole_feature', hole.SetSuppression2(1, 1, EMPTY))
+    restored = volume(doc)
+    check('restored_geometry', abs(restored - initial) < .05, volume_mm3=restored)
+    edges = member(doc.GetBodies2(0, False)[0], 'GetEdges')
+    selected = None
+    for edge in edges:
+        a, b = member(edge, 'GetStartVertex'), member(edge, 'GetEndVertex')
+        if a is None or b is None:
+            continue
+        p, q = member(a, 'GetPoint'), member(b, 'GetPoint')
+        if abs(p[0]) < 1e-8 and abs(q[0]) < 1e-8 and abs(p[1]) < 1e-8 and abs(q[1]) < 1e-8:
+            selected = edge
+            break
+    check('select_outer_corner_edge', selected is not None and selected.Select4(False, NULL))
+    fillet = doc.FeatureManager.FeatureFillet(195, .002, 0, 0, EMPTY, EMPTY, EMPTY)
+    check('2016_fillet_7_arguments', fillet is not None)
+    fillet.Name = 'Rufa_R2'
+    feature_check(fillet, 'fillet_rebuild')
+    expected = initial - (2 * 2 - math.pi * 2 * 2 / 4) * 10
+    measured = volume(doc)
+    check('fillet_geometry', abs(measured - expected) < .05, volume_mm3=measured, expected_mm3=expected)
+    doc.ShowNamedView2('*等轴测', 7)
+    member(doc, 'ViewZoomtofit2')
+    save(doc, OUT / 'Rufa_edited_R2.SLDPRT')
+    preview = OUT / 'edited-preview.bmp'
+    check('model_preview', doc.SaveBMP(str(preview), 1000, 700) and preview.exists())
+
+def assembly():
+    part = open_doc(SOURCE, 1)
+    asm = new_doc('gb_assembly.asmdot')
+    first = asm.AddComponent5(str(SOURCE), 0, '', False, '', 0., 0., 0.)
+    second = asm.AddComponent5(str(SOURCE), 0, '', False, '', 0., 0., .06)
+    check('two_assembly_components', first is not None and second is not None and len(asm.GetComponents(True) or []) == 2)
+    asm.ClearSelection2(True)
+    for i, comp in enumerate([first, second]):
+        plane = member(comp, 'GetModelDoc2').FeatureByName('前视基准面')
+        entity = comp.GetCorresponding(plane)
+        check('mate_plane_' + str(i), entity is not None and entity.Select2(i > 0, 1))
+    error = VARIANT(pythoncom.VT_BYREF | pythoncom.VT_I4, 0)
+    mate = asm.AddMate5(5, 0, False, .03, .03, .03, 0., 0., 0., 0., 0., False, False, 0, error)
+    check('distance_mate_30mm', mate is not None and error.value == 1, error=error.value)
+    asm.ClearSelection2(True)
+    asm.ForceRebuild3(False)
+    transforms = [list(member(member(c, 'Transform2'), 'ArrayData')) for c in [first, second]]
+    separation = abs(transforms[0][11] - transforms[1][11])
+    check('mate_solved_30mm', abs(separation - .03) < 1e-7, separation_mm=separation * 1000)
+    asm.ShowNamedView2('*等轴测', 7)
+    member(asm, 'ViewZoomtofit2')
+    native = OUT / 'Rufa_two_plates.SLDASM'
+    save(asm, native)
+    app.CloseDoc(member(asm, 'GetTitle'))
+    asm = open_doc(native, 2)
+    components = asm.GetComponents(True) or []
+    check('assembly_reopen_references', len(components) == 2 and all(Path(member(c, 'GetPathName')).resolve() == SOURCE.resolve() for c in components))
+
+def drawing():
+    doc = new_doc('gb_a3.drwdot')
+    check('drawing_first_angle_views', doc.Create1stAngleViews2(str(SOURCE)))
+    sheets = member(doc, 'GetViews') or []
+    count = sum(max(0, len(views) - 1) for views in sheets)
+    check('three_model_views', count >= 3, views=count)
+    native = OUT / 'Rufa_plate_drawing.SLDDRW'
+    doc.ForceRebuild3(False)
+    member(doc, 'ViewZoomtofit2')
+    save(doc, native)
+    save(doc, OUT / 'Rufa_plate_drawing.pdf')
+    app.CloseDoc(member(doc, 'GetTitle'))
+    doc = open_doc(native, 3)
+    sheets = member(doc, 'GetViews') or []
+    check('drawing_reopen_views', sum(max(0, len(views) - 1) for views in sheets) >= 3)
+
+pythoncom.CoInitialize()
+try:
+    app = win32com.client.GetActiveObject('SldWorks.Application.24')
+    check('version_2016', str(member(app, 'RevisionNumber')).startswith('24.'))
+    original_titles = {member(d, 'GetTitle') for d in member(app, 'GetDocuments') or []}
+    for name, task in [('editing', editing), ('assembly', assembly), ('drawing', drawing)]:
+        try:
+            task()
+        except Exception:
+            report['failures'][name] = traceback.format_exc()
+            print(report['failures'][name], flush=True)
+            write_report()
+    current_titles = {member(d, 'GetTitle') for d in member(app, 'GetDocuments') or []}
+    check('original_documents_preserved', original_titles.issubset(current_titles))
+finally:
+    report['complete'] = not report['failures'] and all(c['passed'] for c in report['checks'])
+    write_report()
+    print('REPORT=' + str(OUT / 'report.json'), flush=True)
+    pythoncom.CoUninitialize()

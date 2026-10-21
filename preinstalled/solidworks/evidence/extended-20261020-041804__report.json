@@ -1,0 +1,156 @@
+{
+  "output": "<acceptance-root>\\extended-20261020-041804",
+  "checks": [
+    {
+      "check": "version_2016",
+      "passed": true
+    },
+    {
+      "check": "open_.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "suppress_hole_feature",
+      "passed": true
+    },
+    {
+      "check": "suppressed_geometry",
+      "passed": true,
+      "volume_mm3": 95999.99999999999
+    },
+    {
+      "check": "unsuppress_hole_feature",
+      "passed": true
+    },
+    {
+      "check": "restored_geometry",
+      "passed": true,
+      "volume_mm3": 93455.30995059227
+    },
+    {
+      "check": "select_outer_corner_edge",
+      "passed": true
+    },
+    {
+      "check": "2016_fillet_7_arguments",
+      "passed": true
+    },
+    {
+      "check": "fillet_rebuild",
+      "passed": true,
+      "code": 0,
+      "is_warning": false
+    },
+    {
+      "check": "fillet_geometry",
+      "passed": true,
+      "volume_mm3": 93446.72587712816,
+      "expected_mm3": 93446.72587712818
+    },
+    {
+      "check": "save_.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\extended-20261020-041804\\Rufa_edited_R2.SLDPRT"
+    },
+    {
+      "check": "model_preview",
+      "passed": true
+    },
+    {
+      "check": "open_.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 128
+    },
+    {
+      "check": "new_gb_assembly.asmdot",
+      "passed": true
+    },
+    {
+      "check": "two_assembly_components",
+      "passed": true
+    },
+    {
+      "check": "mate_plane_0",
+      "passed": true
+    },
+    {
+      "check": "mate_plane_1",
+      "passed": true
+    },
+    {
+      "check": "distance_mate_30mm",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "mate_solved_30mm",
+      "passed": true,
+      "separation_mm": 30.0
+    },
+    {
+      "check": "save_.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\extended-20261020-041804\\Rufa_two_plates.SLDASM"
+    },
+    {
+      "check": "open_.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "assembly_reopen_references",
+      "passed": true
+    },
+    {
+      "check": "new_gb_a3.drwdot",
+      "passed": true
+    },
+    {
+      "check": "drawing_first_angle_views",
+      "passed": true
+    },
+    {
+      "check": "three_model_views",
+      "passed": true,
+      "views": 3
+    },
+    {
+      "check": "save_.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\extended-20261020-041804\\Rufa_plate_drawing.SLDDRW"
+    },
+    {
+      "check": "save_.pdf",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\extended-20261020-041804\\Rufa_plate_drawing.pdf"
+    },
+    {
+      "check": "open_.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "drawing_reopen_views",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "failures": {},
+  "complete": true
+}

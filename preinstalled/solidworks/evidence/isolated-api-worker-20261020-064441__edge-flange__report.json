@@ -1,0 +1,139 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\edge-flange",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件8"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SheetProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "one_flange_edge",
+      "passed": true
+    },
+    {
+      "check": "native_flange_sketch",
+      "passed": true
+    },
+    {
+      "check": "convert_flange_edge",
+      "passed": true
+    },
+    {
+      "check": "one_converted_edge",
+      "passed": true
+    },
+    {
+      "check": "Rufa_EdgeFlange_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_EdgeFlange_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "flange_native_sheet_body",
+      "passed": true,
+      "volume_mm3": 27187.964473723106,
+      "box_mm": [
+        -60.0,
+        -40.0,
+        -2.0,
+        60.0,
+        45.00000000000019,
+        30.0
+      ]
+    },
+    {
+      "check": "unfold",
+      "passed": true
+    },
+    {
+      "check": "unfold_no_feature_error",
+      "passed": true
+    },
+    {
+      "check": "flat_2mm_thickness",
+      "passed": true,
+      "sizes_mm": [
+        2.000000000000189,
+        113.28318530717962,
+        120.0
+      ]
+    },
+    {
+      "check": "fold",
+      "passed": true
+    },
+    {
+      "check": "fold_restores_volume",
+      "passed": true
+    },
+    {
+      "check": "save_edge-flange-edge-flange.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_edge-flange-edge-flange.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_flange",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\edge-flange\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "f09288bc30a467de430774780b638e2ed9febbce41cf31275c024c231da69e12",
+  "options": {
+    "mode": "edge_flange"
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\edge-flange\\edge-flange.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "edge-flange-edge-flange.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\edge-flange\\edge-flange-edge-flange.SLDPRT"
+    }
+  ]
+}

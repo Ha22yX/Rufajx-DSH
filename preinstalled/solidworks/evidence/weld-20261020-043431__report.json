@@ -1,0 +1,146 @@
+{
+  "output": "<acceptance-root>\\weld-20261020-043431",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_FramePath",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "installed_2016_profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Frame20_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Frame20_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "four_mitered_members",
+      "passed": true,
+      "body_count": 4
+    },
+    {
+      "check": "structural_group_preserved",
+      "passed": true
+    },
+    {
+      "check": "frame_has_material",
+      "passed": true,
+      "volume_mm3": 133701.52148818588
+    },
+    {
+      "check": "cut_list_generated",
+      "passed": true,
+      "folders": [
+        {
+          "name": "切割清单项目1",
+          "bodies": 2,
+          "properties": [
+            "长度",
+            "角度1",
+            "角度2",
+            "UNIT_OF_MEASURE",
+            "DESCRIPTION",
+            "MATERIAL",
+            "QUANTITY",
+            "TOTAL LENGTH"
+          ]
+        },
+        {
+          "name": "切割清单项目2",
+          "bodies": 2,
+          "properties": [
+            "长度",
+            "角度1",
+            "角度2",
+            "UNIT_OF_MEASURE",
+            "DESCRIPTION",
+            "MATERIAL",
+            "QUANTITY",
+            "TOTAL LENGTH"
+          ]
+        },
+        {
+          "name": "切割清单项目1",
+          "bodies": 2,
+          "properties": [
+            "长度",
+            "角度1",
+            "角度2",
+            "UNIT_OF_MEASURE",
+            "DESCRIPTION",
+            "MATERIAL",
+            "QUANTITY",
+            "TOTAL LENGTH"
+          ]
+        },
+        {
+          "name": "切割清单项目2",
+          "bodies": 2,
+          "properties": [
+            "长度",
+            "角度1",
+            "角度2",
+            "UNIT_OF_MEASURE",
+            "DESCRIPTION",
+            "MATERIAL",
+            "QUANTITY",
+            "TOTAL LENGTH"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "save_Rufa_welded_frame_300x200.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_welded_frame_300x200.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "weldment_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_welded-frame",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

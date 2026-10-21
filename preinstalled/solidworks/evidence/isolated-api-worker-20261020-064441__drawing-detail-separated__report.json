@@ -1,0 +1,135 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-separated",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件39"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_drawing-detail-separated-Tube.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_drawing",
+      "passed": true
+    },
+    {
+      "check": "parent_view_created",
+      "passed": true
+    },
+    {
+      "check": "activate_parent_view",
+      "passed": true
+    },
+    {
+      "check": "detail_circle",
+      "passed": true
+    },
+    {
+      "check": "detail_view_created",
+      "passed": true
+    },
+    {
+      "check": "correct_view_type",
+      "passed": true
+    },
+    {
+      "check": "nonempty_projected_geometry",
+      "passed": true,
+      "outline": [
+        0.197118783611097,
+        0.14012826711583756,
+        0.2423638164329907,
+        0.20000816322494172
+      ]
+    },
+    {
+      "check": "views_do_not_overlap",
+      "passed": true,
+      "parent_outline": [
+        0.05906,
+        0.13906000000000002,
+        0.12093999999999999,
+        0.20094
+      ],
+      "derived_outline": [
+        0.197118783611097,
+        0.14012826711583756,
+        0.2423638164329907,
+        0.20000816322494172
+      ]
+    },
+    {
+      "check": "save_drawing-detail-separated-detail.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_drawing-detail-separated-detail.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "derived_view_survives_reopen",
+      "passed": true,
+      "view_count": 2
+    },
+    {
+      "check": "reopened_detail_scale_2",
+      "passed": true
+    },
+    {
+      "check": "native_drawing_preview",
+      "passed": true
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "b669a9a543a820f826c67b02e2ada5d45eec46dae0b7a89eb6908f1e51ce0b40",
+  "options": {
+    "mode": "detail"
+  },
+  "view_type": 3,
+  "view_scale": 2.0,
+  "closed_test_documents": [
+    {
+      "title": "drawing-detail-separated-detail - 图纸1",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-separated\\drawing-detail-separated-detail.SLDDRW"
+    },
+    {
+      "title": "drawing-detail-separated-Tube.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\drawing-detail-separated\\drawing-detail-separated-Tube.SLDPRT"
+    }
+  ]
+}

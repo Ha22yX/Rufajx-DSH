@@ -1,0 +1,373 @@
+{
+  "output": "<acceptance-root>\\assembly-20261020-044043",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件24"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BaseProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseSolid_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseSolid_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_ShaftHole",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole20_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Hole20_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Base.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件25"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_ShaftProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Shaft100_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Shaft100_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Shaft.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件26"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CollarProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Collar10_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Collar10_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Collar.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体4"
+    },
+    {
+      "check": "three_components",
+      "passed": true
+    },
+    {
+      "check": "base_fixed",
+      "passed": true
+    },
+    {
+      "check": "shaft_concentric_selection",
+      "passed": true
+    },
+    {
+      "check": "shaft_concentric_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "shaft_coincident_selection",
+      "passed": true
+    },
+    {
+      "check": "shaft_coincident_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_concentric_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_concentric_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_distance_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_distance_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "collar_angle30_selection",
+      "passed": true
+    },
+    {
+      "check": "collar_angle30_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "shaft_axis_actual_alignment",
+      "passed": true,
+      "base_axis": [
+        0.0,
+        0.0,
+        -0.005
+      ],
+      "shaft_axis": [
+        0.0,
+        0.0,
+        -0.005000000000000001
+      ]
+    },
+    {
+      "check": "collar_actual_distance50",
+      "passed": true,
+      "collar_origin": [
+        0.0,
+        0.0,
+        0.045000000000000005
+      ]
+    },
+    {
+      "check": "collar_actual_angle30",
+      "passed": true,
+      "angle_degrees": 29.999999999999993
+    },
+    {
+      "check": "assembly_no_interference",
+      "passed": true
+    },
+    {
+      "check": "configuration_created",
+      "passed": true
+    },
+    {
+      "check": "configuration_rebind_component",
+      "passed": true
+    },
+    {
+      "check": "configuration_suppressed",
+      "passed": true,
+      "status": 2,
+      "actual": 0
+    },
+    {
+      "check": "configuration_restore",
+      "passed": true
+    },
+    {
+      "check": "default_configuration_resolved",
+      "passed": true
+    },
+    {
+      "check": "save_Rufa_shaft_assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_shaft_assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 33
+    },
+    {
+      "check": "assembly_reopen_components",
+      "passed": true
+    },
+    {
+      "check": "assembly_reopen_configurations",
+      "passed": true
+    },
+    {
+      "check": "preview_shaft-assembly",
+      "passed": true
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体5"
+    },
+    {
+      "check": "nested_assemblies",
+      "passed": true
+    },
+    {
+      "check": "nested_front_selection",
+      "passed": true
+    },
+    {
+      "check": "nested_front_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "nested_top_selection",
+      "passed": true
+    },
+    {
+      "check": "nested_top_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "nested_spacing200_selection",
+      "passed": true
+    },
+    {
+      "check": "nested_spacing200_solved",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "nested_actual_spacing",
+      "passed": true
+    },
+    {
+      "check": "nested_no_interference",
+      "passed": true
+    },
+    {
+      "check": "save_Rufa_nested_assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_Rufa_nested_assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "nested_reopen_hierarchy",
+      "passed": true
+    },
+    {
+      "check": "preview_nested-assembly",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件27"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Cube",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Cube20_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Cube20_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_Cube.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体6"
+    },
+    {
+      "check": "interference_positive_6000mm3",
+      "passed": true,
+      "interferences": [
+        {
+          "volume_mm3": 5999.999999999999,
+          "components": 2
+        }
+      ]
+    },
+    {
+      "check": "interference_cleared_after_move",
+      "passed": true
+    },
+    {
+      "check": "save_Rufa_collision_check.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

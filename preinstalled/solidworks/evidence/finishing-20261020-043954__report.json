@@ -1,0 +1,79 @@
+{
+  "output": "<acceptance-root>\\finishing-20261020-043954",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CylinderProfile",
+      "passed": true
+    },
+    {
+      "check": "open_cylinder_surface",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.0",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.0",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.08",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.08",
+      "passed": true
+    },
+    {
+      "check": "three_surface_bodies",
+      "passed": true
+    },
+    {
+      "check": "knit_select_0",
+      "passed": true
+    },
+    {
+      "check": "knit_select_1",
+      "passed": true
+    },
+    {
+      "check": "knit_select_2",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSolid_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSolid_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "knit_closed_solid",
+      "passed": false,
+      "volume_mm3": 0.0,
+      "expected_mm3": 226194.6710584651
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_finishing.py\", line 38, in <module>\n    r.check('knit_closed_solid',len(r.bodies(d,0))==1 and not r.bodies(d,1) and abs(r.volume(d)-v)<.1,volume_mm3=r.volume(d),expected_mm3=v)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: knit_closed_solid\n"
+}

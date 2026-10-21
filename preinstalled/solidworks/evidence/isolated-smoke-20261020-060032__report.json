@@ -1,0 +1,14 @@
+{
+  "output": "<acceptance-root>\\isolated-smoke-20261020-060032",
+  "checks": [
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": false
+    }
+  ],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "owned_pid": 39288
+}

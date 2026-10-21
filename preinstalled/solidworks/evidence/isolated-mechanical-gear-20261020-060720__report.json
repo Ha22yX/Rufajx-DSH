@@ -1,0 +1,381 @@
+{
+  "output": "<acceptance-root>\\isolated-mechanical-gear-20261020-060720",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_pid_matches_launch",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_no_documents",
+      "passed": true
+    },
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件1"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_isolated-mechanical-gear-20261020-060720-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件2"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_isolated-mechanical-gear-20261020-060720-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件3"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_isolated-mechanical-gear-20261020-060720-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体1"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "gear_ratio_2_to_1_selection",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_2_to_1_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "native_gear_type",
+      "passed": true
+    },
+    {
+      "check": "drive_gear_rotation",
+      "passed": true
+    },
+    {
+      "check": "gear_real_motion_ratio",
+      "passed": false,
+      "driver_deg": 29.999999999999993,
+      "driven_deg": 0.0
+    },
+    {
+      "check": "private_journal_created",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-mechanical-gear-20261020-060720\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "isolated_documents_closed",
+      "passed": true
+    },
+    {
+      "check": "owned_process_exited",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-mechanical-gear-20261020-060720\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-mechanical-gear-20261020-060720\\recovery"
+    }
+  ],
+  "launched_pid": 30688,
+  "owned_pid": 30688,
+  "gear_mate": {
+    "type": 10,
+    "entities": 2,
+    "components": [
+      "isolated-mechanical-gear-20261020-060720-driver-1",
+      "isolated-mechanical-gear-20261020-060720-driven-1"
+    ]
+  },
+  "component_constraints": [
+    {
+      "name": "isolated-mechanical-gear-20261020-060720-support-1",
+      "fixed": true,
+      "constraint_status": 3,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        -0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "isolated-mechanical-gear-20261020-060720-driver-1",
+      "fixed": false,
+      "constraint_status": 2,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        -0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "isolated-mechanical-gear-20261020-060720-driven-1",
+      "fixed": false,
+      "constraint_status": 2,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "gear_dims": [
+    [
+      0.02
+    ],
+    [
+      0.04
+    ]
+  ],
+  "mate_features": [
+    {
+      "name": "同心1",
+      "type": "MateConcentric",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "重合1",
+      "type": "MateCoincident",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "同心2",
+      "type": "MateConcentric",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "重合2",
+      "type": "MateCoincident",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "齿轮配合1",
+      "type": "MateGearDim",
+      "error": 0,
+      "suppressed": false
+    }
+  ],
+  "before_rebuild_angles": [
+    0.5235987755982987,
+    0.0
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\isolated_mechanical.py\", line 88, in <module>\n    r.check('gear_real_motion_ratio',abs(da)>0.01 and abs(abs(db/da)-2)<1e-5,driver_deg=math.degrees(da),driven_deg=math.degrees(db))\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: gear_real_motion_ratio\n",
+  "closed_test_documents": [
+    {
+      "title": "装配体1",
+      "path": ""
+    }
+  ],
+  "remaining_documents": [],
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ],
+  "preexisting_pids_still_running": [
+    39288
+  ]
+}

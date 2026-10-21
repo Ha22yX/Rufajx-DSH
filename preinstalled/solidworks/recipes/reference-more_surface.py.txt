@@ -1,0 +1,55 @@
+from more_common import *
+r=MoreRun('surface-sweep-trim');error=None
+try:
+    d=r.new()
+    profile,_=r.sketch(d,'Rufa_RoundSection',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.004))
+    d.ClearSelection2(True);d.SketchManager.Insert3DSketch(True)
+    pts=[0.,0.,0.,0.,0.,.025,.015,0.,.05,.03,.02,.07,.05,.025,.09]
+    sm=d.SketchManager;sm._FlagAsMethod('CreateSpline')
+    spline=sm.CreateSpline(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,pts))
+    r.check('spatial_spline_created',spline is not None)
+    length=get(spline,'GetLength')
+    d.ClearSelection2(True);d.SketchManager.Insert3DSketch(True)
+    path=d.FeatureByPositionReverse(0);path.Name='Rufa_3DPath'
+    d.ClearSelection2(True)
+    r.check('sweep_profile_path_selected',profile.Select2(False,1) and path.Select2(True,4))
+    sweep=r.feature(d.FeatureManager.InsertSweepSurface2(False,0,False,False,0,0,0,False,True,0.,True),'Rufa_SpatialSurfaceSweep')
+    area=r.area(d)
+    r.check('spatial_sweep_surface_geometry',len(r.bodies(d,1))==1 and len(r.bodies(d))==0 and area>1000,area_mm2=area,path_length_mm=length*1000)
+    sweep_path=r.save(d,'untrimmed-spatial-sweep.SLDPRT')
+    r.preview(d,'sweep')
+    d.ClearSelection2(True);d.Extension.SelectByID2('前视基准面','PLANE',0.,0.,0.,False,0,NULL,0)
+    plane=d.FeatureManager.InsertRefPlane(8,.045,0,0.,0,0.)
+    r.check('trim_plane_created',plane is not None)
+    # Select the known reference plane feature as the trim tool before entering trim mode.
+    pf=d.FeatureByPositionReverse(0);pf.Name='Rufa_TrimHeight45'
+    d.ClearSelection2(True);r.check('trim_tool_selected',pf.Select2(False,0))
+    r.check('pretrim',d.FeatureManager.PreTrimSurface(False,True,False,False))
+    regions=d.FeatureManager.GetPreTrimmedBodies(r.bodies(d,1)[0])
+    r.check('surface_intersection_two_regions',regions is not None and len(regions)==2,regions=len(regions) if regions is not None else 0)
+    target=r.bodies(d,1)[0]
+    face=get(target,'GetFaces')[0]
+    point=face.GetClosestPointOn(.004,0.,.015)
+    data=get(d.SelectionManager,'CreateSelectData');data.Mark=0
+    data.X=point[0];data.Y=point[1];data.Z=point[2]
+    r.check('trim_keep_region_selected',target.Select2(True,data),point=list(point))
+    trim=r.feature(d.FeatureManager.PostTrimSurface(False),'Rufa_SurfaceTrim')
+    d.ClearSelection2(True);d.ForceRebuild3(False)
+    trimmed=r.area(d)
+    r.check('surface_trim_removed_real_area',0<trimmed<area,original_area_mm2=area,trimmed_area_mm2=trimmed)
+    extrema=[]
+    for dz in [-1.,1.]:
+        result=r.bodies(d,1)[0].GetExtremePoint(0.,0.,dz,0.,0.,0.)
+        r.report.setdefault('extreme_point_results',[]).append(result)
+        r.check('trim_exact_extreme_point',isinstance(result,tuple) and len(result)==4 and result[0])
+        extrema.append(list(result[1:]))
+    r.check('trim_keeps_requested_lower_region',abs(extrema[1][2]-.045)<1e-6 and extrema[0][2]<.005,exact_extrema_m=extrema)
+    definition=get(trim,'GetDefinition')
+    r.check('trim_definition_access',definition.AccessSelections(d,NULL))
+    r.check('one_trim_tool_one_kept_piece',get(definition,'GetTrimToolsCount')==1 and get(definition,'GetPiecesToKeepCount')==1)
+    get(definition,'ReleaseSelectionAccess')
+    p=r.save(d,'trimmed-spatial-sweep.SLDPRT');d=r.reopen(d,p)
+    r.check('trim_reopen_geometry',len(r.bodies(d,1))==1 and abs(r.area(d)-trimmed)<.01)
+    r.preview(d,'trimmed-sweep')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

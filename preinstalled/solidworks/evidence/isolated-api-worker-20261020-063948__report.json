@@ -1,0 +1,134 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_pid_matches_launch",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_no_documents",
+      "passed": true
+    },
+    {
+      "check": "SW2016",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-063948\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-063948\\recovery"
+    }
+  ],
+  "launched_pid": 44512,
+  "owned_pid": 44512,
+  "execution_mode": "Native COM only; hidden owned instance; no computer use",
+  "cases": [
+    {
+      "case": "revolve",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\revolve\\report.json"
+    },
+    {
+      "case": "shell",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\shell\\report.json"
+    },
+    {
+      "case": "union",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\union\\report.json"
+    },
+    {
+      "case": "subtract",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\subtract\\report.json"
+    },
+    {
+      "case": "intersect",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\intersect\\report.json"
+    },
+    {
+      "case": "loft",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\loft\\report.json"
+    },
+    {
+      "case": "sweep",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\sweep\\report.json"
+    },
+    {
+      "case": "scale_uniform",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_uniform\\report.json"
+    },
+    {
+      "case": "scale_xyz",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\scale_xyz\\report.json"
+    },
+    {
+      "case": "loft-precise",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\loft-precise\\report.json"
+    },
+    {
+      "case": "body-mirror",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\body-mirror\\report.json"
+    },
+    {
+      "case": "body-copy",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\body-copy\\report.json"
+    },
+    {
+      "case": "body-rotate",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\body-rotate\\report.json"
+    },
+    {
+      "case": "cam-api3-visible",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063948\\cam-api3-visible\\report.json"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 58, in <module>\n    if list(get(owner.app,'GetDocuments') or []):raise RuntimeError('Documents remain after case; stop')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 12, in get\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetDocuments\n\nISOLATED CLEANUP/PROCESS ERROR\nTraceback (most recent call last):\n  File \"<acceptance-root>\\isolated_common.py\", line 95, in finish\n    assert int(get(self.app,'GetProcessID'))==self.pid and self.pid not in self.before_pids\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 12, in get\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetProcessID\n",
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ],
+  "preexisting_pids_still_running": [
+    39288
+  ]
+}

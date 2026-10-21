@@ -1,0 +1,121 @@
+from advanced_common import *
+r=Run('assembly');error=None
+prefix=r.out.name+'-'
+def extrude(d,depth,name):
+    return r.feature(d.FeatureManager.FeatureExtrusion3(True,False,False,0,0,depth,0.,False,False,False,False,0.,0.,False,False,False,False,True,False,True,0,0.,False),name)
+def cylinder(d,radius):
+    for b in r.bodies(d):
+        for face in get(b,'GetFaces') or []:
+            surf=get(face,'GetSurface')
+            if get(surf,'IsCylinder') and abs(get(surf,'CylinderParams')[6]-radius)<1e-7:return face
+    raise RuntimeError('Cylinder not found')
+def corresponding(comp,entity):
+    obj=comp.GetCorresponding(entity)
+    if obj is None:raise RuntimeError('Corresponding entity not found')
+    return obj
+def plane(comp,name):return corresponding(comp,get(comp,'GetModelDoc2').FeatureByName(name))
+def select(obj,append,asm):
+    try:return obj.Select2(append,1)
+    except AttributeError:
+        data=get(asm.SelectionManager,'CreateSelectData');data.Mark=1
+        return obj.Select4(append,data)
+def mate(asm,a,b,kind,name,distance=0.,angle=0.,lock=False):
+    asm.ClearSelection2(True)
+    r.check(name+'_selection',select(a,False,asm) and select(b,True,asm))
+    e=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+    m=asm.AddMate5(kind,0,False,distance,distance,distance,0.,0.,angle,angle,angle,False,lock,0,e)
+    r.check(name+'_solved',m is not None and e.value==1,error=e.value)
+    asm.ClearSelection2(True);asm.ForceRebuild3(False)
+    return m
+def world(comp,point):
+    mu=get(r.app,'GetMathUtility')
+    mu._FlagAsMethod('CreatePoint')
+    p=mu.CreatePoint(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,point))
+    p._FlagAsMethod('MultiplyTransform')
+    return list(get(p.MultiplyTransform(get(comp,'Transform2')),'ArrayData'))
+def interference(asm):
+    manager=get(asm,'InterferenceDetectionManager')
+    manager.TreatCoincidenceAsInterference=False
+    manager.TreatSubAssembliesAsComponents=False
+    found=list(get(manager,'GetInterferences') or [])
+    result=[{'volume_mm3':float(get(x,'Volume'))*1e9,'components':int(get(x,'GetComponentCount'))} for x in found]
+    get(manager,'Done');return result
+try:
+    # All component files are generated inside this run for self-contained references.
+    base=r.new()
+    r.sketch(base,'Rufa_BaseProfile',draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.1,.06,0.))
+    extrude(base,.01,'Rufa_BaseSolid')
+    r.sketch(base,'Rufa_ShaftHole',draw=lambda sm:sm.CreateCircleByRadius(.05,.03,0.,.01))
+    r.feature(base.FeatureManager.FeatureCut3(True,False,True,1,0,.02,0.,False,False,False,False,0.,0.,False,False,False,False,False,True,True,True,True,False,0,0.,False),'Rufa_Hole20')
+    bp=r.save(base,prefix+'Base.SLDPRT')
+    shaft=r.new();r.sketch(shaft,'Rufa_ShaftProfile',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.01))
+    extrude(shaft,.1,'Rufa_Shaft100');sp=r.save(shaft,prefix+'Shaft.SLDPRT')
+    collar=r.new()
+    r.sketch(collar,'Rufa_CollarProfile',draw=lambda sm:[sm.CreateCircleByRadius(0.,0.,0.,.02),sm.CreateCircleByRadius(0.,0.,0.,.01)])
+    extrude(collar,.01,'Rufa_Collar10');cp=r.save(collar,prefix+'Collar.SLDPRT')
+    asm=r.new('assembly')
+    cbase=asm.AddComponent5(str(bp),0,'',False,'',0.,0.,0.)
+    cshaft=asm.AddComponent5(str(sp),0,'',False,'',.08,.05,.03)
+    ccollar=asm.AddComponent5(str(cp),0,'',False,'',.1,.1,.07)
+    r.check('three_components',all(x is not None for x in [cbase,cshaft,ccollar]) and len(asm.GetComponents(True))==3)
+    r.check('component_exact_file_identity',all(Path(get(c,'GetPathName')).resolve()==p.resolve() for c,p in [(cbase,bp),(cshaft,sp),(ccollar,cp)]))
+    r.check('base_fixed',get(cbase,'IsFixed'))
+    mate(asm,corresponding(cbase,cylinder(base,.01)),corresponding(cshaft,cylinder(shaft,.01)),1,'shaft_concentric',lock=True)
+    mate(asm,plane(cbase,'前视基准面'),plane(cshaft,'前视基准面'),0,'shaft_coincident')
+    mate(asm,corresponding(cshaft,cylinder(shaft,.01)),corresponding(ccollar,cylinder(collar,.01)),1,'collar_concentric')
+    mate(asm,plane(cbase,'前视基准面'),plane(ccollar,'前视基准面'),5,'collar_distance',distance=.05)
+    mate(asm,plane(cbase,'右视基准面'),plane(ccollar,'右视基准面'),6,'collar_angle30',angle=math.pi/6)
+    pbase,paxis,pcollar=world(cbase,[.05,.03,0.]),world(cshaft,[0.,0.,0.]),world(ccollar,[0.,0.,0.])
+    r.check('shaft_axis_actual_alignment',math.dist(pbase,paxis)<1e-6,base_axis=pbase,shaft_axis=paxis)
+    r.check('collar_actual_distance50',abs(math.dist(paxis,pcollar)-.05)<1e-6,collar_origin=pcollar)
+    x0,x1=world(ccollar,[0.,0.,0.]),world(ccollar,[1.,0.,0.])
+    b0,b1=world(cbase,[0.,0.,0.]),world(cbase,[1.,0.,0.])
+    cosine=sum((x1[i]-x0[i])*(b1[i]-b0[i]) for i in range(3))
+    degrees=math.degrees(math.acos(max(-1,min(1,cosine))))
+    r.check('collar_actual_angle30',abs(degrees-30)<.001,angle_degrees=degrees)
+    r.check('assembly_no_interference',len(interference(asm))==0)
+    default=get(get(asm.ConfigurationManager,'ActiveConfiguration'),'Name')
+    collar_name=ccollar.Name2
+    cfg=asm.ConfigurationManager.AddConfiguration('Without collar','Test suppressed component','',0,'','')
+    r.check('configuration_created',cfg is not None)
+    ccollar=asm.GetComponentByName(collar_name)
+    r.check('configuration_rebind_component',ccollar is not None)
+    status=ccollar.SetSuppression2(0)
+    asm.ForceRebuild3(False)
+    actual=get(asm.GetComponentByName(collar_name),'GetSuppression')
+    r.check('configuration_suppressed',actual==0,status=status,actual=actual)
+    r.check('configuration_restore',asm.ShowConfiguration2(default))
+    components=asm.GetComponents(True)
+    r.check('default_configuration_resolved',len(components)==3 and all(get(c,'GetSuppression') in [2,3] for c in components))
+    native=r.save(asm,prefix+'Rufa_shaft_assembly.SLDASM');asm=r.reopen(asm,native,2)
+    r.check('assembly_reopen_components',len(asm.GetComponents(True))==3)
+    r.check('assembly_reopen_exact_file_identity',{Path(get(c,'GetPathName')).resolve() for c in asm.GetComponents(True)}=={p.resolve() for p in [bp,sp,cp]})
+    r.check('assembly_reopen_no_load_warning',r.report['checks'][-3]['warnings']==0)
+    r.check('assembly_reopen_configurations',len(get(asm,'GetConfigurationNames'))==2)
+    r.preview(asm,'shaft-assembly')
+    # Real nested assemblies, with native plane/distance mates in the parent.
+    top=r.new('assembly')
+    one=top.AddComponent5(str(native),0,'',False,'',0.,0.,0.)
+    two=top.AddComponent5(str(native),0,'',False,'',.2,0.,0.)
+    r.check('nested_assemblies',one is not None and two is not None and len(get(one,'GetChildren'))==3 and len(get(two,'GetChildren'))==3)
+    mate(top,plane(one,'前视基准面'),plane(two,'前视基准面'),0,'nested_front')
+    mate(top,plane(one,'上视基准面'),plane(two,'上视基准面'),0,'nested_top')
+    mate(top,plane(one,'右视基准面'),plane(two,'右视基准面'),5,'nested_spacing200',distance=.2)
+    r.check('nested_actual_spacing',abs(math.dist(world(one,[0.,0.,0.]),world(two,[0.,0.,0.]))-.2)<1e-6)
+    r.check('nested_no_interference',len(interference(top))==0)
+    p=r.save(top,prefix+'Rufa_nested_assembly.SLDASM');top=r.reopen(top,p,2)
+    r.check('nested_reopen_hierarchy',len(top.GetComponents(True))==2 and len(top.GetComponents(False))==8)
+    r.preview(top,'nested-assembly')
+    # Positive control: overlapping cubes must be detected, not just an empty result.
+    cube=r.new();r.sketch(cube,'Rufa_Cube',draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.02,.02,0.))
+    extrude(cube,.02,'Rufa_Cube20');cubep=r.save(cube,prefix+'Cube.SLDPRT')
+    test=r.new('assembly');a=test.AddComponent5(str(cubep),0,'',False,'',0.,0.,0.);b=test.AddComponent5(str(cubep),0,'',False,'',.005,0.,0.)
+    data=list(get(get(a,'Transform2'),'ArrayData'));data[9]+=.005
+    mu=get(r.app,'GetMathUtility');mu._FlagAsMethod('CreateTransform');b.Transform2=mu.CreateTransform(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,data))
+    test.ForceRebuild3(False);found=interference(test)
+    r.check('interference_positive_6000mm3',len(found)==1 and abs(found[0]['volume_mm3']-6000)<.1,interferences=found)
+    data[9]+=.03;b.Transform2=mu.CreateTransform(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,data));test.ForceRebuild3(False)
+    r.check('interference_cleared_after_move',not interference(test))
+    r.save(test,prefix+'Rufa_collision_check.SLDASM')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

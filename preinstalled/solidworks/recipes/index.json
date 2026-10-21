@@ -1,0 +1,327 @@
+{
+  "schema": 1,
+  "notice": "Reference source only; never execute historical Run constructors. Adapt algorithms to the owned cad/sw objects.",
+  "recipes": [
+    {
+      "id": "body-copy-fixed",
+      "file": "body-copy-fixed.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "body-copy-fixed"
+      ],
+      "sha256": "37e276ee0a8cd997b85b96cbbf4ccd1f2b113dcd1954ffe04f470d6d53a704bf"
+    },
+    {
+      "id": "body-mirror-fixed",
+      "file": "body-mirror-fixed.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "body-mirror-fixed"
+      ],
+      "sha256": "37e276ee0a8cd997b85b96cbbf4ccd1f2b113dcd1954ffe04f470d6d53a704bf"
+    },
+    {
+      "id": "body-rotate-definition",
+      "file": "body-rotate-definition.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "body-rotate-definition"
+      ],
+      "sha256": "61043810d625ee44ad1719927de630ae455132e8f2f07ce06685f1c218168234"
+    },
+    {
+      "id": "cam-capsule-antialigned",
+      "file": "cam-capsule-antialigned.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "cam-capsule-antialigned"
+      ],
+      "sha256": "c1d17d636775efa0610a660d1d89ce933ab44c0786a9b502fac6354880fcb4f4"
+    },
+    {
+      "id": "drawing-detail-separated",
+      "file": "drawing-detail-separated.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "drawing-detail-separated"
+      ],
+      "sha256": "a1c706c15f41f1d56a5e8843e5764669161c5fc478c4e2dccfcbd0f074dca42f"
+    },
+    {
+      "id": "drawing-section-separated",
+      "file": "drawing-section-separated.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "drawing-section-separated"
+      ],
+      "sha256": "a1c706c15f41f1d56a5e8843e5764669161c5fc478c4e2dccfcbd0f074dca42f"
+    },
+    {
+      "id": "edge-flange",
+      "file": "edge-flange.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "edge-flange"
+      ],
+      "sha256": "765405410a6fff842df299a06169db79de611920fd327c8bc75ade0b1046d401"
+    },
+    {
+      "id": "gear-reopen-final",
+      "file": "gear-reopen-final.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "gear-reopen-final"
+      ],
+      "sha256": "257d0175731303fc0805d061c70f9ccffd4fb0c5fff66f63f252a9b06f22764f"
+    },
+    {
+      "id": "intersect",
+      "file": "intersect.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "intersect"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "loft-geometry",
+      "file": "loft-geometry.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "loft-geometry"
+      ],
+      "sha256": "a251ee10c0878c1478782767b2fe9bfd32f3517c8330ceaa69b9482f1a42b153"
+    },
+    {
+      "id": "reference-advanced_assembly",
+      "file": "reference-advanced_assembly.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "5103d1b40500929ef2c8b671c240e8374ed26cf6f0f67f77ab5c43624d15bd5e"
+    },
+    {
+      "id": "reference-advanced_common",
+      "file": "reference-advanced_common.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "2c86a1eff26cb78b2a5e15c860a991e669143e048b1a0b87b659c30abcdcfd15"
+    },
+    {
+      "id": "reference-advanced_finishing",
+      "file": "reference-advanced_finishing.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "7f9f85c0f2de551556dbefad1d36f42dc661b200fb845081abad57fc3335bd52"
+    },
+    {
+      "id": "reference-advanced_sheet",
+      "file": "reference-advanced_sheet.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "59261b4c505e11bc9a7ae3265ae732cdfaf937e4d751a06209ea069c116c5078"
+    },
+    {
+      "id": "reference-advanced_surface",
+      "file": "reference-advanced_surface.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "68fb0b2876618a1ad217c02edc4a99290ccfbeb9a7892f1875c2cac5e8d33504"
+    },
+    {
+      "id": "reference-advanced_weld",
+      "file": "reference-advanced_weld.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "10f10d9e88555de74a4ef609b25536c92f873272d031bc91fb90e20868443e66"
+    },
+    {
+      "id": "reference-case_bodies",
+      "file": "reference-case_bodies.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "61043810d625ee44ad1719927de630ae455132e8f2f07ce06685f1c218168234"
+    },
+    {
+      "id": "reference-case_drawing_views",
+      "file": "reference-case_drawing_views.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "a1c706c15f41f1d56a5e8843e5764669161c5fc478c4e2dccfcbd0f074dca42f"
+    },
+    {
+      "id": "reference-case_edge_flange",
+      "file": "reference-case_edge_flange.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "765405410a6fff842df299a06169db79de611920fd327c8bc75ade0b1046d401"
+    },
+    {
+      "id": "reference-case_final_audit",
+      "file": "reference-case_final_audit.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "a5051f3dcb735001485ad6eb144efc74ef41398c307a3dcc078c908abb4d681d"
+    },
+    {
+      "id": "reference-case_inspect_cam",
+      "file": "reference-case_inspect_cam.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "8231e5efed00e6fc78ed4cae8208d67232f9f2683440f78570e93cae073a910a"
+    },
+    {
+      "id": "reference-case_mechanical",
+      "file": "reference-case_mechanical.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "c1d17d636775efa0610a660d1d89ce933ab44c0786a9b502fac6354880fcb4f4"
+    },
+    {
+      "id": "reference-case_pack_go",
+      "file": "reference-case_pack_go.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "a69b3409c910298f967806743ac161badd48a38eec7130c93065dcda52138519"
+    },
+    {
+      "id": "reference-case_solids",
+      "file": "reference-case_solids.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "a251ee10c0878c1478782767b2fe9bfd32f3517c8330ceaa69b9482f1a42b153"
+    },
+    {
+      "id": "reference-more_common",
+      "file": "reference-more_common.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "0b6c5490cbf73f4e8262d1293fa65fcb3ef3853454c01015c08e2c5179813057"
+    },
+    {
+      "id": "reference-more_delivery",
+      "file": "reference-more_delivery.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "571e1490f003f7df7c180a314a0d0b68b3f29a2eb7c5cebf1ca16bf3aa061f53"
+    },
+    {
+      "id": "reference-more_mechanical",
+      "file": "reference-more_mechanical.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "17423118377b99ac4fc1fa66bafad6b631c566f59f192c4794ee4c1faf5800ee"
+    },
+    {
+      "id": "reference-more_patterns",
+      "file": "reference-more_patterns.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "edf8ec74716fae361bcea48bc3b2e478aa3fec84bc6c75dec9aea8b6393aa98c"
+    },
+    {
+      "id": "reference-more_sheet",
+      "file": "reference-more_sheet.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "8b9c4b755ceda666c9a6bda33dbd701540f02d57041b8304abce1107180f7141"
+    },
+    {
+      "id": "reference-more_surface",
+      "file": "reference-more_surface.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "c3df0c9ebb2c9ab3819b49efce87e9a86d60a52120f107461a129403c76215a4"
+    },
+    {
+      "id": "reference-more_weld",
+      "file": "reference-more_weld.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "d933aaed94077821b4b1cf558d8642b5da0e2dc14dc574af57a3ae03d2b07f5b"
+    },
+    {
+      "id": "reference-smoke_extended",
+      "file": "reference-smoke_extended.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "637d8c5b14eda3b1414e0c18d2880cde11bf71dc159a372f7b81f1fa3a089afb"
+    },
+    {
+      "id": "reference-smoke_parametric",
+      "file": "reference-smoke_parametric.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "ecd430bdb3c789f5ad23ecae7cae9db5151527c5b623a22c97799ab382d767bb"
+    },
+    {
+      "id": "reference-smoke_part",
+      "file": "reference-smoke_part.py.txt",
+      "status": "reference-only",
+      "evidence": [],
+      "sha256": "5ccd4180085b4b84ea35eb371450bb3c3998371969674acebdd9d023965bdd70"
+    },
+    {
+      "id": "revolve",
+      "file": "revolve.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "revolve"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "scale_uniform",
+      "file": "scale_uniform.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "scale_uniform"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "scale_xyz",
+      "file": "scale_xyz.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "scale_xyz"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "shell",
+      "file": "shell.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "shell"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "subtract",
+      "file": "subtract.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "subtract"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "sweep",
+      "file": "sweep.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "sweep"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    },
+    {
+      "id": "union",
+      "file": "union.py.txt",
+      "status": "accepted-sample-source",
+      "evidence": [
+        "union"
+      ],
+      "sha256": "7f116b2930ea4803f694433da23529c2f487919988a1499dcaed4a5257e14f44"
+    }
+  ]
+}

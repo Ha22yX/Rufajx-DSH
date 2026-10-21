@@ -1,0 +1,217 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件1"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-ui-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件2"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-ui-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件3"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-ui-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体1"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_front_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_horizontal_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_horizontal_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_orientation_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_orientation_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "save_cam-ui-Rufa_Cam_UI_Only.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "ui_mate_finished",
+      "passed": false
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "be0a2121d1be8766cc7e039def382d496783e230d14afe1cd8098677855c6b00",
+  "options": {
+    "cam_api": "ui",
+    "visible": true,
+    "mode": "cam",
+    "driver": "angle"
+  },
+  "assembly_rebuild_suspended": false,
+  "ui_wait": "Create native cam-follower mate in this owned test assembly only",
+  "closed_test_documents": [
+    {
+      "title": "cam-ui-Rufa_Cam_UI_Only.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\cam-ui-Rufa_Cam_UI_Only.SLDASM"
+    },
+    {
+      "title": "cam-ui-support.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\cam-ui-support.SLDPRT"
+    },
+    {
+      "title": "cam-ui-driver.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\cam-ui-driver.SLDPRT"
+    },
+    {
+      "title": "cam-ui-driven.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui\\cam-ui-driven.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_mechanical.py\", line 136, in run\n    r.check('ui_mate_finished',(r.out/'CONTINUE').exists())\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: ui_mate_finished\n"
+}

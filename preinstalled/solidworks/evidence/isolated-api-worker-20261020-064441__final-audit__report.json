@@ -1,0 +1,26 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\final-audit",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "same_owned_instance",
+      "passed": true
+    },
+    {
+      "check": "no_documents_at_final_audit",
+      "passed": true
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "65a1f3e8abd61556c26e0ba19b9ad54246f89a5e0585302fc93785597c1e3e06",
+  "options": {},
+  "execution_mode_corrected": true
+}

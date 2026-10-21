@@ -1,0 +1,79 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948\\loft-precise",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件10"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_LoftStart",
+      "passed": true
+    },
+    {
+      "check": "offset_plane_created",
+      "passed": true
+    },
+    {
+      "check": "select_Rufa_EndPlane",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_LoftEnd",
+      "passed": true
+    },
+    {
+      "check": "loft_profiles_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Loft_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Loft_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "exact_volume",
+      "passed": false,
+      "actual_mm3": 43982.08996408321,
+      "expected_mm3": 43982.2971502571
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\loft-precise\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 44512,
+  "source_sha256": "b8927d381d672024fa1719b0e2a1e9c9328b5bc6ce4d39cdbaca00b56d4e12dc",
+  "options": {
+    "mode": "loft"
+  },
+  "precise_mass_status": [
+    0
+  ],
+  "closed_test_documents": [
+    {
+      "title": "零件10",
+      "path": ""
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_solids.py\", line 74, in run\n    verify_save(r,d,f,math.pi*60*(20**2+20*10+10**2)/3,mode)\n  File \"<acceptance-root>\\case_solids.py\", line 17, in verify_save\n    r.check('exact_volume',abs(actual-expected)<.01,actual_mm3=actual,expected_mm3=expected)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: exact_volume\n"
+}

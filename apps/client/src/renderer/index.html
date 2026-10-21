@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Rufajx-DSH</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header id="app-header" hidden>
+  <span class="company-mark header-mark" role="img" aria-label="如发机械"></span>
+  <nav aria-label="工作区"><button id="open-harness" class="nav-button" aria-current="page">工作台</button><button id="open-admin" class="nav-button" hidden>管理中心</button></nav>
+  <div id="identity"></div><button id="logout" class="quiet">退出登录</button>
+</header>
+<main id="login-view" class="center-view" hidden>
+  <form id="login-form" class="login-card">
+    <div class="wordmark"><span class="company-mark" aria-hidden="true"></span><span>Rufajx-DSH</span></div><h1>登录工作台</h1><p class="login-description">使用公司账号登录</p>
+    <label for="username">账号</label><input id="username" autocomplete="username" required autofocus placeholder="请输入账号" spellcheck="false">
+    <label for="password">密码</label><div class="password-field">
+      <input id="password" type="password" autocomplete="current-password" required placeholder="请输入密码">
+      <button id="toggle-password" class="password-toggle" type="button" aria-label="显示密码" aria-controls="password" aria-pressed="false" title="显示密码">
+        <svg class="eye-show" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="eye-hide" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 3 18 18M10.5 5.1 12 5c6.5 0 10 7 10 7a18 18 0 0 1-3.1 4.1M6.1 6.1A20 20 0 0 0 2 12s3.5 7 10 7a11 11 0 0 0 5.1-1.3M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+      </button>
+    </div>
+    <label class="remember-row"><input id="remember-password" type="checkbox"><span>记住密码</span></label>
+    <button class="primary" id="login-button" type="submit">登录</button>
+    <p class="login-footnote">如发机械 · 公司工作台<span id="client-version"></span></p>
+  </form>
+</main>
+<main id="loading-view" class="center-view" aria-live="polite">
+  <div class="loading-content"><div id="loading-spinner" class="spinner" aria-hidden="true"></div><div class="wordmark"><span class="company-mark" aria-hidden="true"></span><span>Rufajx-DSH</span></div><p id="loading-message">正在启动…</p>
+    <div id="update-status" hidden><progress id="update-progress" max="100" value="0" aria-label="客户端更新进度" hidden></progress><p id="update-detail"></p></div>
+    <div id="update-actions" hidden><button id="update-retry">重试更新</button><button id="update-continue" class="quiet">继续使用当前版本</button></div>
+    <button id="retry-harness" hidden>重新打开</button></div>
+</main>
+<main id="admin-view" hidden>
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><span class="company-mark" aria-hidden="true"></span><div>管理中心<small>Rufajx-DSH</small></div></div>
+    <nav id="admin-nav" aria-label="管理导航">
+      <button data-section="overview" aria-current="page" title="概览"><span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="8" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="3" y="15" width="7" height="6" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/></svg></span><span>概览</span></button>
+      <button data-section="chat" title="聊天记录"><span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H8l-5 3V6a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3z"/><path d="M7 8h9M7 12h6"/></svg></span><span>聊天记录</span></button>
+      <button data-section="accounts" title="账号管理"><span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6M18 15a4 4 0 0 1 3 4v2"/></svg></span><span>账号管理</span></button>
+      <button data-section="settings" title="服务设置"><span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="#191919"/><circle cx="16" cy="12" r="2" fill="#191919"/><circle cx="10" cy="18" r="2" fill="#191919"/></svg></span><span>服务设置</span></button>
+    </nav>
+    <div class="admin-sidebar-note"><span class="status-dot"></span>公司管理空间<small>统一账号 · 安全访问</small></div>
+  </aside>
+  <div class="admin-content">
+    <section id="admin-section-overview" class="admin-section">
+      <div class="admin-page-heading"><div><p class="eyebrow">管理中心 / 概览</p><h1>工作台概览</h1><p>查看账号状态、会话与实际模型用量。</p></div><button id="overview-refresh" class="quiet">刷新数据</button></div>
+      <form id="overview-filters" class="admin-inline-form"><label>开始日期<input id="overview-from" type="date"></label><span class="range-separator">—</span><label>结束日期<input id="overview-to" type="date"></label><button type="submit">应用范围</button><span class="filter-hint">默认全部时间</span></form>
+      <div id="overview-status" class="admin-status" role="status"></div>
+      <div id="overview-stats" class="overview-stats"></div>
+      <div class="admin-panel"><div class="panel-heading"><div><h2>账号用量</h2><p>用量用于了解服务使用情况，不代表工作效率。</p></div><span class="subtle-badge">实际记录</span></div><div id="overview-users" class="admin-table-wrap"></div></div>
+    </section>
+    <section id="admin-section-chat" class="admin-section chat-section" hidden>
+      <div class="admin-page-heading"><div><p class="eyebrow">管理中心 / 聊天记录</p><h1>聊天记录</h1><p>查阅公司已保存的完整记录，所有内容均为只读。</p></div><span class="subtle-badge">只读访问</span></div>
+      <form id="chat-filters" class="chat-filters">
+        <div class="owner-filter"><label for="chat-owner-search">所属账号</label><input id="chat-owner-search" type="search" placeholder="搜索姓名、账号或职位" autocomplete="off"><select id="chat-owner" aria-label="选择所属账号"><option value="">全部账号</option></select></div>
+        <label>开始日期<input id="chat-from" type="date"></label><label>结束日期<input id="chat-to" type="date"></label>
+        <label class="query-filter">记录关键词<input id="chat-query" type="search" maxlength="200" placeholder="搜索标题与完整记录" autocomplete="off"></label>
+        <div class="filter-actions"><button id="chat-search-submit" class="primary" type="submit">查询</button><button id="chat-search-reset" class="quiet" type="button">重置</button></div>
+      </form>
+      <div class="chat-workspace" id="chat-workspace">
+        <aside class="session-browser" aria-label="会话列表"><div class="session-browser-heading"><h2>会话</h2><span id="sessions-status" role="status"></span></div><div id="sessions" class="session-list"></div><button id="sessions-more" class="quiet" hidden>加载更多会话</button></aside>
+        <section id="reader-pane" class="record-reader" aria-label="聊天阅读区">
+          <div id="reader-empty" class="reader-empty"><span class="empty-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 15a3 3 0 0 1-3 3H8l-5 3V6a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3z"/><path d="M7 8h9M7 12h6"/></svg></span><h2>选择一段会话</h2><p>从左侧选择会话，查看对话与执行过程。</p><small>仅阅读服务器记录，不会启动员工的任务或工具。</small></div>
+          <div id="reader-content" hidden>
+            <div class="reader-heading"><button id="chat-back" class="quiet" title="返回会话列表">‹ 会话</button><div><h2 id="reader-title"></h2><div id="reader-owner"></div><p id="reader-meta"></p></div><span class="subtle-badge">只读</span></div>
+            <div class="reader-search"><select id="reader-mode" aria-label="阅读方式"><option value="conversation">对话阅读</option><option value="all">全部记录</option></select><input id="event-find" type="search" aria-label="在已加载记录中查找" placeholder="在已加载记录中查找" autocomplete="off"><span id="event-find-count" role="status"></span><button id="event-find-prev" class="quiet" aria-label="上一个匹配">↑</button><button id="event-find-next" class="quiet" aria-label="下一个匹配">↓</button></div>
+            <p id="match-scope" class="match-scope"></p>
+            <div id="events" class="record-events" tabindex="0" aria-label="已加载的会话记录"></div>
+            <div class="events-footer"><div id="events-error" class="inline-error" role="alert" hidden></div><div class="events-load-row"><span id="events-status" role="status"></span><div><button id="more-events" class="quiet">继续加载</button><button id="all-events">加载全部</button><button id="stop-events" hidden>停止加载</button></div></div><progress id="events-progress" max="1" value="0" aria-label="记录加载进度"></progress></div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section id="admin-section-accounts" class="admin-section" hidden>
+      <div class="admin-page-heading"><div><p class="eyebrow">管理中心 / 账号管理</p><h1>账号管理</h1><p>管理成员资料、角色和账号状态。</p></div><div class="heading-actions"><button id="refresh-users" class="quiet">刷新</button><button id="new-account" class="primary">＋ 创建账号</button></div></div>
+      <div class="accounts-toolbar"><div class="user-list-tabs" role="group" aria-label="账号列表"><button id="show-active-users" aria-pressed="true">账号</button><button id="show-recycled-users" aria-pressed="false">回收站</button><button id="show-archived-users" aria-pressed="false">聊天档案</button></div><span id="users-count"></span></div>
+      <div class="account-filters"><input id="user-search" type="search" placeholder="搜索姓名、账号、职位" aria-label="搜索账号"><select id="user-role" aria-label="筛选角色"><option value="">所有角色</option><option value="employee">员工</option><option value="admin">管理</option></select><select id="user-status" aria-label="筛选状态"><option value="">所有状态</option><option value="active">正常</option><option value="disabled">已停用</option></select></div>
+      <p id="user-list-help" class="help-banner" hidden></p><div id="users-status" class="admin-status" role="status"></div><div id="users" class="accounts-list"></div>
+    </section>
+    <section id="admin-section-settings" class="admin-section" hidden>
+      <div class="admin-page-heading"><div><p class="eyebrow">管理中心 / 服务设置</p><h1>服务设置</h1><p>统一维护公司 DeepSeek 服务连接。</p></div></div>
+      <div class="admin-panel service-panel"><div class="panel-heading"><div><h2>DeepSeek API</h2><p>所有模型请求均由公司服务器鉴权与中转。</p></div><span class="subtle-badge">服务器保存</span></div><div id="key-status" class="service-status" role="status">正在读取配置状态…</div><button id="key-retry" class="quiet" hidden>重新读取</button>
+      <form id="key-form" class="key-form"><div><label for="api-key">更新官方 API Key</label><input id="api-key" type="password" required autocomplete="new-password" spellcheck="false" placeholder="输入新的密钥"></div><button class="primary" id="save-key">保存到服务器</button></form><p class="service-note">密钥通过加密连接发送，保存后立即清空输入，不回显已有密钥。员工客户端无需配置。</p></div>
+    </section>
+  </div>
+</main>
+<div id="notice" role="status" hidden></div><script type="module" src="app.js"></script>
+</body></html>

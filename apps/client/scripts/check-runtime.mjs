@@ -1,0 +1,46 @@
+import { readFile, access, realpath } from 'node:fs/promises';
+import { join } from 'node:path';
+import { createHash } from 'node:crypto';
+import { normalizeServerUrl } from '../dist/company-api.js';
+import { patchHistoryRuntime } from '../../../scripts/history-runtime.mjs';
+import { patchContinuationRuntime } from './continuation-runtime.mjs';
+import { patchProjectsRuntime } from './projects-runtime.mjs';
+import { patchBadgeRuntime } from '../../../scripts/badge-runtime.mjs';
+import { checkPreinstalledRuntime } from '../../../scripts/preinstalled-runtime.mjs';
+import { checkSidebarRuntime } from '../../../scripts/sidebar-runtime.mjs';
+import { checkMediaPreviewRuntime } from '../../../scripts/media-preview-runtime.mjs';
+import { checkDesktopVideoRuntime } from '../../../scripts/desktop-video-runtime.mjs';
+import { checkSolidworksRuntime } from '../../../scripts/solidworks-runtime.mjs';
+import { checkHistorySafetyReceipt } from '../../../scripts/history-safety-gate.mjs';
+import { fileURLToPath } from 'node:url';
+import { applyRuntimeSlim } from './runtime-slim.mjs';
+const root = new URL('../runtime/', import.meta.url);
+try {
+  const manifest = JSON.parse(await readFile(new URL('rufa-runtime.json', root), 'utf8'));
+  if (!manifest.upstreamCommit || !manifest.cli || !manifest.version) throw new Error('运行时清单不完整');
+  await patchHistoryRuntime(fileURLToPath(root));
+  await patchContinuationRuntime(fileURLToPath(root));
+  await patchProjectsRuntime(fileURLToPath(root));
+  await patchBadgeRuntime(fileURLToPath(root));
+  await checkPreinstalledRuntime(fileURLToPath(root), { syncWrappers: true });
+  await checkSidebarRuntime(fileURLToPath(root));
+  await checkMediaPreviewRuntime(fileURLToPath(root));
+  await checkDesktopVideoRuntime(fileURLToPath(root));
+  await checkSolidworksRuntime(fileURLToPath(root));
+  if (manifest.cli.includes('..') || /^[\\/]|^[A-Za-z]:/.test(manifest.cli)) throw new Error('无效的 CLI 路径');
+  await access(new URL(manifest.cli, root));
+  await access(new URL('node_modules/@deepseek-ai/dsh-app-boot/lib/index.js', root));
+  const nodeManifest = JSON.parse(await readFile(new URL('../node-runtime/node-runtime.json', import.meta.url), 'utf8'));
+  const nodeHash = createHash('sha256').update(await readFile(new URL('../node-runtime/node.exe', import.meta.url))).digest('hex');
+  if (nodeManifest.version !== 'v24.16.0' || nodeHash !== nodeManifest.sha256) throw new Error('独立 Node 运行时缺失或校验失败');
+  await access(new URL('../node-runtime/LICENSE', import.meta.url));
+  const config = JSON.parse(await readFile(new URL('../company-config.json', import.meta.url), 'utf8'));
+  normalizeServerUrl(config.serverUrl, config.mode === 'development');
+  await applyRuntimeSlim(await realpath(fileURLToPath(root)));
+  await checkHistorySafetyReceipt(fileURLToPath(new URL('../', import.meta.url)), fileURLToPath(root));
+  console.log(`已确认固定上游运行时 ${manifest.version} (${manifest.upstreamCommit})`);
+} catch (error) {
+  console.error('拒绝打包缺少完整 Harness 的安装包。请先按 docs/client.md 准备 apps/client/runtime。');
+  console.error(error.message);
+  process.exitCode = 1;
+}

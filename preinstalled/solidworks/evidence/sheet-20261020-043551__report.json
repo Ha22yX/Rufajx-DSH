@@ -1,0 +1,103 @@
+{
+  "output": "<acceptance-root>\\sheet-20261020-043551",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BentProfile",
+      "passed": true
+    },
+    {
+      "check": "select_sheet_profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseFlange_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BaseFlange_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "one_sheet_metal_body",
+      "passed": true
+    },
+    {
+      "check": "flat_pattern_present",
+      "passed": true
+    },
+    {
+      "check": "unfold",
+      "passed": true
+    },
+    {
+      "check": "flat_geometry_thickness_width",
+      "passed": true,
+      "sizes_mm": [
+        2.0000000000000018,
+        60.0,
+        150.2831853071796
+      ]
+    },
+    {
+      "check": "flat_volume_consistency",
+      "passed": true,
+      "folded_mm3": 18033.98223686156,
+      "flat_mm3": 18033.982236861568
+    },
+    {
+      "check": "preview_sheet-flat",
+      "passed": true
+    },
+    {
+      "check": "refold",
+      "passed": true
+    },
+    {
+      "check": "refold_geometry",
+      "passed": true
+    },
+    {
+      "check": "save_Rufa_sheet_L_2mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "flat_pattern_dxf",
+      "passed": true
+    },
+    {
+      "check": "reopen_Rufa_sheet_L_2mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "sheet_reopen_volume",
+      "passed": true
+    },
+    {
+      "check": "preview_sheet-folded",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

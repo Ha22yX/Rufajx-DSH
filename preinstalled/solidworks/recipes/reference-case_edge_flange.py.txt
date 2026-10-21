@@ -1,0 +1,43 @@
+from case_solids import enum_values
+from more_common import *
+
+def run(r,options):
+    d=r.new()
+    r.sketch(d,'Rufa_SheetProfile',draw=lambda sm:sm.CreateCornerRectangle(-.06,-.04,0.,.06,.04,0.))
+    cba=get(d.FeatureManager,'CreateCustomBendAllowance');cba.Type=2;cba.KFactor=.5
+    r.feature(d.FeatureManager.InsertSheetMetalBaseFlange2(.002,False,.003,.06,0.,False,0,0,1,cba,False,2,.001,.001,.5,True,False,True,True),'Rufa_SheetBase')
+    edges=[]
+    for edge in get(r.bodies(d)[0],'GetEdges'):
+        a=get(edge,'GetStartVertex');b=get(edge,'GetEndVertex')
+        if a is None or b is None:continue
+        pts=[get(a,'GetPoint'),get(b,'GetPoint')]
+        if all(abs(p[1]-.04)<1e-7 and abs(p[2])<1e-7 for p in pts):edges.append(edge)
+    r.check('one_flange_edge',len(edges)==1)
+    edge=edges[0];d.ClearSelection2(True)
+    sf=d.InsertSketchForEdgeFlange(edge,math.pi/2,False)
+    r.check('native_flange_sketch',sf is not None)
+    sf.Select2(False,0);get(d,'EditSketch');sk=get(d,'GetActiveSketch2')
+    sel(d,edge);r.check('convert_flange_edge',d.SketchManager.SketchUseEdge(False))
+    lines=list(get(sk,'GetSketchSegments'));r.check('one_converted_edge',len(lines)==1)
+    a=get(lines[0],'GetStartPoint2');b=get(lines[0],'GetEndPoint2')
+    sm=d.SketchManager;sm.AddToDB=True
+    try:
+        sm.CreateLine(a.X,a.Y,0.,a.X,a.Y+.03,0.)
+        sm.CreateLine(a.X,a.Y+.03,0.,b.X,b.Y+.03,0.)
+        sm.CreateLine(b.X,b.Y+.03,0.,b.X,b.Y,0.)
+    finally:sm.AddToDB=False
+    d.ClearSelection2(True);sm.InsertSketch(True)
+    opts=enum_values('swInsertEdgeFlangeOptions_e');positions=enum_values('swFlangePositionTypes_e');dims=enum_values('swFlangeDimTypes_e')
+    f=r.feature(d.FeatureManager.InsertSheetMetalEdgeFlange2(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,[edge]),VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,[sk]),opts['swInsertEdgeFlangeUseDefaultRadius']|opts['swInsertEdgeFlangeUseDefaultRelief'],math.pi/2,0.,positions['swFlangePositionTypeBendOutside'],.03,0,0.,0.,0.,dims['swFlangeDimTypeInnerVirtualSharp'],NULL),'Rufa_EdgeFlange')
+    volume=r.volume(d);box=r.box(r.bodies(d)[0])
+    r.check('flange_native_sheet_body',get(r.bodies(d)[0],'IsSheetMetal') and volume>19200 and abs(box[5]-box[2])>25,volume_mm3=volume,box_mm=box)
+    flat=next(x for x in r.features(d) if get(x,'GetTypeName2')=='FlatPattern')
+    r.check('unfold',flat.SetSuppression2(1,1,EMPTY));d.ForceRebuild3(False)
+    r.check('unfold_no_feature_error',flat.GetErrorCode2(VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False))==0)
+    box=r.box(r.bodies(d)[0]);dims=sorted(box[i+3]-box[i] for i in range(3))
+    r.check('flat_2mm_thickness',abs(dims[0]-2)<.001,sizes_mm=dims)
+    r.check('fold',flat.SetSuppression2(0,1,EMPTY));d.ForceRebuild3(False)
+    r.check('fold_restores_volume',abs(r.volume(d)-volume)<.01)
+    p=r.save(d,'edge-flange.SLDPRT');d=r.reopen(d,p)
+    r.check('reopen_flange',d.FeatureByName('Rufa_EdgeFlange') is not None and abs(r.volume(d)-volume)<.01)
+    r.preview(d,'edge-flange')

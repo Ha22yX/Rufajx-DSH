@@ -1,0 +1,156 @@
+{
+  "output": "<acceptance-root>\\mechanical-cam-20261020-051641",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件56"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-051641-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件57"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-051641-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件58"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-cam-20261020-051641-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体12"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-cam-20261020-051641\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "装配体12",
+      "path": ""
+    },
+    {
+      "title": "mechanical-cam-20261020-051641-support.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-cam-20261020-051641\\mechanical-cam-20261020-051641-support.SLDPRT"
+    },
+    {
+      "title": "mechanical-cam-20261020-051641-driver.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-cam-20261020-051641\\mechanical-cam-20261020-051641-driver.SLDPRT"
+    },
+    {
+      "title": "mechanical-cam-20261020-051641-driven.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-cam-20261020-051641\\mechanical-cam-20261020-051641-driven.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_mechanical.py\", line 46, in <module>\n    mate(asm,groundc.GetCorresponding(ground_faces[0]),axis(c1,.003),1,'driver_axis')\n                                                       ^^^^^^^^^^^^^\n  File \"<acceptance-root>\\more_mechanical.py\", line 5, in axis\n    def axis(c,radius):return c.GetCorresponding(cylfaces(r,get(c,'GetModelDoc2'),radius)[0])\n                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^\nIndexError: list index out of range\n"
+}

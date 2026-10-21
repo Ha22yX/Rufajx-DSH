@@ -1,0 +1,100 @@
+from advanced_common import *
+import shutil
+r=Run('finishing');error=None
+def open_copy(relative,name):
+    source=(ROOT/relative).resolve();assert source.is_relative_to(ROOT.resolve()) and source.is_file()
+    dest=r.out/(r.out.name+'-'+name);assert not dest.exists();shutil.copy2(source,dest)
+    e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+    d=r.app.OpenDoc6(str(dest),1,1,'',e,w)
+    r.check('open_isolated_copy',d is not None and e.value==0)
+    assert Path(get(d,'GetPathName')).resolve()==dest
+    r.owned.add(get(d,'GetTitle'));return d
+def properties(feat):
+    mgr=get(feat,'CustomPropertyManager');values={}
+    for n in get(mgr,'GetNames') or []:
+        dispid=mgr._oleobj_.GetIDsOfNames('Get2')
+        raw,value=mgr._oleobj_.InvokeTypes(dispid,0,1,(24,0),((8,1),(16392,2),(16392,2)),n)
+        values[n]={'raw':raw,'value':value,'method':'SW2016 Get2 typed out strings'}
+    return values
+try:
+    # Cap an open cylindrical surface and knit its three sheets into a real solid.
+    d=r.new();r.sketch(d,'Rufa_CylinderProfile',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.03))
+    d.FeatureManager.FeatureExtruRefSurface2(True,False,False,0,0,.08,0.,False,False,False,False,0.,0.,False,False,False,False,False,False,False,False)
+    r.check('open_cylinder_surface',len(r.bodies(d,1))==1)
+    for z in [0.,.08]:
+        edge=None
+        for b in r.bodies(d,1):
+            for e in get(b,'GetEdges') or []:
+                cv=get(e,'GetCurve')
+                if get(cv,'IsCircle') and abs(get(cv,'CircleParams')[2]-z)<1e-7:edge=e;break
+            if edge is not None:break
+        d.ClearSelection2(True);data=get(d.SelectionManager,'CreateSelectData');data.Mark=1
+        r.check('cap_boundary_'+str(z),edge is not None and edge.Select4(False,data))
+        r.check('planar_surface_cap_'+str(z),get(d,'InsertPlanarRefSurface'))
+    sheets=r.bodies(d,1);r.check('three_surface_bodies',len(sheets)==3)
+    d.ClearSelection2(True);data=get(d.SelectionManager,'CreateSelectData');data.Mark=1
+    for i,b in enumerate(sheets):r.check('knit_select_'+str(i),b.Select2(i>0,data))
+    knit=r.feature(d.FeatureManager.InsertSewRefSurface(False,True,True,.00001,.00001),'Rufa_KnitSurface')
+    r.check('knit_single_shell',len(r.bodies(d,1))==1 or len(r.bodies(d,0))==1,surface_count=len(r.bodies(d,1)),solid_count=len(r.bodies(d,0)))
+    if not r.bodies(d,0):
+        d.ClearSelection2(True);r.check('select_closed_knit',knit.Select2(False,1))
+        r.feature(d.FeatureManager.FeatureBossThicken(0.,0,0,True,True,False,True),'Rufa_FillKnitVolume')
+    v=math.pi*30**2*80
+    r.check('knit_closed_solid',len(r.bodies(d,0))==1 and not r.bodies(d,1) and abs(r.volume(d)-v)<.1,volume_mm3=r.volume(d),expected_mm3=v)
+    p=r.save(d,r.out.name+'-Rufa_capped_knit_cylinder.SLDPRT');d=r.reopen(d,p)
+    r.check('knit_solid_reopen',abs(r.volume(d)-v)<.1);r.preview(d,'knit-solid')
+    r.close_owned(d)
+    # Edit sheet metal definition, then reflatten and verify the actual new thickness.
+    d=open_copy('sheet-20261020-043551/Rufa_sheet_L_2mm.SLDPRT','Sheet_source.SLDPRT')
+    fs=[f for f in r.features(d) if get(f,'GetTypeName2')=='SMBaseFlange']
+    r.check('sheet_definition_found',len(fs)==1,types=[get(f,'GetTypeName2') for f in r.features(d)])
+    fd=get(fs[0],'GetDefinition');r.check('sheet_access_definition',fd.AccessSelections(d,NULL))
+    fd.OverrideThickness=True
+    fd.Thickness=.003
+    r.check('sheet_modify_definition',fs[0].ModifyDefinition(fd,d,NULL));d.ForceRebuild3(False)
+    actual=float(get(get(fs[0],'GetDefinition'),'Thickness'))
+    r.check('sheet_thickness_parameter3',abs(actual-.003)<1e-8,thickness_mm=actual*1000)
+    f=[f for f in r.features(d) if get(f,'GetTypeName2')=='FlatPattern'][0]
+    r.check('edited_sheet_unfold',f.SetSuppression2(1,1,EMPTY));d.ForceRebuild3(False)
+    box=r.box(r.bodies(d)[0]);sizes=sorted(box[i+3]-box[i] for i in range(3))
+    r.check('edited_sheet_flat_thickness3',abs(sizes[0]-3)<.01 and abs(sizes[1]-60)<.01,sizes_mm=sizes)
+    r.check('edited_sheet_refold',f.SetSuppression2(0,1,EMPTY));d.ForceRebuild3(False)
+    p=r.save(d,r.out.name+'-Rufa_sheet_edited_3mm.SLDPRT');d=r.reopen(d,p)
+    r.check('sheet_edited_reopen',get(r.bodies(d)[0],'IsSheetMetal'))
+    r.close_owned(d)
+    # Resolve real cut-list properties once per unique folder, not repeated traversal paths.
+    d=open_copy('weld-20261020-043431/Rufa_welded_frame_300x200.SLDPRT','Weld_source.SLDPRT')
+    d.ForceRebuild3(False)
+    for f in r.features(d):
+        if get(f,'GetTypeName2')=='SolidBodyFolder':r.check('refresh_cut_list',get(get(f,'GetSpecificFeature2'),'UpdateCutList'))
+    unique={}
+    def walk(f):
+        if get(f,'GetTypeName2')=='CutListFolder' and f.Name not in unique:
+            bf=get(f,'GetSpecificFeature2');unique[f.Name]={'bodies':get(bf,'GetBodyCount'),'properties':properties(f)}
+        sub=get(f,'GetFirstSubFeature')
+        while sub is not None:walk(sub);sub=get(sub,'GetNextSubFeature')
+    for f in r.features(d):walk(f)
+    r.check('unique_cut_list_four_members',len(unique)==2 and sum(x['bodies'] for x in unique.values())==4,cut_list=unique)
+    lengths=sorted(float(x['properties']['长度']['value']) for x in unique.values())
+    r.check('cut_list_actual_lengths',all(abs(a-b)<.01 for a,b in zip(lengths,[220.,320.])),lengths_mm=lengths)
+    r.check('cut_list_quantity_and_angles',all(float(x['properties']['QUANTITY']['value'])==2 and abs(float(x['properties']['角度1']['value'])-45)<.01 and abs(float(x['properties']['角度2']['value'])-45)<.01 for x in unique.values()))
+    r.close_owned(d)
+    # Add an actual end cap on a separate single structural tube.
+    d=r.new();sk,segs=r.sketch(d,'Rufa_TubePath',draw=lambda sm:[sm.CreateLine(0.,0.,0.,.3,0.,0.)])
+    d.ClearSelection2(True);r.feature(get(d.FeatureManager,'InsertWeldmentFeature'),'Rufa_Weldment')
+    group=get(d.FeatureManager,'CreateStructuralMemberGroup');group.Segments=VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,segs)
+    path=str(Path('D:/Program Files/Solidworks/SOLIDWORKS/lang/english/weldment profiles/iso/square tube/20 x 20 x 2.sldlfp'))
+    r.feature(d.FeatureManager.InsertStructuralWeldment4(path,1,False,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,[group])),'Rufa_Tube300')
+    before=r.volume(d);face=None
+    for candidate in get(r.bodies(d)[0],'GetFaces') or []:
+        normal=get(candidate,'Normal')
+        if normal and abs(normal[0]-1)<1e-7:face=candidate;break
+    r.check('end_cap_face_found',face is not None)
+    r.feature(d.FeatureManager.InsertEndCapFeature2(.003,True,False,0.,.5,0.,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,[face])),'Rufa_EndCap3')
+    after=r.volume(d)
+    r.check('end_cap_adds_material',after>before+900 and after<before+1300,before_mm3=before,after_mm3=after)
+    p=r.save(d,r.out.name+'-Rufa_tube_with_end_cap.SLDPRT');d=r.reopen(d,p)
+    r.check('end_cap_reopen_volume',abs(r.volume(d)-after)<.1)
+    r.preview(d,'tube-end-cap')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

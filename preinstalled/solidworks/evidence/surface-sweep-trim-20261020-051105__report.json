@@ -1,0 +1,43 @@
+{
+  "output": "<acceptance-root>\\surface-sweep-trim-20261020-051105",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件45"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_RoundSection",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\surface-sweep-trim-20261020-051105\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "零件45",
+      "path": ""
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_surface.py\", line 8, in <module>\n    spline=d.SketchManager.CreateSpline(VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,pts))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: 'NoneType' object is not callable\n"
+}

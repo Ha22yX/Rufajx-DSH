@@ -1,0 +1,44 @@
+from advanced_common import *
+r=Run('surface');error=None
+try:
+    d=r.new()
+    sk,_=r.sketch(d,draw=lambda sm:sm.CreateLine(0.,0.,0.,.12,0.,0.))
+    d.FeatureManager.FeatureExtruRefSurface2(True,False,False,0,0,.08,0.,False,False,False,False,0.,0.,False,False,False,False,False,False,False,False)
+    f=d.FeatureByPositionReverse(0)
+    r.check('extruded_surface_feature_type',get(f,'GetTypeName2')=='ExtruRefSurface')
+    r.feature(f,'Rufa_ExtrudedSurface')
+    r.check('surface_only',len(r.bodies(d,1))==1 and not r.bodies(d,0))
+    r.check('surface_area_120x80',abs(r.area(d)-9600)<.01,area_mm2=r.area(d))
+    d.ClearSelection2(True);face=get(r.bodies(d,1)[0],'GetFaces')[0]
+    r.check('select_surface_for_offset',face.Select4(False,NULL))
+    ok=d.InsertOffsetSurface(.005,False)
+    r.check('offset_surface_created',len(r.bodies(d,1))==2,return_value=ok)
+    f2=d.FeatureByPositionReverse(0);f2.Name='Rufa_Offset5'
+    boxes=[r.box(b) for b in r.bodies(d,1)]
+    r.check('offset_surface_distance_5mm',abs(abs(boxes[0][1]-boxes[1][1])-5)<.01,boxes_mm=boxes)
+    d.ClearSelection2(True);r.check('select_thicken_mark_1',f2.Select2(False,1))
+    thick=r.feature(d.FeatureManager.FeatureBossThicken(.003,0,0,False,True,False,True),'Rufa_Thicken3')
+    r.check('thickened_solid',len(r.bodies(d,0))==1)
+    r.check('thickened_volume',abs(r.volume(d)-28800)<.1,volume_mm3=r.volume(d))
+    p=r.save(d,'Rufa_surface_offset_thicken.SLDPRT');d=r.reopen(d,p)
+    r.check('surface_native_reopen',len(r.bodies(d,0))==1 and abs(r.volume(d)-28800)<.1)
+    r.preview(d,'surface-thickened')
+    # A non-planar loft between two circular sections; compare exact conical area.
+    d=r.new()
+    s1,_=r.sketch(d,'Rufa_Circle30',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.03))
+    d.ClearSelection2(True);d.FeatureByName('前视基准面').Select2(False,0)
+    plane=d.FeatureManager.InsertRefPlane(8,.08,0,0.,0,0.)
+    r.check('loft_offset_plane',plane is not None)
+    pf=d.FeatureByPositionReverse(0);pf.Name='Rufa_Plane80'
+    s2,_=r.sketch(d,'Rufa_Circle15','Rufa_Plane80',lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.015))
+    d.ClearSelection2(True);s1.Select2(False,1);s2.Select2(True,1)
+    d.InsertLoftRefSurface2(False,True,False,1.,0,0)
+    r.check('loft_surface_created',len(r.bodies(d,1))==1 and not r.bodies(d,0))
+    expected=math.pi*45*math.sqrt(80**2+15**2)
+    r.check('loft_conical_surface_area',abs(r.area(d)-expected)<.2,area_mm2=r.area(d),expected_mm2=expected)
+    r.feature(d.FeatureByPositionReverse(0),'Rufa_LoftSurface')
+    p=r.save(d,'Rufa_loft_surface.SLDPRT');d=r.reopen(d,p)
+    r.check('loft_reopen_area',abs(r.area(d)-expected)<.2)
+    r.preview(d,'loft-surface')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

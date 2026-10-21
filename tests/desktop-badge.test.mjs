@@ -1,0 +1,34 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { startWorkbenchFixture, until } from './fixtures/desktop-workbench.mjs';
+
+const enabled = process.env.RUFA_DESKTOP_E2E === '1';
+const bundle = '@deepseek-ai/dsh-experimental-badge-skill-bundle';
+const title = '如发机械有限公司徽章';
+test('native desktop shows the company badge enabled, renders its preview, and remembers turning it off', { skip: !enabled, timeout: 120000 }, async t => {
+  const fixture = await startWorkbenchFixture(t, { prefix: 'rufa-badge-ui-', role: 'employee' });
+  const evaluate = expression => fixture.harness.evaluate(expression);
+  const selector = `[data-plugin-package="${bundle}"]`;
+  const detail = `[data-plugin-detail="${bundle}"]`;
+  await evaluate('document.querySelector("button[aria-label=插件]").click()');
+  await until(() => evaluate(`Boolean(document.querySelector(${JSON.stringify(selector)}))`), 'default enabled badge card');
+  const initial = await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});return {text:e.innerText,checked:e.querySelector('[role=switch]')?.getAttribute('aria-checked'),status:e.dataset.pluginStatus}})()`);
+  assert.ok(initial.text.includes(title)); assert.doesNotMatch(initial.text, /powered.by.dsh/i);
+  assert.equal(initial.checked, 'true'); assert.notEqual(initial.status, 'problem');
+  await evaluate(`document.querySelector(${JSON.stringify(selector)}).querySelector('button').click()`);
+  await until(() => evaluate(`Boolean(document.querySelector(${JSON.stringify(detail)})?.querySelector('h3'))`), 'company badge details');
+  const rendered = await evaluate(`(async()=>{const e=document.querySelector(${JSON.stringify(detail)});const images=[...e.querySelectorAll('img')];await Promise.all(images.map(i=>i.decode()));return {text:e.innerText,images:images.map(i=>({width:i.naturalWidth,height:i.naturalHeight,src:i.getAttribute('src')}))}})()`);
+  assert.ok(rendered.text.includes(title)); assert.doesNotMatch(rendered.text, /powered.by.dsh/i);
+  assert.ok(rendered.images.some(i => i.width === 640 && i.height === 260), 'the company feature preview loads');
+  await fixture.capture('company-badge-enabled');
+  await evaluate(`document.querySelector(${JSON.stringify(detail)}).querySelector('[role=switch]').click()`);
+  await until(() => evaluate(`document.querySelector(${JSON.stringify(detail)})?.querySelector('[role=switch]')?.getAttribute('aria-checked')==='false'`), 'disabled badge');
+  const profile = join(fixture.account.profileRoot, 'package.json');
+  await until(async () => !JSON.parse(await readFile(profile, 'utf8')).dsh.profile.bundles.includes(bundle), 'native profile saved');
+  await fixture.restart();
+  assert.ok(!JSON.parse(await readFile(profile, 'utf8')).dsh.profile.bundles.includes(bundle), 'default seeding does not re-enable after restart');
+  assert.equal(fixture.gatewayCalls, 0);
+  t.diagnostic(`Company badge screenshot: ${join(fixture.temporary, 'company-badge-enabled.png')}; no model requests.`);
+});

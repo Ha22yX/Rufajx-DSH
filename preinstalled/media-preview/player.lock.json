@@ -1,0 +1,447 @@
+{
+  "schema": 1,
+  "name": "@libmedia/avplayer",
+  "version": "1.3.1",
+  "sourceRevision": "152f629d3021fd8013efa464fcb7b55f9fbe7753",
+  "license": "LGPL-3.0-or-later",
+  "source": "https://github.com/zhaohappy/libmedia/tree/152f629d3021fd8013efa464fcb7b55f9fbe7753",
+  "archive": {
+    "url": "https://registry.npmjs.org/@libmedia/avplayer/-/avplayer-1.3.1.tgz",
+    "integrity": "sha512-wRELj99DbfS0t9iKkts5p1v/PSlyGkQ7A5Vy/GNTFg4ZiNo+OWTkkW/ioQuoT8seeljqizN0lWYJjJ9Ra32fcA=="
+  },
+  "target": "Electron 44.9.0 Windows x64 (WASM SIMD)",
+  "files": [
+    {
+      "file": "163.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/163.avplayer.js",
+      "bytes": 3174,
+      "sha256": "f7a1d72db6389cf3786b4b8fd049ba8b78450174d74395473a664b57b6e365b7"
+    },
+    {
+      "file": "182.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/182.avplayer.js",
+      "bytes": 13010,
+      "sha256": "561bd2533d5d16e5463f600d6636e50be95dd9f26cd2d64403efec09a4bd9139"
+    },
+    {
+      "file": "195.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/195.avplayer.js",
+      "bytes": 5815,
+      "sha256": "6a62deb28584b8fe94944b13a5a956aa19c2e224f458a3ea2911ba452df69a1b"
+    },
+    {
+      "file": "199.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/199.avplayer.js",
+      "bytes": 7138,
+      "sha256": "08175b7fd9aef2804e9f28e2bc7b36788e125ebddd418e9c1d3dc1cdddf8f64b"
+    },
+    {
+      "file": "239.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/239.avplayer.js",
+      "bytes": 47862,
+      "sha256": "2d11ea2ebca53d80785051efcb53517cb6b9e4d5dfd8bd56a9acd6af5a235625"
+    },
+    {
+      "file": "248.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/248.avplayer.js",
+      "bytes": 20276,
+      "sha256": "e7dd40aae09c03066c5e00e4f56948ca07ab14d7d2e4a5281677184af9f67b36"
+    },
+    {
+      "file": "26.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/26.avplayer.js",
+      "bytes": 95381,
+      "sha256": "8ca506b724b277f8baaa75e0720c0d6c1b1b85f016f57e2899917b2cfa6caaed"
+    },
+    {
+      "file": "261.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/261.avplayer.js",
+      "bytes": 26575,
+      "sha256": "a22abbdad529b30f57c8d3346ece4216545ee6124a9b2bc24a490baebe905266"
+    },
+    {
+      "file": "272.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/272.avplayer.js",
+      "bytes": 59680,
+      "sha256": "d78ae6bb0531f4865e9331f1ee173c2115d43bbd1d48ec504338b3cc038ddd72"
+    },
+    {
+      "file": "325.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/325.avplayer.js",
+      "bytes": 23979,
+      "sha256": "34ba87d29db5a65a85bf5bd8f940e2fc839f4c4915755bdf26b886d29daa95f8"
+    },
+    {
+      "file": "33.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/33.avplayer.js",
+      "bytes": 10104,
+      "sha256": "4eed360072b7a9bf196df027ee53b1558155e8d4c38bee7b8960d793fc5767ea"
+    },
+    {
+      "file": "384.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/384.avplayer.js",
+      "bytes": 39176,
+      "sha256": "7724724e56070fb62d7ae922d4ab4a9d5cf72259411f92e1ed87588721d16291"
+    },
+    {
+      "file": "43.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/43.avplayer.js",
+      "bytes": 9003,
+      "sha256": "1d28ce4b480ec0133bba2e2c311f59b2c91ab10b5702aeb961e1ccdc0993ff46"
+    },
+    {
+      "file": "462.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/462.avplayer.js",
+      "bytes": 7107,
+      "sha256": "fdd5fdfb5ccd28fe3143508fa3ea3718a9540e25f444b3e739718eed9f4ad4aa"
+    },
+    {
+      "file": "502.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/502.avplayer.js",
+      "bytes": 41190,
+      "sha256": "cc99ac210af6f52db8a7c1c9324b52f44834001f9e66c0d11bd896883723bd15"
+    },
+    {
+      "file": "573.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/573.avplayer.js",
+      "bytes": 44303,
+      "sha256": "e51f5114380919e26b2a4b14ea2d1de12b6fa2eeb35d344eeaf99d8ba9424f1e"
+    },
+    {
+      "file": "630.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/630.avplayer.js",
+      "bytes": 23551,
+      "sha256": "415df8b918bf9fd2a62e1ffc94bb66e6b97e760fbf7cfcc2126757ab0336971f"
+    },
+    {
+      "file": "641.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/641.avplayer.js",
+      "bytes": 2706,
+      "sha256": "90bbc5eb9e71165bf3a2a2c1e9da184947e265c641f6f2100c2324f6b34033b9"
+    },
+    {
+      "file": "735.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/735.avplayer.js",
+      "bytes": 44169,
+      "sha256": "d8df48df8bfb67a69362865a2292676215e3f193baa79aa9a80ae53b2f65bb18"
+    },
+    {
+      "file": "747.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/747.avplayer.js",
+      "bytes": 4114,
+      "sha256": "ee0d20d0101966fa6fa1c72a6eff5b2c6ae46f594b862b42a5998a856445ed5d"
+    },
+    {
+      "file": "749.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/749.avplayer.js",
+      "bytes": 7822,
+      "sha256": "7b482b04b30cae090e90d610e11043419037822a73ff397a159b985017e49f09"
+    },
+    {
+      "file": "790.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/790.avplayer.js",
+      "bytes": 4967,
+      "sha256": "7a8a7e78e770479ceb9400778c97b8d87d5d0c582cf57d1219ace14e66659a0f"
+    },
+    {
+      "file": "794.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/794.avplayer.js",
+      "bytes": 7523,
+      "sha256": "5006169b27c99d077ec00032bbafaf1138c3cff82d948e588f24c2a329c9b8c9"
+    },
+    {
+      "file": "850.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/850.avplayer.js",
+      "bytes": 37102,
+      "sha256": "6bb1452e2a0ff65aa591ce67f4fd0d4c1487115731fb3ee5239f5db11598bbd4"
+    },
+    {
+      "file": "881.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/881.avplayer.js",
+      "bytes": 32452,
+      "sha256": "a0fda825c2be1f5c25fd7a659c384bb79437b7040b1a5329fa4328441de54580"
+    },
+    {
+      "file": "932.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/932.avplayer.js",
+      "bytes": 30412,
+      "sha256": "bb59e5ce50ef6a1cab7b4a4e60f8ea67180ae215d1cc4fbf269972cac05f230f"
+    },
+    {
+      "file": "943.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/943.avplayer.js",
+      "bytes": 85647,
+      "sha256": "d54c87ee87e1f1cb74847d306c35aa08cd5161d5bd2241778bf53c02a6a770dd"
+    },
+    {
+      "file": "956.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/956.avplayer.js",
+      "bytes": 22828,
+      "sha256": "d59993fab247da694514807e502106372d77d9bb2ddcd02931e689b78a3be4e0"
+    },
+    {
+      "file": "961.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/961.avplayer.js",
+      "bytes": 7727,
+      "sha256": "1caa3c3f5fe7b6668ffd67c9abade2cf78f1701b76c653f91c1049286a94604f"
+    },
+    {
+      "file": "97.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/97.avplayer.js",
+      "bytes": 34074,
+      "sha256": "ba8dd58b3ea2d6751dc36bcd66dfe31c25dbdc8567accbb382b74c26bf42fb9b"
+    },
+    {
+      "file": "991.avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/991.avplayer.js",
+      "bytes": 35962,
+      "sha256": "75972214329948e9321f1980ab2a93ec4cd913579a78656e91e6196be8b74de0"
+    },
+    {
+      "file": "avplayer.js",
+      "url": "https://unpkg.com/@libmedia/avplayer@1.3.1/dist/umd/avplayer.js",
+      "bytes": 584379,
+      "sha256": "4efacaa1e4720310cbc301124898ee82d9ff9dbbff5c7ba82b1393db346f2be2"
+    },
+    {
+      "file": "wasm/decode/aac-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/aac-simd.wasm",
+      "bytes": 725214,
+      "sha256": "d261e0f99e83e403e62f88be4368e352eafb25ddc690a0aa10e9130637339b2d"
+    },
+    {
+      "file": "wasm/decode/ac3-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/ac3-simd.wasm",
+      "bytes": 599623,
+      "sha256": "1ff9224b6b2496fd15eb1a64cda11bbd5c750f529a830ba5a8556da82050e926"
+    },
+    {
+      "file": "wasm/decode/adpcm-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/adpcm-simd.wasm",
+      "bytes": 397216,
+      "sha256": "4c29dfd513b6106a72b0e148c3e599fa78a99120631e216c5c2e42891a2297e1"
+    },
+    {
+      "file": "wasm/decode/av1-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/av1-simd.wasm",
+      "bytes": 917671,
+      "sha256": "8764bd672a8999ed311b41814b09f62c0633d7c991d6489d1d6e2479286adb7e"
+    },
+    {
+      "file": "wasm/decode/bmp-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/bmp-simd.wasm",
+      "bytes": 350056,
+      "sha256": "c768326e9ef6ddd57a2d2b53b2bfc3fcb112ee8c135eb7f7fe656cdf056df886"
+    },
+    {
+      "file": "wasm/decode/dca-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/dca-simd.wasm",
+      "bytes": 844586,
+      "sha256": "37db01491b79f5c55aeef14538bb141bd7b49e4b1db740195d0fdd4426e18880"
+    },
+    {
+      "file": "wasm/decode/dvaudio-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/dvaudio-simd.wasm",
+      "bytes": 341971,
+      "sha256": "643f43a9493478e411201e875a83c6bee13a4aa579eb9929cd1eabef1580f7bf"
+    },
+    {
+      "file": "wasm/decode/dvvideo-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/dvvideo-simd.wasm",
+      "bytes": 424691,
+      "sha256": "8cf0fb591f7b32f1bfc0353323ace27c5638de47381a692794493320b032f2b4"
+    },
+    {
+      "file": "wasm/decode/eac3-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/eac3-simd.wasm",
+      "bytes": 624542,
+      "sha256": "47ae49394a0f0056960536e0067f9358e940f1d83c581dbf8fe7f7f2b401f049"
+    },
+    {
+      "file": "wasm/decode/flac-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/flac-simd.wasm",
+      "bytes": 371555,
+      "sha256": "001370dafe5d2c05886d995a3bc147e24a91b62091f3e691584638eaadca6d36"
+    },
+    {
+      "file": "wasm/decode/gif-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/gif-simd.wasm",
+      "bytes": 347660,
+      "sha256": "54f9ea9a60b0c1d3f8782d9580e876e108616d315a483d33cb7af190aa910c26"
+    },
+    {
+      "file": "wasm/decode/h261-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/h261-simd.wasm",
+      "bytes": 497657,
+      "sha256": "e615c29bb0d07623f5228b118383644fde3ad36e77bfa4fb49a22b5c563f125e"
+    },
+    {
+      "file": "wasm/decode/h263-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/h263-simd.wasm",
+      "bytes": 552867,
+      "sha256": "dc373fade8bb63164099f9913b806825a7ec504a749492bf5599ffb6aa22f22e"
+    },
+    {
+      "file": "wasm/decode/h264-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/h264-simd.wasm",
+      "bytes": 1715305,
+      "sha256": "0c7ff22730ef4ee7b4f99e57d60b6b6212eb2a9b75de1e8190b1501d97212295"
+    },
+    {
+      "file": "wasm/decode/hevc-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/hevc-simd.wasm",
+      "bytes": 1187929,
+      "sha256": "63576fc0752535da9f7f1374e89ab12c22a0cd4425639f0f8162e589af7faf27"
+    },
+    {
+      "file": "wasm/decode/mjpeg-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/mjpeg-simd.wasm",
+      "bytes": 459870,
+      "sha256": "e4bb9f2ab31a9fe4b15eb38e398f904b6def52ab7bb3283b598fe33cbd549c3d"
+    },
+    {
+      "file": "wasm/decode/mp3-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/mp3-simd.wasm",
+      "bytes": 395341,
+      "sha256": "b675e6ccadac5756b9e3633520699d3acdfc3063a00007e73e7d15db3a8ee5ac"
+    },
+    {
+      "file": "wasm/decode/mpeg2video-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/mpeg2video-simd.wasm",
+      "bytes": 553850,
+      "sha256": "c0873083a71e3965777d170191e10d0c797a46bbe10f00bebda86451a7ce8c5b"
+    },
+    {
+      "file": "wasm/decode/mpeg4-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/mpeg4-simd.wasm",
+      "bytes": 740347,
+      "sha256": "a47ab5e8ec658609d64daa955e2ba97a0e72bb88a909485109568b144a3661a3"
+    },
+    {
+      "file": "wasm/decode/msmpeg4-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/msmpeg4-simd.wasm",
+      "bytes": 594498,
+      "sha256": "441e8df28d6513d9d7c599f341f1d523fcf3fa14af36f5238005a69a4d5bd8df"
+    },
+    {
+      "file": "wasm/decode/opus-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/opus-simd.wasm",
+      "bytes": 714351,
+      "sha256": "1bd4eb03441a83c177f465c67a880473b04e25c205bf57838b6ecde10b0da6d8"
+    },
+    {
+      "file": "wasm/decode/pcm-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/pcm-simd.wasm",
+      "bytes": 367551,
+      "sha256": "916d998e855824d7aa3b2e940cd7163ce20d08c91385f87bf816e29b3d4b8008"
+    },
+    {
+      "file": "wasm/decode/png-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/png-simd.wasm",
+      "bytes": 398601,
+      "sha256": "2ecd7135adbafe8db8a1c1964b9655b9496ab86fecc4f2324713e8e7fa6e065b"
+    },
+    {
+      "file": "wasm/decode/ra-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/ra-simd.wasm",
+      "bytes": 713512,
+      "sha256": "35a1ceba9a7beee13d246c06fb346e5783184361aa38f167eb8b2666d36f7cdc"
+    },
+    {
+      "file": "wasm/decode/rv-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/rv-simd.wasm",
+      "bytes": 1417238,
+      "sha256": "98f3888a5fde04b86dd0bfd2aa97c2563d99e8f49c6a5c280a49e2987ea235ef"
+    },
+    {
+      "file": "wasm/decode/speex-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/speex-simd.wasm",
+      "bytes": 395464,
+      "sha256": "66e6595bc8f9010ffdfd36284e57ee3d260cfb2c9abf26ce84e80c5bd37db358"
+    },
+    {
+      "file": "wasm/decode/theora-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/theora-simd.wasm",
+      "bytes": 406840,
+      "sha256": "958213209fccc331d062a6b63b894dea7f5961d896eb1d5d856c55ec520092e5"
+    },
+    {
+      "file": "wasm/decode/tiff-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/tiff-simd.wasm",
+      "bytes": 628222,
+      "sha256": "9a963848d8f0f468db345017527ad41cab6766be4e9dffd25217e02d41954a2e"
+    },
+    {
+      "file": "wasm/decode/vorbis-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/vorbis-simd.wasm",
+      "bytes": 619899,
+      "sha256": "7301becd3935333c859fe8265e569513b6b90fef48ee6eb60b58ff8c2da18b52"
+    },
+    {
+      "file": "wasm/decode/vp8-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/vp8-simd.wasm",
+      "bytes": 484930,
+      "sha256": "e95a2a148d108dcc7e36e4133c9322a1504a5458476791853dc13e3de1c99870"
+    },
+    {
+      "file": "wasm/decode/vp9-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/vp9-simd.wasm",
+      "bytes": 584272,
+      "sha256": "b737e199c220902f5fbf5b9949fccc87fb122ab2ec60b6abfc2573c4c082f3aa"
+    },
+    {
+      "file": "wasm/decode/vvc-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/vvc-simd.wasm",
+      "bytes": 1174451,
+      "sha256": "5478ee5a2b86322491af590b91d7a876d6d86aa5d248d65368569ab1c95c10fc"
+    },
+    {
+      "file": "wasm/decode/webp-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/webp-simd.wasm",
+      "bytes": 616346,
+      "sha256": "776f526c7a13a5582ce972543694318989c15f6cd83327a97f72d7f58996c665"
+    },
+    {
+      "file": "wasm/decode/wma-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/wma-simd.wasm",
+      "bytes": 729679,
+      "sha256": "66e33609b6b8558e006a9f947db2556f978638664924a73ee3cbc6c727b0e47b"
+    },
+    {
+      "file": "wasm/decode/wmv-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/decode/wmv-simd.wasm",
+      "bytes": 1050360,
+      "sha256": "81a847fb0cbdcb05c0072b3d2e6a55415a3db63aef23ec9c7fb3e4102ff64033"
+    },
+    {
+      "file": "wasm/resample/resample-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/resample/resample-simd.wasm",
+      "bytes": 263311,
+      "sha256": "e4db620d0878198bcb6b8fb16035a259208b739ace8c54a6507057b4f4c5c9dd"
+    },
+    {
+      "file": "wasm/stretchpitch/stretchpitch-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/stretchpitch/stretchpitch-simd.wasm",
+      "bytes": 45775,
+      "sha256": "62d52214210a2e7f748cab6e18bbc1d854e76a5bc88df30449109dd6b83c9f91"
+    },
+    {
+      "file": "wasm/scale/scale-simd.wasm",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/dist/scale/scale-simd.wasm",
+      "bytes": 1018377,
+      "sha256": "c6ef5feb89365c045a3aadc7871ea564d6bd6e9f7992718968c73020701cdef7"
+    },
+    {
+      "file": "COPYING.LGPLv3",
+      "url": "https://raw.githubusercontent.com/zhaohappy/libmedia/152f629d3021fd8013efa464fcb7b55f9fbe7753/COPYING.LGPLv3",
+      "bytes": 7650,
+      "sha256": "ea8af5e789cb2d4e9b10bce3874982ade163b749b6bfbdb32e2df21c4d106de1"
+    },
+    {
+      "file": "COPYING.GPLv3",
+      "url": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/n7.1/COPYING.GPLv3",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.dll binary
+*.7z binary
+*.gz binary
+*.whl binary
+*.cmd text eol=crlf
+*.bat text eol=crlf
+# These historical files are referenced by byte hashes in their indexes.
+preinstalled/solidworks/evidence/** -text
+preinstalled/solidworks/recipes/** -text
+apps/client/preinstalled/installer/** -text

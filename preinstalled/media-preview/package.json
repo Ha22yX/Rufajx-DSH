@@ -1,0 +1,9 @@
+{
+  "name": "rufa-media-preview-distribution",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "dsh-video-preview": "0.1.4",
+    "@huanlin/dsh-plugin-better-sidebar-plugin-audio": "0.1.0"
+  }
+}

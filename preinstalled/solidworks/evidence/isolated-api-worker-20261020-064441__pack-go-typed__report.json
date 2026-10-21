@@ -1,0 +1,115 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-typed",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件32"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-typed-Block0.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件33"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-typed-Block1.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体9"
+    },
+    {
+      "check": "insert_component_0",
+      "passed": true
+    },
+    {
+      "check": "insert_component_1",
+      "passed": true
+    },
+    {
+      "check": "insert_component_2",
+      "passed": true
+    },
+    {
+      "check": "save_pack-go-typed-Assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "2a466c47a1f8903eb9b28073d597b1e88cdecf146cf5a8e287a645595341fc2e",
+  "options": {
+    "mode": "pack"
+  },
+  "closed_test_documents": [
+    {
+      "title": "pack-go-typed-Assembly.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-typed\\pack-go-typed-Assembly.SLDASM"
+    },
+    {
+      "title": "pack-go-typed-Block0.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-typed\\pack-go-typed-Block0.SLDPRT"
+    },
+    {
+      "title": "pack-go-typed-Block1.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-typed\\pack-go-typed-Block1.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_pack_go.py\", line 13, in run\n    pg=win32com.client.Dispatch(ext._oleobj_.InvokeTypes(ext._oleobj_.GetIDsOfNames('GetPackAndGo'),0,1,(9,0),()))\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\npywintypes.com_error: (-2147352561, '非选择性的参数。', None, None)\n"
+}

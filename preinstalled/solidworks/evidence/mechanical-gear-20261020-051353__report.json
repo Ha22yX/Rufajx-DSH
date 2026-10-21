@@ -1,0 +1,189 @@
+{
+  "output": "<acceptance-root>\\mechanical-gear-20261020-051353",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件49"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051353-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件50"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051353-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件51"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051353-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体10"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051353\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051353\\cleanup-1.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051353\\cleanup-2.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051353\\cleanup-3.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "装配体10",
+      "path": ""
+    },
+    {
+      "title": "mechanical-gear-20261020-051353-support.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051353\\mechanical-gear-20261020-051353-support.SLDPRT"
+    },
+    {
+      "title": "mechanical-gear-20261020-051353-driver.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051353\\mechanical-gear-20261020-051353-driver.SLDPRT"
+    },
+    {
+      "title": "mechanical-gear-20261020-051353-driven.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051353\\mechanical-gear-20261020-051353-driven.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_common.py\", line 36, in sel\n    try:return obj.Select4(append,data)\n               ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'Select4'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<acceptance-root>\\more_common.py\", line 38, in sel\n    try:return obj.Select2(append,mark)\n               ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'Select2'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<acceptance-root>\\more_mechanical.py\", line 49, in <module>\n    mate(asm,groundc.GetCorresponding(ground_faces[1]),axis(c2,.003),1,'driven_axis')\n  File \"<acceptance-root>\\more_mechanical.py\", line 7, in mate\n    asm.ClearSelection2(True);r.check(name+'_selection',sel(asm,a,mark) and sel(asm,b,mark,True))\n                                                        ^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\more_common.py\", line 39, in sel\n    except Exception:return obj.Select2(append,data)\n                            ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'Select2'\n"
+}

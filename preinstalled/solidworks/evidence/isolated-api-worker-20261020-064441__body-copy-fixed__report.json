@@ -1,0 +1,137 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-copy-fixed",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件5"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "copy_body_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyCopy_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyCopy_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "actual_body_positions",
+      "passed": true,
+      "boxes_mm": [
+        [
+          10.0,
+          0.0,
+          0.0,
+          30.0,
+          30.0,
+          40.0
+        ],
+        [
+          60.00000000000001,
+          0.0,
+          0.0,
+          80.0,
+          30.0,
+          40.0
+        ]
+      ]
+    },
+    {
+      "check": "actual_body_volume",
+      "passed": true
+    },
+    {
+      "check": "save_body-copy-fixed-copy.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_body-copy-fixed-copy.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "actual_body_positions",
+      "passed": true,
+      "boxes_mm": [
+        [
+          10.0,
+          0.0,
+          0.0,
+          30.0,
+          30.0,
+          40.0
+        ],
+        [
+          60.00000000000001,
+          0.0,
+          0.0,
+          80.0,
+          30.0,
+          40.0
+        ]
+      ]
+    },
+    {
+      "check": "actual_body_volume",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-copy-fixed\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "dadcf748d1bb90566ae5afda625727d5b332bcaa3b4c8253a6ebdc473a6a64e4",
+  "options": {
+    "mode": "copy"
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-copy-fixed\\copy.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "body-copy-fixed-copy.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-copy-fixed\\body-copy-fixed-copy.SLDPRT"
+    }
+  ]
+}

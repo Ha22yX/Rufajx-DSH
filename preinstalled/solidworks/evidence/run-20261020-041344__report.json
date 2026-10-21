@@ -1,0 +1,21 @@
+{
+  "output": "<acceptance-root>\\run-20261020-041344",
+  "checks": [
+    {
+      "check": "version_2016",
+      "passed": true,
+      "revision": "24.5.0"
+    },
+    {
+      "check": "new_isolated_document",
+      "passed": true,
+      "title": "零件3"
+    },
+    {
+      "check": "select_front_plane_Rufa_BaseSketch",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\smoke_part.py\", line 75, in <module>\n    base_sketch = sketch(doc, \"Rufa_BaseSketch\")\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\smoke_part.py\", line 47, in sketch\n    feature = member(active, \"GetFeature\")\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\smoke_part.py\", line 17, in member\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetFeature\n"
+}

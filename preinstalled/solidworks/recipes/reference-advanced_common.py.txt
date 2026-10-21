@@ -1,0 +1,107 @@
+"""Isolated SW2016 acceptance support; never edits pre-existing documents."""
+import json, time, traceback, math
+from pathlib import Path
+import pythoncom
+import win32com.client
+from win32com.client import VARIANT
+
+ROOT = Path(__file__).resolve().parent
+NULL = VARIANT(pythoncom.VT_DISPATCH, None)
+EMPTY = VARIANT(pythoncom.VT_EMPTY, None)
+def get(obj, name, *args):
+    value = getattr(obj, name)
+    return value if hasattr(value, '_oleobj_') and not args else value(*args) if callable(value) else value
+
+class Run:
+    def __init__(self, name):
+        pythoncom.CoInitialize()
+        self.out=ROOT/(name+'-'+time.strftime('%Y%m%d-%H%M%S')); self.out.mkdir()
+        self.report={'output':str(self.out),'checks':[],'complete':False}
+        self.app=win32com.client.GetActiveObject('SldWorks.Application.24')
+        self.originals={get(d,'GetTitle') for d in get(self.app,'GetDocuments') or []}
+        self.owned=set()
+        self.check('SW2016',str(get(self.app,'RevisionNumber')).startswith('24.'))
+    def flush(self):
+        (self.out/'report.json').write_text(json.dumps(self.report,ensure_ascii=False,indent=2),encoding='utf-8')
+    def check(self,name,ok,**data):
+        item={'check':name,'passed':bool(ok),**data}; self.report['checks'].append(item)
+        print(json.dumps(item,ensure_ascii=False),flush=True); self.flush()
+        if not ok: raise RuntimeError(name)
+    def new(self,kind='part'):
+        template={'part':'gb_part.prtdot','assembly':'gb_assembly.asmdot'}[kind]
+        before={get(d,'GetTitle') for d in get(self.app,'GetDocuments') or []}
+        d=self.app.NewDocument(str(Path('C:/ProgramData/SolidWorks/SOLIDWORKS 2016/templates')/template),0,0.,0.)
+        self.check('new_'+kind,d is not None and get(d,'GetTitle') not in before,title=get(d,'GetTitle') if d is not None else None)
+        self.owned.add(get(d,'GetTitle')); return d
+    def safe(self,d):
+        assert get(d,'GetTitle') in self.owned
+    def sketch(self,d,name='Rufa_Profile',plane='前视基准面',draw=None):
+        self.safe(d);d.ClearSelection2(True)
+        self.check('select_'+plane,d.Extension.SelectByID2(plane,'PLANE',0.,0.,0.,False,0,NULL,0))
+        d.SketchManager.InsertSketch(True)
+        entities=draw(d.SketchManager)
+        d.ClearSelection2(True);d.SketchManager.InsertSketch(True)
+        feat=d.FeatureByPositionReverse(0)
+        self.check('sketch_'+name,feat is not None and get(feat,'GetTypeName2')=='ProfileFeature')
+        feat.Name=name;d.ClearSelection2(True);feat.Select2(False,0)
+        return feat,entities
+    def feature(self,f,name):
+        self.check(name+'_created',f is not None)
+        f.Name=name
+        w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_BOOL,False)
+        err=f.GetErrorCode2(w);self.check(name+'_error_free',err==0,code=err,warning=w.value)
+        return f
+    def bodies(self,d,kind=0):
+        return list(d.GetBodies2(kind,False) or [])
+    def volume(self,d):
+        d.ClearSelection2(True);d.ForceRebuild3(False)
+        return float(get(get(d.Extension,'CreateMassProperty'),'Volume'))*1e9
+    def area(self,d):
+        return sum(float(get(f,'GetArea'))*1e6 for b in self.bodies(d,1) for f in get(b,'GetFaces') or [])
+    def box(self,b):
+        pts=[get(v,'GetPoint') for v in get(b,'GetVertices') or []]
+        if pts:return [min(p[i] for p in pts)*1000 for i in range(3)]+[max(p[i] for p in pts)*1000 for i in range(3)]
+        return [float(x)*1000 for x in get(b,'GetBodyBox')]
+    def features(self,d):
+        f=get(d,'FirstFeature')
+        while f is not None:
+            yield f;f=get(f,'GetNextFeature')
+    def save(self,d,filename):
+        self.safe(d);p=self.out/filename
+        assert not p.exists()
+        e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+        ok=d.Extension.SaveAs(str(p),0,1,NULL,e,w)
+        self.check('save_'+filename,ok and e.value==0 and p.is_file() and p.stat().st_size>0,errors=e.value,warnings=w.value)
+        self.owned.add(get(d,'GetTitle'));return p
+    def reopen(self,d,p,kind=1):
+        self.safe(d);self.app.CloseDoc(get(d,'GetTitle'))
+        e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+        d=self.app.OpenDoc6(str(p),kind,1,'',e,w)
+        self.check('reopen_'+p.name,d is not None and e.value==0,errors=e.value,warnings=w.value)
+        assert Path(get(d,'GetPathName')).resolve()==p.resolve()
+        self.owned.add(get(d,'GetTitle'));return d
+    def preview(self,d,name):
+        self.safe(d);d.ShowNamedView2('*等轴测',7);get(d,'ViewZoomtofit2')
+        p=self.out/(name+'.bmp');self.check('preview_'+name,d.SaveBMP(str(p),1000,700) and p.exists())
+    def close_owned(self,d):
+        self.safe(d);title=get(d,'GetTitle');path=get(d,'GetPathName')
+        assert title not in self.originals or (path and Path(path).resolve().is_relative_to(self.out.resolve()))
+        if not path or get(d,'GetSaveFlag'):
+            kind=get(d,'GetType');ext={1:'.SLDPRT',2:'.SLDASM',3:'.SLDDRW'}[kind]
+            backup=self.out/('cleanup-'+str(len(list(self.out.glob('cleanup-*'))))+ext)
+            e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+            ok=d.Extension.SaveAs(str(backup),0,3,NULL,e,w)
+            self.check('backup_test_state_before_close',ok and e.value==0 and backup.is_file(),file=str(backup))
+        self.app.CloseDoc(get(d,'GetPathName') or get(d,'GetTitle'))
+        self.report.setdefault('closed_test_documents',[]).append({'title':title,'path':path});self.flush()
+    def finish(self,error=None):
+        for d in get(self.app,'GetDocuments') or []:
+            title=get(d,'GetTitle');path=get(d,'GetPathName')
+            if (path and Path(path).resolve().is_relative_to(self.out.resolve())) or (not path and title in self.owned and title not in self.originals):
+                self.close_owned(d)
+        current={get(d,'GetTitle') for d in get(self.app,'GetDocuments') or []}
+        self.check('original_documents_preserved',self.originals.issubset(current))
+        if error:self.report['error']=error;print(error,flush=True)
+        self.report['complete']=error is None and all(c['passed'] for c in self.report['checks'])
+        self.flush();print('REPORT='+str(self.out/'report.json'),flush=True)
+        pythoncom.CoUninitialize()

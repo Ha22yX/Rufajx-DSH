@@ -1,0 +1,109 @@
+{
+  "output": "<acceptance-root>\\parametric-20261020-042109",
+  "checks": [
+    {
+      "check": "version",
+      "passed": true
+    },
+    {
+      "check": "new_document",
+      "passed": true
+    },
+    {
+      "check": "select_plane",
+      "passed": true
+    },
+    {
+      "check": "select_dimension_datum_4",
+      "passed": true
+    },
+    {
+      "check": "select_dimension_datum_2",
+      "passed": true
+    },
+    {
+      "check": "two_dimension_datums",
+      "passed": true
+    },
+    {
+      "check": "native_sketch_auto_dimensions",
+      "passed": true,
+      "status": 0
+    },
+    {
+      "check": "fully_constrained_sketch",
+      "passed": true,
+      "status": 3
+    },
+    {
+      "check": "real_sketch_dimensions",
+      "passed": true,
+      "dimensions": [
+        {
+          "name": "D1@Rufa_ParametricRectangle@零件7.Part",
+          "value_mm": 120.0
+        },
+        {
+          "name": "D2@Rufa_ParametricRectangle@零件7.Part",
+          "value_mm": 80.0
+        }
+      ]
+    },
+    {
+      "check": "width_dimension_found",
+      "passed": true
+    },
+    {
+      "check": "select_dimensioned_sketch",
+      "passed": true
+    },
+    {
+      "check": "extrude_dimensioned_sketch",
+      "passed": true
+    },
+    {
+      "check": "width_edit_changes_geometry",
+      "passed": true,
+      "volume_mm3": 95999.99999999999
+    },
+    {
+      "check": "save_.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\parametric-20261020-042109\\Rufa_parametric_150x80x8.SLDPRT"
+    },
+    {
+      "check": "drawing_views",
+      "passed": true
+    },
+    {
+      "check": "activate_drawing_view",
+      "passed": true
+    },
+    {
+      "check": "drawing_imports_real_dimensions",
+      "passed": true,
+      "count": 6
+    },
+    {
+      "check": "save_.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\parametric-20261020-042109\\Rufa_dimensioned.SLDDRW"
+    },
+    {
+      "check": "save_.pdf",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0,
+      "path": "<acceptance-root>\\parametric-20261020-042109\\Rufa_dimensioned.pdf"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

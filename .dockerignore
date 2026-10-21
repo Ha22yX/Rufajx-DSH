@@ -1,0 +1,14 @@
+.git
+.local
+node_modules
+**/node_modules
+**/dist
+**/release
+**/runtime
+vendor
+artifacts
+coverage
+.env
+.env.*
+!.env.example
+*.log

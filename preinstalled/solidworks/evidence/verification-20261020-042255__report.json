@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "check": "version",
+      "passed": true
+    },
+    {
+      "check": "load_own_part",
+      "passed": true
+    },
+    {
+      "check": "native_hole_positions_and_diameters",
+      "passed": true,
+      "holes_xy_diameter_mm": [
+        [
+          10.0,
+          10.0,
+          9.0
+        ],
+        [
+          110.0,
+          70.0,
+          9.0
+        ],
+        [
+          10.0,
+          70.0,
+          9.0
+        ],
+        [
+          110.0,
+          10.0,
+          9.0
+        ]
+      ]
+    },
+    {
+      "check": "step_reimport",
+      "passed": true,
+      "errors": 0
+    },
+    {
+      "check": "step_geometry_roundtrip",
+      "passed": true,
+      "volume_mm3": 93455.30995059226
+    },
+    {
+      "check": "stl_binary_structure",
+      "passed": true,
+      "triangles": 636
+    },
+    {
+      "check": "stl_proportions",
+      "passed": true,
+      "raw_coordinate_extents": [
+        120.0,
+        80.0,
+        10.0
+      ],
+      "scale_to_mm": 1.0
+    },
+    {
+      "check": "stl_mesh_volume",
+      "passed": true,
+      "volume_mm3": 93467.27493575725,
+      "expected_mm3": 93455.30995059227
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true
+}

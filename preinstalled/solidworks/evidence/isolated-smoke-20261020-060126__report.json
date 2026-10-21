@@ -1,0 +1,82 @@
+{
+  "output": "<acceptance-root>\\isolated-smoke-20261020-060126",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_pid_matches_launch",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_no_documents",
+      "passed": true
+    },
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件1"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_IsolatedRectangle",
+      "passed": true
+    },
+    {
+      "check": "IsolatedExtrude_created",
+      "passed": true
+    },
+    {
+      "check": "IsolatedExtrude_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "isolated_geometry",
+      "passed": true
+    },
+    {
+      "check": "save_isolated-smoke-20261020-060126-smoke.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "isolated_documents_closed",
+      "passed": true
+    },
+    {
+      "check": "owned_process_exited",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "preexisting_pids": [
+    39288
+  ],
+  "launched_pid": 41752,
+  "owned_pid": 41752,
+  "closed_test_documents": [
+    {
+      "title": "isolated-smoke-20261020-060126-smoke.SLDPRT",
+      "path": "<acceptance-root>\\isolated-smoke-20261020-060126\\isolated-smoke-20261020-060126-smoke.SLDPRT"
+    }
+  ],
+  "remaining_documents": [],
+  "preexisting_pids_still_running": [
+    39288
+  ]
+}

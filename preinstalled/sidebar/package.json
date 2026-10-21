@@ -1,0 +1,8 @@
+{
+  "name": "rufa-sidebar-distribution",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "dsh-better-sidebar": "0.28.0"
+  }
+}

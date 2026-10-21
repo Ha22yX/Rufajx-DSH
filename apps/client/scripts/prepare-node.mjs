@@ -1,0 +1,20 @@
+import { readFile, copyFile, mkdir, writeFile } from 'node:fs/promises';
+import { dirname, join, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+
+const executable = resolve(process.argv[2] ?? process.execPath);
+const version = execFileSync(executable, ['--version'], { encoding: 'utf8', windowsHide: true }).trim();
+if (version !== 'v24.16.0') throw new Error(`The verified Harness runtime requires Node v24.16.0, found ${version}`);
+const checksumUrl = `https://nodejs.org/dist/${version}/SHASUMS256.txt`;
+const response = await fetch(checksumUrl); if (!response.ok) throw new Error(`Official Node checksum download failed: ${response.status}`);
+const checksums = await response.text();
+const expected = checksums.split(/\r?\n/).find(line => /\s+win-x64\/node\.exe$/.test(line))?.split(/\s+/)[0];
+const actual = createHash('sha256').update(await readFile(executable)).digest('hex');
+if (!expected || actual !== expected) throw new Error('Node executable does not match official win-x64 SHA-256');
+const target = fileURLToPath(new URL('../node-runtime/', import.meta.url)); await mkdir(target, { recursive: true });
+await copyFile(executable, join(target, 'node.exe'));
+await copyFile(join(dirname(executable), 'LICENSE'), join(target, 'LICENSE'));
+await writeFile(join(target, 'node-runtime.json'), JSON.stringify({ version, platform: 'win32-x64', sha256: actual, checksumUrl }, null, 2));
+console.log(`Prepared official Node ${version}; SHA-256 ${actual}`);

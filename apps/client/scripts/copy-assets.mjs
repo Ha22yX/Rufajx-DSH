@@ -1,0 +1,10 @@
+import { cp, mkdir } from 'node:fs/promises';
+await mkdir(new URL('../dist/renderer/', import.meta.url), { recursive: true });
+await cp(new URL('../src/renderer/', import.meta.url), new URL('../dist/renderer/', import.meta.url), { recursive: true });
+await cp(new URL('../src/runtime/', import.meta.url), new URL('../dist/runtime/', import.meta.url), { recursive: true });
+await cp(new URL('../src/preload.cjs', import.meta.url), new URL('../dist/preload.cjs', import.meta.url));
+await cp(new URL('../src/account-preload.cjs', import.meta.url), new URL('../dist/account-preload.cjs', import.meta.url));
+const companyMark = new URL('../assets/rufajx-mark.png', import.meta.url);
+await mkdir(new URL('../dist/renderer/assets/', import.meta.url), { recursive: true });
+await cp(companyMark, new URL('../dist/renderer/assets/rufajx-mark.png', import.meta.url));
+await cp(companyMark, new URL('../dist/runtime/brand/rufajx-mark.png', import.meta.url));

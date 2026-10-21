@@ -1,0 +1,387 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-angle-multipose",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件7"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_gear-angle-multipose-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件8"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_gear-angle-multipose-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件9"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_gear-angle-multipose-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体3"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "gear_ratio_2_to_1_selection",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_2_to_1_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "native_gear_type",
+      "passed": true
+    },
+    {
+      "check": "angle_driver_selection",
+      "passed": true
+    },
+    {
+      "check": "drive_gear_rotation",
+      "passed": true
+    },
+    {
+      "check": "gear_real_motion_ratio",
+      "passed": true,
+      "driver_deg": 29.999999999999993,
+      "driven_deg": -60.000000000000036
+    },
+    {
+      "check": "drive_gear_15",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_at_15",
+      "passed": true,
+      "driver_deg": 14.999999999999996,
+      "driven_deg": -30.000000000000018
+    },
+    {
+      "check": "drive_gear_60",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_at_60",
+      "passed": true,
+      "driver_deg": 59.99999999999999,
+      "driven_deg": -120.00000000000001
+    },
+    {
+      "check": "drive_gear_45",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_at_45",
+      "passed": true,
+      "driver_deg": 45.0,
+      "driven_deg": -90.00000000000006
+    },
+    {
+      "check": "save_gear-angle-multipose-gear.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_gear-angle-multipose-gear.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 32
+    },
+    {
+      "check": "mechanical_reopen_components",
+      "passed": true
+    },
+    {
+      "check": "mechanical_reopen_pose_0",
+      "passed": true
+    },
+    {
+      "check": "mechanical_reopen_pose_1",
+      "passed": true
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 43260,
+  "assembly_rebuild_enabled": false,
+  "gear_mate": {
+    "type": 10,
+    "entities": 2,
+    "components": [
+      "gear-angle-multipose-driver-1",
+      "gear-angle-multipose-driven-1"
+    ]
+  },
+  "options": {
+    "mode": "gear",
+    "driver": "angle"
+  },
+  "component_constraints": [
+    {
+      "name": "gear-angle-multipose-support-1",
+      "fixed": true,
+      "constraint_status": 3,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        -0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "gear-angle-multipose-driver-1",
+      "fixed": false,
+      "constraint_status": 2,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        -0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "gear-angle-multipose-driven-1",
+      "fixed": false,
+      "constraint_status": 2,
+      "transform": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.045,
+        0.0,
+        -0.015,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "gear_dims": [
+    [
+      0.02
+    ],
+    [
+      0.04
+    ]
+  ],
+  "mate_features": [
+    {
+      "name": "同心1",
+      "type": "MateConcentric",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "重合1",
+      "type": "MateCoincident",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "同心2",
+      "type": "MateConcentric",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "重合2",
+      "type": "MateCoincident",
+      "error": 0,
+      "suppressed": false
+    },
+    {
+      "name": "齿轮配合1",
+      "type": "MateGearDim",
+      "error": 0,
+      "suppressed": false
+    }
+  ],
+  "angle_mate_error": 1,
+  "before_rebuild_angles": [
+    0.5235987755982988,
+    -1.0471975511965983
+  ],
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-angle-multipose\\gear.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "gear-angle-multipose-gear.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-angle-multipose\\gear-angle-multipose-gear.SLDASM"
+    }
+  ]
+}

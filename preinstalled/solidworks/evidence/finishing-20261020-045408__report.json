@@ -1,0 +1,417 @@
+{
+  "output": "<acceptance-root>\\finishing-20261020-045408",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件35"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CylinderProfile",
+      "passed": true
+    },
+    {
+      "check": "open_cylinder_surface",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.0",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.0",
+      "passed": true
+    },
+    {
+      "check": "cap_boundary_0.08",
+      "passed": true
+    },
+    {
+      "check": "planar_surface_cap_0.08",
+      "passed": true
+    },
+    {
+      "check": "three_surface_bodies",
+      "passed": true
+    },
+    {
+      "check": "knit_select_0",
+      "passed": true
+    },
+    {
+      "check": "knit_select_1",
+      "passed": true
+    },
+    {
+      "check": "knit_select_2",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSurface_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_KnitSurface_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "knit_single_shell",
+      "passed": true,
+      "surface_count": 1,
+      "solid_count": 0
+    },
+    {
+      "check": "select_closed_knit",
+      "passed": true
+    },
+    {
+      "check": "Rufa_FillKnitVolume_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_FillKnitVolume_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "knit_closed_solid",
+      "passed": true,
+      "volume_mm3": 226194.6710584651,
+      "expected_mm3": 226194.6710584651
+    },
+    {
+      "check": "save_finishing-20261020-045408-Rufa_capped_knit_cylinder.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_finishing-20261020-045408-Rufa_capped_knit_cylinder.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "knit_solid_reopen",
+      "passed": true
+    },
+    {
+      "check": "preview_knit-solid",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\finishing-20261020-045408\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "open_isolated_copy",
+      "passed": true
+    },
+    {
+      "check": "sheet_definition_found",
+      "passed": true,
+      "types": [
+        "FavoriteFolder",
+        "HistoryFolder",
+        "SelectionSetFolder",
+        "SensorFolder",
+        "DocsFolder",
+        "DetailCabinet",
+        "EnvFolder",
+        "SolidBodyFolder",
+        "SurfaceBodyFolder",
+        "CommentsFolder",
+        "EqnFolder",
+        "MaterialFolder",
+        "RefPlane",
+        "RefPlane",
+        "RefPlane",
+        "OriginProfileFeature",
+        "ProfileFeature",
+        "SheetMetal",
+        "SMBaseFlange",
+        "FlatPattern"
+      ]
+    },
+    {
+      "check": "sheet_access_definition",
+      "passed": true
+    },
+    {
+      "check": "sheet_modify_definition",
+      "passed": true
+    },
+    {
+      "check": "sheet_thickness_parameter3",
+      "passed": true,
+      "thickness_mm": 3.0
+    },
+    {
+      "check": "edited_sheet_unfold",
+      "passed": true
+    },
+    {
+      "check": "edited_sheet_flat_thickness3",
+      "passed": true,
+      "sizes_mm": [
+        3.0000000000000027,
+        60.0,
+        151.06858347057707
+      ]
+    },
+    {
+      "check": "edited_sheet_refold",
+      "passed": true
+    },
+    {
+      "check": "save_finishing-20261020-045408-Rufa_sheet_edited_3mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_finishing-20261020-045408-Rufa_sheet_edited_3mm.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "sheet_edited_reopen",
+      "passed": true
+    },
+    {
+      "check": "open_isolated_copy",
+      "passed": true
+    },
+    {
+      "check": "refresh_cut_list",
+      "passed": true
+    },
+    {
+      "check": "unique_cut_list_four_members",
+      "passed": true,
+      "cut_list": {
+        "切割清单项目1": {
+          "bodies": 2,
+          "properties": {
+            "长度": {
+              "raw": "\"LENGTH@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "320",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "角度1": {
+              "raw": "\"ANGLE1@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "45.00",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "角度2": {
+              "raw": "\"ANGLE2@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "45.00",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "UNIT_OF_MEASURE": {
+              "raw": "长度",
+              "value": "长度",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "DESCRIPTION": {
+              "raw": "TUBE, SQUARE \"V_leg@square tube 20 x 20 x 2(1)@零件11.SLDPRT\" X \"V_leg@square tube 20 x 20 x 2(1)@零件11.SLDPRT\" X \"Thickness@square tube 20 x 20 x 2(1)@零件11.SLDPRT\"",
+              "value": "TUBE, SQUARE 20 X 20 X 2",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "MATERIAL": {
+              "raw": "\"SW-Material@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "材质 <未指定>",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "QUANTITY": {
+              "raw": "\"QUANTITY@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "2",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "TOTAL LENGTH": {
+              "raw": "\"TOTAL LENGTH@@@切割清单项目1@零件11.SLDPRT\"",
+              "value": "1080",
+              "method": "SW2016 Get2 typed out strings"
+            }
+          }
+        },
+        "切割清单项目2": {
+          "bodies": 2,
+          "properties": {
+            "长度": {
+              "raw": "\"LENGTH@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "220",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "角度1": {
+              "raw": "\"ANGLE1@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "45.00",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "角度2": {
+              "raw": "\"ANGLE2@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "45.00",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "UNIT_OF_MEASURE": {
+              "raw": "长度",
+              "value": "长度",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "DESCRIPTION": {
+              "raw": "TUBE, SQUARE \"V_leg@square tube 20 x 20 x 2(1)@零件11.SLDPRT\" X \"V_leg@square tube 20 x 20 x 2(1)@零件11.SLDPRT\" X \"Thickness@square tube 20 x 20 x 2(1)@零件11.SLDPRT\"",
+              "value": "TUBE, SQUARE 20 X 20 X 2",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "MATERIAL": {
+              "raw": "\"SW-Material@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "材质 <未指定>",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "QUANTITY": {
+              "raw": "\"QUANTITY@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "2",
+              "method": "SW2016 Get2 typed out strings"
+            },
+            "TOTAL LENGTH": {
+              "raw": "\"TOTAL LENGTH@@@切割清单项目2@零件11.SLDPRT\"",
+              "value": "1080",
+              "method": "SW2016 Get2 typed out strings"
+            }
+          }
+        }
+      }
+    },
+    {
+      "check": "cut_list_actual_lengths",
+      "passed": true,
+      "lengths_mm": [
+        220.0,
+        320.0
+      ]
+    },
+    {
+      "check": "cut_list_quantity_and_angles",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\finishing-20261020-045408\\cleanup-1.SLDPRT"
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件36"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_TubePath",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "Rufa_Tube300_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Tube300_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "end_cap_face_found",
+      "passed": true
+    },
+    {
+      "check": "Rufa_EndCap3_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_EndCap3_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "end_cap_adds_material",
+      "passed": true,
+      "before_mm3": 40109.73355292323,
+      "after_mm3": 41309.73355292323
+    },
+    {
+      "check": "save_finishing-20261020-045408-Rufa_tube_with_end_cap.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_finishing-20261020-045408-Rufa_tube_with_end_cap.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "end_cap_reopen_volume",
+      "passed": true
+    },
+    {
+      "check": "preview_tube-end-cap",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\finishing-20261020-045408\\cleanup-2.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "finishing-20261020-045408-Rufa_capped_knit_cylinder.SLDPRT",
+      "path": "<acceptance-root>\\finishing-20261020-045408\\finishing-20261020-045408-Rufa_capped_knit_cylinder.SLDPRT"
+    },
+    {
+      "title": "finishing-20261020-045408-Rufa_sheet_edited_3mm.SLDPRT",
+      "path": "<acceptance-root>\\finishing-20261020-045408\\finishing-20261020-045408-Rufa_sheet_edited_3mm.SLDPRT"
+    },
+    {
+      "title": "finishing-20261020-045408-Weld_source.SLDPRT",
+      "path": "<acceptance-root>\\finishing-20261020-045408\\finishing-20261020-045408-Weld_source.SLDPRT"
+    },
+    {
+      "title": "finishing-20261020-045408-Rufa_tube_with_end_cap.SLDPRT",
+      "path": "<acceptance-root>\\finishing-20261020-045408\\finishing-20261020-045408-Rufa_tube_with_end_cap.SLDPRT"
+    }
+  ]
+}

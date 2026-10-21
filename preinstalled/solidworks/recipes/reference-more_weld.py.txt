@@ -1,0 +1,42 @@
+from more_common import *
+import sys
+r=MoreRun('weld-'+sys.argv[1]);error=None
+def supporting(d):
+    faces=[f for b in r.bodies(d) for f in get(b,'GetFaces') if get(get(f,'GetSurface'),'IsPlane')]
+    a=next(f for f in faces if abs(get(f,'Normal')[1]-1)<1e-6 and abs(get(f,'GetBox')[1]-.005)<1e-6)
+    b=next(f for f in faces if abs(get(f,'Normal')[0]-1)<1e-6 and abs(get(f,'GetBox')[0]-.005)<1e-6)
+    return a,b
+try:
+    d=r.new()
+    r.sketch(d,'Rufa_BasePlate',draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.1,.005,0.))
+    extrude(r,d,.06,'Rufa_Base')
+    r.sketch(d,'Rufa_UprightPlate',draw=lambda sm:sm.CreateCornerRectangle(0.,.005,0.,.005,.08,0.))
+    extrude(r,d,.06,'Rufa_Upright',False)
+    r.feature(get(d.FeatureManager,'InsertWeldmentFeature'),'Rufa_Weldment')
+    v0=r.volume(d);a,b=supporting(d)
+    if sys.argv[1]=='gusset':
+        r.check('gusset_supports_selected',sel(d,a,1) and sel(d,b,1,True))
+        f=r.feature(d.FeatureManager.InsertGussetFeature3(.003,1,1,False,.03,.03,0.,math.pi/4,0.,False,0.,0,False,False,True,0.,0.,0.,False,False),'Rufa_Gusset')
+        v=r.volume(d)
+        r.check('triangular_gusset_actual_volume',len(r.bodies(d))==3 and abs(v-v0-1350)<.1,added_volume_mm3=v-v0,bodies=len(r.bodies(d)))
+    elif sys.argv[1]=='bead':
+        r.check('cosmetic_weld_faces_selected',sel(d,a,4) and sel(d,b,8,True))
+        out=d.FeatureManager.InsertCosmeticWeldBead2(0,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_VARIANT,[a]),VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_VARIANT,[b]),.003)
+        r.check('cosmetic_weld_created',out is not None,count=len(out) if out is not None else 0)
+        f=r.feature(out[0],'Rufa_CosmeticWeld')
+        definition=get(f,'GetDefinition')
+        r.report['weld_definition']={'type':get(f,'GetTypeName2')}
+        v=r.volume(d)
+        r.check('cosmetic_weld_not_false_solid',abs(v-v0)<.01 and len(r.bodies(d))==2,volume_mm3=v)
+    else:
+        r.check('fillet_weld_faces_selected',sel(d,a,1) and sel(d,b,2,True))
+        f=r.feature(d.FeatureManager.InsertFilletBeadFeature3(0,.003,.003,2,.003,.006,0,.003,.003,2,.003,0,1,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_I4,[0]),0,EMPTY,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_VARIANT,[a,b]),EMPTY),'Rufa_FilletWeld')
+        v=r.volume(d);r.check('fillet_weld_added_geometry',v>v0,delta_mm3=v-v0)
+    fname=get(f,'Name');ftype=get(f,'GetTypeName2')
+    p=r.save(d,'weld-'+sys.argv[1]+'.SLDPRT');d=r.reopen(d,p)
+    f=d.FeatureByName(fname)
+    r.check('weld_native_feature_persisted',f is not None and get(f,'GetTypeName2')==ftype,type=ftype)
+    r.check('weld_reopen_geometry',abs(r.volume(d)-v)<.01)
+    r.preview(d,'weld-'+sys.argv[1])
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

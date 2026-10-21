@@ -1,0 +1,40 @@
+{
+  "output": "<acceptance-root>\\isolated-mechanical-gear-20261020-061125",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": false
+    }
+  ],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-mechanical-gear-20261020-061125\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-mechanical-gear-20261020-061125\\recovery"
+    }
+  ],
+  "launched_pid": 42132,
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ]
+}

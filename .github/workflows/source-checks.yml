@@ -1,0 +1,30 @@
+name: Source checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.16.0'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run typecheck
+      - run: npm test --workspace @rufa/server
+      - run: npm run test:integration
+      - name: Client tests without a live desktop or Harness runtime
+        run: node --test apps/client/test/admin-history.test.mjs apps/client/test/admin-center-ui.test.mjs apps/client/test/admin-ipc.test.mjs apps/client/test/security.test.mjs apps/client/test/account-isolation.test.mjs apps/client/test/startup-update.test.mjs

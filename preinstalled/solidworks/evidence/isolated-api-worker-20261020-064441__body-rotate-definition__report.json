@@ -1,0 +1,140 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-definition",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件15"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "rotate_body_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyRotate_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BodyRotate_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "access_rotation_definition",
+      "passed": true
+    },
+    {
+      "check": "modify_rotation_definition",
+      "passed": true
+    },
+    {
+      "check": "actual_body_positions",
+      "passed": true,
+      "boxes_mm": [
+        [
+          -30.0,
+          10.0,
+          0.0,
+          1.8369701987210296e-15,
+          30.000000000000004,
+          40.0
+        ]
+      ]
+    },
+    {
+      "check": "actual_body_volume",
+      "passed": true
+    },
+    {
+      "check": "save_body-rotate-definition-rotate.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_body-rotate-definition-rotate.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "actual_body_positions",
+      "passed": true,
+      "boxes_mm": [
+        [
+          -30.0,
+          10.0,
+          0.0,
+          1.8369701987210296e-15,
+          30.000000000000004,
+          40.0
+        ]
+      ]
+    },
+    {
+      "check": "actual_body_volume",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-definition\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "679ba9086e83f690a1d500fe4ed800c86c0b0fe2ae2e3530410297c5dc637e30",
+  "options": {
+    "mode": "rotate"
+  },
+  "rotation_definition_initial": {
+    "TransformType": 2,
+    "TransformX": 1.5707963267948966,
+    "TransformY": 0.0,
+    "TransformZ": 0.0
+  },
+  "rotation_type_enum": {
+    "swTransformType_None": 0,
+    "swTransformType_Translation": 1,
+    "swTransformType_Rotation": 2
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-definition\\rotate.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "body-rotate-definition-rotate.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\body-rotate-definition\\body-rotate-definition-rotate.SLDPRT"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "output": "<acceptance-root>\\finishing-20261020-044353",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件33"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_CylinderProfile",
+      "passed": true
+    },
+    {
+      "check": "open_cylinder_surface",
+      "passed": false
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_finishing.py\", line 22, in <module>\n    r.check('open_cylinder_surface',len(r.bodies(d,1))==1)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: open_cylinder_surface\n"
+}

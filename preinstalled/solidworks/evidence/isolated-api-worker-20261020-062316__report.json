@@ -1,0 +1,36 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-062316",
+  "checks": [],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-062316\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-062316\\recovery"
+    }
+  ],
+  "launched_pid": 39636,
+  "startup_error": "Dedicated instance did not become ready; no document API was called.",
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ]
+}

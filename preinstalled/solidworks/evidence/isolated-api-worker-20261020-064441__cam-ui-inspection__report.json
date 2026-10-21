@@ -1,0 +1,80 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-ui-inspection",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "readonly_saved_ui_cam_open",
+      "passed": true,
+      "warnings": 0
+    },
+    {
+      "check": "ui_cam_type9_present",
+      "passed": true
+    },
+    {
+      "check": "readonly_inspection_closed",
+      "passed": true
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "41a38ad6ff4789db612414e42df8aef42acce2bbe278df114212370b563c5072",
+  "options": {},
+  "native_ui_mates": [
+    {
+      "name": "同心1",
+      "feature_type": "MateConcentric",
+      "Type": 1,
+      "Alignment": 0,
+      "Flipped": false,
+      "CanBeFlipped": false
+    },
+    {
+      "name": "重合1",
+      "feature_type": "MateCoincident",
+      "Type": 0,
+      "Alignment": 0,
+      "Flipped": false,
+      "CanBeFlipped": false
+    },
+    {
+      "name": "重合2",
+      "feature_type": "MateCoincident",
+      "Type": 0,
+      "Alignment": 0,
+      "Flipped": false,
+      "CanBeFlipped": false
+    },
+    {
+      "name": "重合3",
+      "feature_type": "MateCoincident",
+      "Type": 0,
+      "Alignment": 0,
+      "Flipped": false,
+      "CanBeFlipped": false
+    },
+    {
+      "name": "平行1",
+      "feature_type": "MateParallel",
+      "Type": 3,
+      "Alignment": 0,
+      "Flipped": false,
+      "CanBeFlipped": false
+    },
+    {
+      "name": "凸轮配合相切1",
+      "feature_type": "MateCamTangent",
+      "Type": 9,
+      "Alignment": 1,
+      "Flipped": false,
+      "CanBeFlipped": false
+    }
+  ]
+}

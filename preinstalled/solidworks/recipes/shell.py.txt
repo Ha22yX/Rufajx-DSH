@@ -1,0 +1,82 @@
+"""Queued after mechanical acceptance; only own new documents and native APIs."""
+from more_common import *
+from comtypes.typeinfo import LoadTypeLibEx,REGKIND_NONE
+
+def enum_values(name):
+    lib=LoadTypeLibEx('D:/Program Files/Solidworks/SOLIDWORKS/swconst.tlb',REGKIND_NONE)
+    for i in range(lib.GetTypeInfoCount()):
+        if lib.GetDocumentation(i)[0]!=name:continue
+        ti=lib.GetTypeInfo(i);out={}
+        for j in range(ti.GetTypeAttr().cVars):
+            v=ti.GetVarDesc(j);out[ti.GetDocumentation(v.memid)[0]]=v._.lpvarValue[0].value
+        return out
+    raise ValueError(name)
+
+def verify_save(r,d,f,expected,filename):
+    name=get(f,'Name');kind=get(f,'GetTypeName2');actual=r.volume(d)
+    r.check('exact_volume',abs(actual-expected)<.01,actual_mm3=actual,expected_mm3=expected)
+    r.check('single_solid',len(r.bodies(d))==1)
+    path=r.save(d,filename+'.SLDPRT');d=r.reopen(d,path)
+    feature=d.FeatureByName(name)
+    r.check('feature_survives_reopen',feature is not None and get(feature,'GetTypeName2')==kind,type=kind)
+    r.check('volume_survives_reopen',abs(r.volume(d)-expected)<.01)
+    r.preview(d,filename)
+
+def run(r,options):
+    mode=options['mode'];d=r.new()
+    if mode=='revolve':
+        axes=[]
+        def profile(sm):
+            sm.AddToDB=True
+            try:
+                edges=sm.CreateCornerRectangle(.01,0.,0.,.02,.03,0.)
+                axes.append(sm.CreateCenterLine(0.,0.,0.,0.,.04,0.));return edges
+            finally:sm.AddToDB=False
+        sk,_=r.sketch(d,'Rufa_RevolveProfile',draw=profile)
+        d.ClearSelection2(True);r.check('revolve_profile_axis_selected',sk.Select2(False,0) and sel(d,axes[0],16,True))
+        f=r.feature(d.FeatureManager.FeatureRevolve2(True,True,False,False,False,False,0,0,2*math.pi,0.,False,False,0.,0.,0,0.,0.,True,False,True),'Rufa_Revolve')
+        verify_save(r,d,f,math.pi*(20**2-10**2)*30,mode)
+    elif mode=='shell':
+        r.sketch(d,draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.1,.06,0.));extrude(r,d,.03,'Rufa_Box')
+        tops=[f for b in r.bodies(d) for f in get(b,'GetFaces') if get(get(f,'GetSurface'),'IsPlane') and get(f,'Normal')[2]>.999 and abs(get(f,'GetBox')[2]-.03)<1e-7]
+        r.check('one_top_face',len(tops)==1);d.ClearSelection2(True);r.check('shell_top_selected',sel(d,tops[0],1))
+        d.InsertFeatureShell(.002,False)
+        f=r.feature(d.FeatureByPositionReverse(0),'Rufa_Shell')
+        r.check('actual_shell_feature',get(f,'GetTypeName2')=='Shell')
+        verify_save(r,d,f,100*60*30-96*56*28,mode)
+    elif mode in ('union','subtract','intersect'):
+        for i,x in enumerate((0.,.01)):
+            r.sketch(d,'Rufa_BlockProfile'+str(i),draw=lambda sm,x=x:sm.CreateCornerRectangle(x,0.,0.,x+.02,.02,0.))
+            extrude(r,d,.02,'Rufa_Block'+str(i),False)
+        bodies=sorted(r.bodies(d),key=lambda b:r.box(b)[0]);r.check('two_bodies_before_combine',len(bodies)==2)
+        values=enum_values('swBodyOperationType_e');op=values[{'union':'SWBODYADD','subtract':'SWBODYCUT','intersect':'SWBODYINTERSECT'}[mode]]
+        main=bodies[0] if mode=='subtract' else NULL;others=bodies[1:] if mode=='subtract' else bodies
+        f=r.feature(d.FeatureManager.InsertCombineFeature(op,main,VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_DISPATCH,others)),'Rufa_'+mode)
+        verify_save(r,d,f,12000. if mode=='union' else 4000.,mode)
+    elif mode=='loft':
+        sk1,_=r.sketch(d,'Rufa_LoftStart',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.02))
+        d.ClearSelection2(True);d.FeatureByName('前视基准面').Select2(False,0)
+        ref=d.FeatureManager.InsertRefPlane(8,.06,0,0.,0,0.)
+        r.check('offset_plane_created',ref is not None)
+        pf=d.FeatureByPositionReverse(0);pf.Name='Rufa_EndPlane'
+        sk2,_=r.sketch(d,'Rufa_LoftEnd',plane='Rufa_EndPlane',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.01))
+        d.ClearSelection2(True);r.check('loft_profiles_selected',sk1.Select2(False,1) and sk2.Select2(True,1))
+        f=r.feature(d.FeatureManager.InsertProtrusionBlend2(False,True,False,1.,0,0,0.,0.,False,False,False,0.,0.,0,True,False,True,0),'Rufa_Loft')
+        verify_save(r,d,f,math.pi*60*(20**2+20*10+10**2)/3,mode)
+    elif mode=='sweep':
+        sk1,_=r.sketch(d,'Rufa_SweepProfile',draw=lambda sm:sm.CreateCircleByRadius(0.,0.,0.,.005))
+        d.ClearSelection2(True);d.SketchManager.Insert3DSketch(True)
+        d.SketchManager.CreateLine(0.,0.,0.,0.,0.,.08)
+        d.ClearSelection2(True);d.SketchManager.Insert3DSketch(True)
+        path=d.FeatureByPositionReverse(0);path.Name='Rufa_SweepPath'
+        d.ClearSelection2(True);r.check('sweep_profile_path_selected',sk1.Select2(False,1) and path.Select2(True,4))
+        f=r.feature(d.FeatureManager.InsertProtrusionSwept3(False,False,0,True,False,0,0,False,0.,0.,0,0,True,False,True,0.,True),'Rufa_Sweep')
+        verify_save(r,d,f,math.pi*5**2*80,mode)
+    elif mode in ('scale_uniform','scale_xyz'):
+        r.sketch(d,draw=lambda sm:sm.CreateCornerRectangle(0.,0.,0.,.02,.03,0.));extrude(r,d,.04,'Rufa_Base')
+        d.ClearSelection2(True)
+        origin=enum_values('swScaleType_e')['swScaleAboutOrigin']
+        uniform=mode=='scale_uniform'
+        f=r.feature(d.FeatureManager.InsertScale(origin,uniform,2.,3.,.5),'Rufa_Scale')
+        verify_save(r,d,f,24000*(8 if uniform else 3),mode)
+    else:raise ValueError(mode)

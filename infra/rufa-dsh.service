@@ -1,0 +1,26 @@
+[Unit]
+Description=Rufa DSH company server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rufa-dsh
+Group=rufa-dsh
+WorkingDirectory=/opt/rufa-dsh
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node --env-file=/etc/rufa-dsh/server.env apps/server/dist/main.js
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+StateDirectory=rufa-dsh
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/rufa-dsh
+
+[Install]
+WantedBy=multi-user.target

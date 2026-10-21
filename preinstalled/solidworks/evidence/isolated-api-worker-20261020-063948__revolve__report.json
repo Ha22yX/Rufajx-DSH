@@ -1,0 +1,94 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063948\\revolve",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件1"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_RevolveProfile",
+      "passed": true
+    },
+    {
+      "check": "revolve_profile_axis_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Revolve_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Revolve_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "exact_volume",
+      "passed": true,
+      "actual_mm3": 28274.33388230814,
+      "expected_mm3": 28274.333882308136
+    },
+    {
+      "check": "single_solid",
+      "passed": true
+    },
+    {
+      "check": "save_revolve-revolve.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_revolve-revolve.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "feature_survives_reopen",
+      "passed": true,
+      "type": "Revolution"
+    },
+    {
+      "check": "volume_survives_reopen",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\revolve\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 44512,
+  "source_sha256": "81addf8d3caa04c52352d2df5f0c0e1e5a152742b64ef0ef86b2f8bbafcb3312",
+  "options": {
+    "mode": "revolve"
+  },
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-063948\\revolve\\revolve.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "revolve-revolve.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-063948\\revolve\\revolve-revolve.SLDPRT"
+    }
+  ]
+}

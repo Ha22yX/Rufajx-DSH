@@ -1,0 +1,14 @@
+import { createHash, createPublicKey } from 'node:crypto';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+const root = new URL('../../../', import.meta.url);
+const pem = await readFile(new URL('infra/client-update-public.pem', root), 'utf8');
+const key = createPublicKey(pem);
+if (key.asymmetricKeyType !== 'rsa' || key.asymmetricKeyDetails.modulusLength !== 3072) throw new Error('Expected RSA3072 update key');
+const spki = key.export({ format: 'der', type: 'spki' });
+const keyId = createHash('sha256').update(spki).digest('hex');
+const jwk = key.export({ format: 'jwk' });
+const modulus = Buffer.from(jwk.n, 'base64url').toString('base64'), exponent = Buffer.from(jwk.e, 'base64url').toString('base64');
+await writeFile(new URL('../src/update-trust.ts', import.meta.url), `// Fixed release trust root; no private key is distributed.\nexport const updateTrust = ${JSON.stringify({ keyId, publicKey: pem }, null, 2)};\n`);
+await mkdir(new URL('./updater/', import.meta.url), { recursive: true });
+await writeFile(new URL('./updater/UpdateTrust.cs', import.meta.url), `// Public verification key only.\ninternal static class UpdateTrust { internal const string KeyId = "${keyId}"; internal const string Modulus = "${modulus}"; internal const string Exponent = "${exponent}"; }\n`);
+console.log(JSON.stringify({ keyId }));

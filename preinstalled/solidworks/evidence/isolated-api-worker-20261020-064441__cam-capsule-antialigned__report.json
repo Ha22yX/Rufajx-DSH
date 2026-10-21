@@ -1,0 +1,512 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件25"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-antialigned-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件26"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-antialigned-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件27"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-antialigned-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体7"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_front_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_horizontal_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_horizontal_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_orientation_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_orientation_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "cam_geometry_precondition",
+      "passed": true
+    },
+    {
+      "check": "capsule_has_two_tangent_arcs",
+      "passed": true
+    },
+    {
+      "check": "cam_follower_selection",
+      "passed": true
+    },
+    {
+      "check": "cam_follower_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "native_cam_mate_type",
+      "passed": true
+    },
+    {
+      "check": "angle_driver_selection",
+      "passed": true
+    },
+    {
+      "check": "rotate_cam_30",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_30",
+      "passed": true,
+      "cam_deg": 29.999999999999996,
+      "follower_x_mm": -19.019237886466843,
+      "distance_mm": 14.999999999999996
+    },
+    {
+      "check": "rotate_cam_60",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_60",
+      "passed": true,
+      "cam_deg": 59.99999999999999,
+      "follower_x_mm": -27.679491924311233,
+      "distance_mm": 15.000000000000004
+    },
+    {
+      "check": "rotate_cam_90",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_90",
+      "passed": true,
+      "cam_deg": 90.00000000000001,
+      "follower_x_mm": -29.99999999999999,
+      "distance_mm": 15.00000000000001
+    },
+    {
+      "check": "rotate_cam_120",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_120",
+      "passed": true,
+      "cam_deg": 119.99999999999999,
+      "follower_x_mm": -28.13859338365494,
+      "distance_mm": 14.999999999999988
+    },
+    {
+      "check": "rotate_cam_150",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_150",
+      "passed": true,
+      "cam_deg": 150.0,
+      "follower_x_mm": -25.879673523328766,
+      "distance_mm": 15.0
+    },
+    {
+      "check": "rotate_cam_90",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_90",
+      "passed": true,
+      "cam_deg": 89.99999999999999,
+      "follower_x_mm": -29.999999999999993,
+      "distance_mm": 15.000000000000007
+    },
+    {
+      "check": "rotate_cam_30",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_30",
+      "passed": true,
+      "cam_deg": 29.999999999999993,
+      "follower_x_mm": -19.019237886466854,
+      "distance_mm": 14.999999999999988
+    },
+    {
+      "check": "follower_displacement",
+      "passed": true,
+      "initial_x_mm": -15.0,
+      "final_x_mm": -19.019237886466854
+    },
+    {
+      "check": "save_cam-capsule-antialigned-cam.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_cam-capsule-antialigned-cam.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "mechanical_reopen_components",
+      "passed": true
+    },
+    {
+      "check": "mechanical_reopen_pose_0",
+      "passed": true
+    },
+    {
+      "check": "mechanical_reopen_pose_1",
+      "passed": true
+    },
+    {
+      "check": "reopened_mates_error_free",
+      "passed": true
+    },
+    {
+      "check": "reopened_angle_driver",
+      "passed": true
+    },
+    {
+      "check": "drive_after_reopen",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_after_reopen",
+      "passed": true,
+      "follower_x_mm": -23.786796564403563
+    },
+    {
+      "check": "save_cam-capsule-antialigned-cam-verified.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_cam-capsule-antialigned-cam-verified.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "second_reopen_mates_error_free",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cleanup-1.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cleanup-2.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cleanup-3.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "c1d17d636775efa0610a660d1d89ce933ab44c0786a9b502fac6354880fcb4f4",
+  "options": {
+    "profile": "capsule",
+    "mode": "cam",
+    "driver": "angle"
+  },
+  "assembly_rebuild_suspended": false,
+  "native_mate_features": [
+    {
+      "name": "同心1",
+      "type": "MateConcentric"
+    },
+    {
+      "name": "重合1",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "重合2",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "重合3",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "平行1",
+      "type": "MateParallel"
+    },
+    {
+      "name": "凸轮配合相切1",
+      "type": "MateCamTangent"
+    }
+  ],
+  "angle_mate_error": 1,
+  "cam_samples": [
+    {
+      "angle_degrees": 29.999999999999996,
+      "follower": [
+        -0.019019237886466842,
+        0.0,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 59.99999999999999,
+      "follower": [
+        -0.027679491924311232,
+        -4.336809723917783e-19,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 90.00000000000001,
+      "follower": [
+        -0.02999999999999999,
+        -1.4230163853629903e-19,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 119.99999999999999,
+      "follower": [
+        -0.028138593383654938,
+        -4.7433879510489084e-20,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 150.0,
+      "follower": [
+        -0.025879673523328765,
+        -1.5811293170160974e-20,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 89.99999999999999,
+      "follower": [
+        -0.029999999999999992,
+        -1.987704442375109e-20,
+        -0.015
+      ]
+    },
+    {
+      "angle_degrees": 29.999999999999993,
+      "follower": [
+        -0.019019237886466853,
+        -3.9754088847717885e-21,
+        -0.015
+      ]
+    }
+  ],
+  "reopened_mates": [
+    {
+      "name": "同心1",
+      "type": "MateConcentric",
+      "error": 0
+    },
+    {
+      "name": "重合1",
+      "type": "MateCoincident",
+      "error": 0
+    },
+    {
+      "name": "重合2",
+      "type": "MateCoincident",
+      "error": 0
+    },
+    {
+      "name": "重合3",
+      "type": "MateCoincident",
+      "error": 0
+    },
+    {
+      "name": "平行1",
+      "type": "MateParallel",
+      "error": 0
+    },
+    {
+      "name": "凸轮配合相切1",
+      "type": "MateCamTangent",
+      "error": 0
+    },
+    {
+      "name": "角度1",
+      "type": "MatePlanarAngleDim",
+      "error": 0
+    }
+  ],
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cam.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "cam-capsule-antialigned-cam-verified.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cam-capsule-antialigned-cam-verified.SLDASM"
+    },
+    {
+      "title": "cam-capsule-antialigned-support.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cam-capsule-antialigned-support.SLDPRT"
+    },
+    {
+      "title": "cam-capsule-antialigned-driver.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cam-capsule-antialigned-driver.SLDPRT"
+    },
+    {
+      "title": "cam-capsule-antialigned-driven.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-antialigned\\cam-capsule-antialigned-driven.SLDPRT"
+    }
+  ]
+}

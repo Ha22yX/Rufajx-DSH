@@ -1,0 +1,131 @@
+{
+  "output": "<acceptance-root>\\sheet-hem-20261020-050650",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件39"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SheetProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SheetBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "flat_base_geometry",
+      "passed": true,
+      "volume": 19200.000000000004
+    },
+    {
+      "check": "hem_edge_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_OpenHem_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_OpenHem_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "hem_native_parameters",
+      "passed": true,
+      "length": 0.012,
+      "gap": 0.003
+    },
+    {
+      "check": "sheet_shape_changed",
+      "passed": true,
+      "base_volume": 19200.000000000004,
+      "volume": 22284.955592153885,
+      "box": [
+        -60.0,
+        -40.0,
+        -2.0,
+        60.0,
+        36.50000000000001,
+        5.0
+      ]
+    },
+    {
+      "check": "flatten_feature",
+      "passed": true
+    },
+    {
+      "check": "flatten_feature_error_free",
+      "passed": true
+    },
+    {
+      "check": "preview_flat",
+      "passed": true
+    },
+    {
+      "check": "refold_feature",
+      "passed": true
+    },
+    {
+      "check": "refold_volume",
+      "passed": true
+    },
+    {
+      "check": "save_sheet-hem-20261020-050650-sheet-hem.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_sheet-hem-20261020-050650-sheet-hem.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "sheet_reopen_geometry",
+      "passed": true
+    },
+    {
+      "check": "preview_folded",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\sheet-hem-20261020-050650\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "sheet-hem-20261020-050650-sheet-hem.SLDPRT",
+      "path": "<acceptance-root>\\sheet-hem-20261020-050650\\sheet-hem-20261020-050650-sheet-hem.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ]
+}

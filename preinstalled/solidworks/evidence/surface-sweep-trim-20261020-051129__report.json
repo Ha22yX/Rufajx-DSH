@@ -1,0 +1,98 @@
+{
+  "output": "<acceptance-root>\\surface-sweep-trim-20261020-051129",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件46"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_RoundSection",
+      "passed": true
+    },
+    {
+      "check": "spatial_spline_created",
+      "passed": true
+    },
+    {
+      "check": "sweep_profile_path_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SpatialSurfaceSweep_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SpatialSurfaceSweep_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "spatial_sweep_surface_geometry",
+      "passed": true,
+      "area_mm2": 2900.74503568876,
+      "path_length_mm": 116.10113530510453
+    },
+    {
+      "check": "save_surface-sweep-trim-20261020-051129-untrimmed-spatial-sweep.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "preview_sweep",
+      "passed": true
+    },
+    {
+      "check": "trim_plane_created",
+      "passed": true
+    },
+    {
+      "check": "trim_tool_selected",
+      "passed": true
+    },
+    {
+      "check": "pretrim",
+      "passed": true
+    },
+    {
+      "check": "surface_intersection_two_regions",
+      "passed": true,
+      "regions": 2
+    },
+    {
+      "check": "trim_keep_region_selected",
+      "passed": false
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\surface-sweep-trim-20261020-051129\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "surface-sweep-trim-20261020-051129-untrimmed-spatial-sweep.SLDPRT",
+      "path": "<acceptance-root>\\surface-sweep-trim-20261020-051129\\surface-sweep-trim-20261020-051129-untrimmed-spatial-sweep.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_surface.py\", line 30, in <module>\n    r.check('trim_keep_region_selected',d.Extension.SelectByID2('', 'SURFACEBODY',.004,0.,0.,True,0,NULL,0))\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: trim_keep_region_selected\n"
+}

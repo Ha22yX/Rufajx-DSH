@@ -1,0 +1,173 @@
+/* Company startup surface uses the same geometry and theme tokens as the workbench. */
+html[data-rufa-startup="pending"] #root,
+html[data-rufa-startup="stalled"] #root { visibility: hidden; }
+#rufa-startup { position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-columns: 280px minmax(0,1fr); background: var(--dsw-alias-bg-base,#141416); color: var(--dsw-alias-label-primary,#eee); font: 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; transition: opacity 220ms ease-out; }
+#rufa-startup[data-leaving] { opacity: 0; pointer-events: none; }
+#rufa-startup [hidden] { display: none !important; }
+.rufa-skeleton-sidebar { padding: 26px 18px; border-right: 1px solid #ffffff14; background: var(--dsw-specific-sidebar-fill,#1b1b1b); }
+.rufa-skeleton-brand { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 28px; }
+.rufa-skeleton-mark { display: inline-block; width: 24px; height: 24px; background: currentColor; mask: var(--rufa-startup-mark) center/contain no-repeat; }
+.rufa-skeleton-line { height: 12px; width: 68%; border-radius: 6px; background: var(--dsw-alias-interactive-bg-hover,#ffffff0b); margin: 18px 0; animation: rufa-placeholder 1.8s ease-in-out infinite; }
+.rufa-skeleton-button { width: 100%; height: 38px; border-radius: 10px; margin-bottom: 30px; }
+.rufa-skeleton-heading { width: 28%; height: 10px; margin-top: 48px; }
+.rufa-skeleton-session { width: 76%; margin-left: 16px; }
+.rufa-skeleton-main { display: grid; place-items: center; padding: 30px; }
+.rufa-skeleton-content { width: min(100%,728px); transform: translateY(-6px); }
+.rufa-skeleton-greeting { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 22px; font-size: 18px; font-weight: 500; }
+.rufa-skeleton-greeting .rufa-skeleton-mark { width: 30px; height: 30px; }
+#rufa-startup-status { text-align: center; color: var(--dsw-alias-label-tertiary,#999); font-size: 13px; margin: 0 0 28px; }
+.rufa-skeleton-composer { height: 112px; padding: 18px; border-radius: 22px; background: var(--dsw-alias-interactive-bg-hover,#ffffff0b); }
+.rufa-skeleton-composer .rufa-skeleton-line { margin: 5px 0 30px; width: 43%; }
+.rufa-skeleton-composer .rufa-skeleton-line:last-child { width: 18%; height: 9px; }
+.rufa-startup-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.rufa-startup-actions button { font: inherit; font-size: 13px; color: inherit; border: 1px solid #ffffff24; border-radius: 8px; background: var(--dsw-alias-interactive-bg-hover,#252525); padding: 8px 14px; cursor: pointer; }
+.rufa-startup-actions button:focus-visible { outline: 2px solid #7a9acb; outline-offset: 3px; }
+@keyframes rufa-placeholder { 0%,100% { opacity: .45; } 50% { opacity: .85; } }
+@keyframes rufa-surface-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes rufa-sidebar-in { from { opacity: 0; } to { opacity: 1; } }
+html[data-rufa-startup="ready"] #root [class$="_sidebarCol"] { animation: rufa-sidebar-in 280ms ease-out backwards; }
+html[data-rufa-startup="ready"] #root [class$="_centerCol"] { animation: rufa-surface-in 340ms 30ms cubic-bezier(.2,.75,.25,1) backwards; }
+/* Native layout keeps its interrupted-toggle/drag state machine. Supply concrete timing
+   for the enterprise theme rather than relying on optional upstream motion variables. */
+#root [class$="_frame"]:is([data-animating],[data-rufa-sidebar-motion]):not([data-dragging]) { transition: grid-template-columns 280ms cubic-bezier(.2,.75,.25,1); }
+#root [class$="_sidebarCol"] { --ds-ease-in-out: cubic-bezier(.2,.75,.25,1); }
+/* Slot renderers retain an anchor div: target the terminal marker through that
+   wrapper so the guide's flex item (and its gap) disappears completely. */
+[data-sidebar-right-guide] > div:has([data-rufa-hidden-terminal-guide]) { display: none; }
+.rufa-project-modal { width: min(520px,100%) !important; max-height: 100%; padding: 0 !important; border: 1px solid var(--dsw-alias-border-main,#ffffff17) !important; border-radius: 22px !important; }
+.rufa-project-form { display: flex; flex-direction: column; gap: 0; overflow-y: auto; min-height: 0; padding: 26px 28px 24px; font-size: 14px; }
+.rufa-project-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+.rufa-project-heading h2 { font-size: 19px; font-weight: 550; margin: 0; }
+.rufa-project-icon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 30px; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 7px; color: var(--dsw-alias-label-secondary); background: transparent; cursor: pointer; }
+.rufa-project-form button:not(:disabled):hover { background-color: var(--dsw-alias-interactive-bg-hover,#ffffff09); }
+.rufa-project-form button:focus-visible { outline: 2px solid #92b3ef; outline-offset: 2px; }
+.rufa-project-form button:disabled { cursor: default; }
+.rufa-project-name { display: flex; align-items: center; gap: 12px; padding: 0 14px; border: 1px solid var(--dsw-alias-border-main,#ffffff1c); background: var(--dsw-alias-interactive-bg-hover,#ffffff05); border-radius: 12px; min-height: 48px; }
+.rufa-project-name > svg { flex: none; color: var(--dsw-alias-label-secondary); }
+.rufa-project-name:focus-within { border-color: #92b3ef; box-shadow: 0 0 0 2px #92b3ef20; }
+.rufa-project-name input { width: 100%; min-width: 0; padding: 13px 0; font: inherit; border: 0; outline: 0; background: transparent; color: var(--dsw-alias-label-primary); }
+.rufa-project-name input::placeholder { color: var(--dsw-alias-label-tertiary); }
+.rufa-project-label { display: flex; align-items: center; gap: 6px; margin: 22px 0 10px; font-weight: 500; }
+.rufa-project-info { flex-basis: 24px; width: 24px; height: 24px; }
+.rufa-project-auto { display: flex; align-items: center; gap: 9px; padding: 2px 0 14px; cursor: pointer; }
+.rufa-project-auto input { width: 16px; height: 16px; margin: 0; accent-color: var(--dsw-alias-label-primary,#eee); }
+.rufa-project-folders { border: 1px solid var(--dsw-alias-border-main,#ffffff1c); background: var(--dsw-alias-bg-base,#1c1d1f); border-radius: 14px; padding: 6px; cursor: pointer; }
+.rufa-project-folders[aria-disabled=true] { opacity: .43; cursor: default; }
+.rufa-project-folder { display: flex; align-items: center; gap: 10px; padding: 9px 8px; min-width: 0; border-radius: 9px; }
+.rufa-project-folder-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9px; background: var(--dsw-alias-interactive-bg-hover,#ffffff0a); flex: none; color: var(--dsw-alias-label-secondary); }
+.rufa-project-folder-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rufa-project-folder-tag { font-size: 11px; padding: 3px 6px; border-radius: 5px; white-space: nowrap; color: var(--dsw-alias-label-secondary); background: var(--dsw-alias-interactive-bg-hover,#ffffff0a); }
+.rufa-project-folder-empty,.rufa-project-folder-add { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; border: 0; padding: 11px; border-radius: 9px; font: inherit; color: var(--dsw-alias-label-secondary); background: transparent; cursor: pointer; }
+.rufa-project-folder-empty { min-height: 116px; flex-direction: column; }
+.rufa-project-folder-empty small { display: block; margin-top: 5px; font-size: 12px; color: var(--dsw-alias-label-tertiary); }
+.rufa-project-folder + .rufa-project-folder-add { border-top: 1px solid var(--dsw-alias-border-main,#ffffff14); border-radius: 0 0 9px 9px; }
+.rufa-project-reference-toggle { display: flex; align-items: center; align-self: flex-start; gap: 6px; padding: 0; margin-top: 20px; border: 0; border-radius: 4px; color: var(--dsw-alias-label-secondary); background: transparent; font: inherit; font-size: 13px; cursor: pointer; }
+.rufa-project-reference-toggle > span:last-child { color: var(--dsw-alias-label-tertiary); }
+.rufa-project-chevron { display: inline-block; font-size: 22px; line-height: 18px; transition: transform 160ms; }
+.rufa-project-reference-toggle[aria-expanded=true] .rufa-project-chevron { transform: rotate(90deg); }
+.rufa-project-references { margin-top: 12px; }
+.rufa-project-references .rufa-project-hint { margin-bottom: 10px; }
+.rufa-project-footer { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 28px; }
+.rufa-project-footer button { border-radius: 9px; }
+.rufa-project-footer [data-rufa-project-submit] { background: var(--dsw-alias-label-primary,#eee); color: var(--dsw-alias-bg-base,#222); }
+.rufa-project-footer [data-rufa-project-submit]:not(:disabled):hover { opacity: .9; background: var(--dsw-alias-label-primary,#eee); }
+.rufa-project-footer [data-rufa-project-submit]:disabled { opacity: .35; }
+.rufa-project-hint { color: var(--dsw-alias-label-tertiary); font-size: 12px; line-height: 1.6; margin: 0; }
+.rufa-project-error { color: var(--dsw-alias-state-error, #ef8888); font-size: 13px; }
+.rufa-more-projects { width: 100%; border: 0; border-radius: 6px; background: transparent; color: var(--dsw-alias-label-tertiary); text-align: left; cursor: pointer; padding: 8px 12px; font: inherit; font-size: 12px; }
+.rufa-more-projects:hover { background: var(--dsw-alias-interactive-bg-hover); }
+.rufa-file-versions { display: inline-flex; align-items: center; align-self: center; justify-content: center; flex: 0 0 24px; width: 24px; height: 24px; position: relative; z-index: 3; pointer-events: auto; }
+.rufa-file-versions button { font: inherit; color: var(--dsw-alias-label-primary,#eee); border: 1px solid var(--dsw-alias-border-main,#ffffff24); border-radius: 8px; background: var(--dsw-alias-interactive-bg-hover,#ffffff09); cursor: pointer; padding: 7px 12px; }
+.rufa-file-versions button:hover:not(:disabled) { background: #ffffff12; }
+.rufa-file-versions button:disabled { opacity: .45; cursor: default; }
+.rufa-file-versions button:focus-visible { outline: 2px solid #92b3ef; outline-offset: 2px; }
+.rufa-file-versions > [data-rufa-versions-action] { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 5px; background: transparent; color: var(--dsw-alias-label-secondary,#999); }
+.rufa-file-versions > [data-rufa-versions-action]:hover { background: var(--dsw-alias-interactive-bg-hover,#ffffff09); color: var(--dsw-alias-label-primary,#ddd); }
+.rufa-file-versions > [data-rufa-versions-action] svg { display: block; flex: none; }
+.rufa-version-dialog { box-sizing: border-box; width: min(1120px,94vw); max-height: 88vh; padding: 0; border: 1px solid var(--dsw-alias-border-main,#ffffff24); border-radius: 18px; color: var(--dsw-alias-label-primary,#eee); background: var(--dsw-alias-bg-base,#1b1b1d); font: 14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; overflow: hidden; box-shadow: 0 20px 80px #0006; }
+.rufa-version-dialog[open] { display: flex; flex-direction: column; }
+.rufa-version-dialog::backdrop { background: #0008; }
+.rufa-version-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 26px 18px; flex: none; }
+.rufa-version-heading h2 { margin: 4px 0 0; font-size: 20px; font-weight: 600; overflow-wrap: anywhere; }
+.rufa-version-eyebrow { margin: 0; color: var(--dsw-alias-label-secondary,#aaa); font-size: 12px; }
+.rufa-version-heading > button { width: 32px; height: 32px; flex: none; padding: 0; border: 0; background: transparent; font-size: 24px; line-height: 1; }
+.rufa-version-tabs { display: flex; flex: none; gap: 22px; padding: 0 26px; border-bottom: 1px solid var(--dsw-alias-border-main,#ffffff1c); }
+.rufa-version-tabs button { padding: 10px 0 12px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; background: transparent; color: var(--dsw-alias-label-secondary,#aaa); }
+.rufa-version-tabs button[aria-selected=true] { border-bottom-color: #92b3ef; color: var(--dsw-alias-label-primary,#eee); }
+.rufa-version-tabs button:hover:not(:disabled) { background: transparent; color: #fff; }
+.rufa-version-status { margin: 14px 26px 0; padding: 10px 12px; border-radius: 9px; flex: none; }
+.rufa-version-error { color: #f3aaa1; background: #b4433220; }
+.rufa-version-success { color: #a9d7b9; background: #3e8c5b18; }
+.rufa-version-body { padding: 22px 26px; min-height: 180px; overflow: auto; overscroll-behavior: contain; }
+.rufa-version-with-history { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1fr); align-items: start; gap: 24px; }
+.rufa-version-tree-section { min-width: 0; }
+.rufa-version-tree-heading { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 12px; }
+.rufa-version-tree-heading h3 { font-size: 14px; font-weight: 600; margin: 0; }
+.rufa-version-tree-heading p { color: var(--dsw-alias-label-secondary,#aaa); font-size: 12px; margin: 5px 0 0; }
+.rufa-version-tree-legend { display: flex; gap: 13px; color: var(--dsw-alias-label-secondary,#aaa); font-size: 11px; padding-top: 3px; }
+.rufa-version-tree-legend span::before { content: ''; display: inline-block; width: 14px; height: 2px; background: #64686e; margin-right: 6px; vertical-align: middle; }
+.rufa-version-tree-legend .rufa-version-current-key::before { background: #8baff3; }
+.rufa-version-tree-notice { color: #e3c28e; background: #bb873b13; font-size: 12px; padding: 9px 12px; border-radius: 8px; }
+.rufa-version-tree-viewport { max-height: 320px; overflow: auto; overscroll-behavior: contain; border: 1px solid var(--dsw-alias-border-main,#ffffff1c); border-radius: 12px; background: radial-gradient(#ffffff0b 1px,transparent 1px) 0 0/16px 16px, #00000014; }
+.rufa-version-tree-viewport:focus-visible { outline: 2px solid #92b3ef; outline-offset: 2px; }
+.rufa-version-tree-canvas { position: relative; margin: 0 auto; }
+.rufa-version-tree-lines { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.rufa-version-tree-lines path { fill: none; stroke: #60666e; stroke-width: 2; }
+.rufa-version-tree-lines .rufa-version-edge-current { stroke: #8baff3; stroke-width: 2.5; }
+.rufa-file-versions .rufa-version-tree-node { box-sizing: border-box; position: absolute; width: 180px; height: 76px; padding: 9px 11px; display: flex; flex-direction: column; gap: 2px; text-align: left; background: var(--dsw-alias-bg-base,#252628); border-color: #ffffff26; border-radius: 10px; box-shadow: 0 3px 9px #0002; }
+.rufa-file-versions .rufa-version-tree-node:hover:not(:disabled) { background: #303237; border-color: #8baff385; }
+.rufa-file-versions .rufa-version-tree-node[aria-pressed=true] { outline: 2px solid #8baff3; outline-offset: 2px; background: #252c37; }
+.rufa-file-versions .rufa-version-node-current { border-color: #8baff3; }
+.rufa-file-versions .rufa-version-node-uncertain { border-style: dashed; border-color: #c8a76a; }
+.rufa-version-node-title { display: flex; align-items: center; justify-content: space-between; gap: 5px; font-size: 13px; line-height: 18px; }
+.rufa-version-node-title strong { font-weight: 550; }
+.rufa-version-node-title small { color: #c0d5fc; background: #8baff325; border-radius: 4px; padding: 0 5px; font-size: 10px; font-weight: 400; }
+.rufa-version-node-caption { font-size: 11px; line-height: 16px; color: var(--dsw-alias-label-secondary,#bbb); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.rufa-version-tree-node time { color: var(--dsw-alias-label-tertiary,#999); font-size: 10px; line-height: 14px; }
+.rufa-version-tree-hint { margin: 8px 0 0; color: var(--dsw-alias-label-tertiary,#999); font-size: 11px; }
+.rufa-version-selected-label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 13px; font-weight: 550; }
+.rufa-version-selected-label > span { font-weight: 400; color: var(--dsw-alias-label-secondary,#aaa); font-size: 11px; }
+.rufa-version-detail { min-width: 0; }
+.rufa-version-diff-heading { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.rufa-version-diff-heading h3 { margin: 0; font-size: 16px; font-weight: 600; }
+.rufa-version-diff-heading span { font-size: 11px; color: var(--dsw-alias-label-tertiary,#999); }
+.rufa-version-preview-note { margin: 9px 0 18px; color: var(--dsw-alias-label-secondary,#aaa); font-size: 12px; line-height: 1.7; }
+.rufa-version-change { margin-top: 14px; border: 1px solid var(--dsw-alias-border-main,#ffffff1c); border-radius: 12px; overflow: hidden; }
+.rufa-version-change h4 { font-size: 13px; margin: 0; padding: 11px 14px; font-weight: 500; overflow-wrap: anywhere; background: #ffffff04; }
+.rufa-version-comparison { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); border-top: 1px solid var(--dsw-alias-border-main,#ffffff14); }
+.rufa-version-comparison > div { min-width: 0; padding: 12px 14px; }
+.rufa-version-before { background: #8d4b3820; }
+.rufa-version-after { background: #3d81502a; border-left: 1px solid var(--dsw-alias-border-main,#ffffff14); }
+.rufa-version-comparison strong { color: var(--dsw-alias-label-secondary,#bbb); font-size: 11px; font-weight: 400; }
+.rufa-version-comparison pre { margin: 8px 0 2px; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; }
+.rufa-version-empty { padding: 40px 12px; text-align: center; color: var(--dsw-alias-label-secondary,#aaa); }
+.rufa-version-empty p { margin-bottom: 0; font-size: 12px; }
+.rufa-version-footer { padding: 16px 26px; border-top: 1px solid var(--dsw-alias-border-main,#ffffff1c); display: flex; flex: none; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.rufa-version-footer > span { color: var(--dsw-alias-label-secondary,#aaa); font-size: 12px; }
+.rufa-file-versions .rufa-version-primary { background: #eeeeef; color: #1c1d20; border-color: transparent; }
+.rufa-file-versions .rufa-version-primary:hover:not(:disabled) { background: #fff; }
+.rufa-version-confirmation { padding: 16px 26px; border-top: 1px solid #d5ac6340; background: #d5ac6310; display: flex; flex: none; align-items: center; justify-content: space-between; gap: 20px; }
+.rufa-version-confirmation strong { font-size: 14px; font-weight: 500; }
+.rufa-version-confirmation p { margin: 6px 0 0; color: var(--dsw-alias-label-secondary,#bbb); font-size: 12px; }
+.rufa-version-footer-buttons { display: flex; gap: 8px; flex: none; }
+.rufa-version-help { flex: none; padding: 0 26px 16px; color: var(--dsw-alias-label-secondary,#aaa); font-size: 11px; }
+.rufa-version-help summary { cursor: pointer; width: fit-content; }
+.rufa-version-help p { margin: 8px 0 0; line-height: 1.7; }
+@media(max-width:900px) { .rufa-version-with-history { grid-template-columns: minmax(0,1fr); } .rufa-version-selected-label { border-top: 1px solid var(--dsw-alias-border-main,#ffffff1c); padding-top: 16px; } }
+@media(max-width:650px) { .rufa-version-dialog { max-height: 92vh; } .rufa-version-heading,.rufa-version-body { padding: 18px; } .rufa-version-tree-viewport { max-height: 280px; } .rufa-version-confirmation { flex-direction: column; align-items: stretch; } .rufa-version-footer-buttons { justify-content: flex-end; } }
+/* AnimatedRows copies this native variable onto exit clones outside the project
+   wrapper. Keep indentation in that variable so live and fading rows align. */
+[data-rufa-project-id] [data-rufa-session-id] { --dsh-workspace-indent: 20px; }
+[data-rufa-unassigned-sessions] [data-rufa-session-id] { --dsh-workspace-indent: 0px; }
+/* The native action cluster fits two 28px icon buttons plus a 4px gap.
+   The company archive menu uses Button, whose normal padding otherwise clips
+   the following create-project icon. Preserve native search/rail collapsing. */
+#root [class*="_headerActions"]:has([data-rufa-create-project]) button[aria-label="会话显示选项"] {
+  box-sizing: border-box; flex: 0 0 28px; width: 28px; min-width: 28px; max-width: 28px;
+  height: 28px; min-height: 28px; padding: 0;
+}
+@media(max-width:900px) { #rufa-startup { grid-template-columns: 230px minmax(0,1fr); } }
+@media(prefers-reduced-motion:reduce) {
+  #rufa-startup, #root [class$="_frame"]:is([data-animating],[data-rufa-sidebar-motion]):not([data-dragging]) { transition: none; }
+  .rufa-skeleton-line, html[data-rufa-startup="ready"] #root [class$="_sidebarCol"], html[data-rufa-startup="ready"] #root [class$="_centerCol"] { animation: none; }
+}

@@ -1,0 +1,32 @@
+from advanced_common import *
+r=Run('sheet');error=None
+try:
+    d=r.new()
+    def draw(sm):
+        return [sm.CreateLine(0.,0.,0.,.1,0.,0.),sm.CreateLine(.1,0.,0.,.1,.05,0.)]
+    sk,edges=r.sketch(d,'Rufa_BentProfile',draw=draw)
+    cba=get(d.FeatureManager,'CreateCustomBendAllowance');cba.Type=2;cba.KFactor=.5
+    d.ClearSelection2(True);r.check('select_sheet_profile',sk.Select2(False,0))
+    f=r.feature(d.FeatureManager.InsertSheetMetalBaseFlange2(.002,False,.003,.06,0.,False,0,0,1,cba,False,2,.001,.001,.5,True,False,True,True),'Rufa_BaseFlange')
+    r.check('one_sheet_metal_body',len(r.bodies(d,0))==1 and get(r.bodies(d,0)[0],'IsSheetMetal'))
+    folded=r.volume(d)
+    flat=[f for f in r.features(d) if get(f,'GetTypeName2')=='FlatPattern']
+    r.check('flat_pattern_present',len(flat)==1)
+    r.check('unfold',flat[0].SetSuppression2(1,1,EMPTY))
+    d.ForceRebuild3(False)
+    flat_box=r.box(r.bodies(d)[0]);sizes=sorted(abs(flat_box[i+3]-flat_box[i]) for i in range(3))
+    r.check('flat_geometry_thickness_width',abs(sizes[0]-2)<.01 and abs(sizes[1]-60)<.01,sizes_mm=sizes)
+    r.check('flat_volume_consistency',abs(r.volume(d)-folded)<.1,folded_mm3=folded,flat_mm3=r.volume(d))
+    r.preview(d,'sheet-flat')
+    r.check('refold',flat[0].SetSuppression2(0,1,EMPTY));d.ForceRebuild3(False)
+    r.check('refold_geometry',abs(r.volume(d)-folded)<.1)
+    p=r.save(d,'Rufa_sheet_L_2mm.SLDPRT')
+    alignment=VARIANT(pythoncom.VT_ARRAY|pythoncom.VT_R8,[0.,0.,0.,1.,0.,0.,0.,1.,0.,0.,0.,1.])
+    out=r.out/'Rufa_sheet_flat.dxf'
+    ok=d.ExportToDWG2(str(out),str(p),1,True,alignment,False,False,5,EMPTY)
+    r.check('flat_pattern_dxf',ok and out.is_file() and out.stat().st_size>0)
+    d=r.reopen(d,p)
+    r.check('sheet_reopen_volume',abs(r.volume(d)-folded)<.1)
+    r.preview(d,'sheet-folded')
+except Exception:error=traceback.format_exc()
+finally:r.finish(error)

@@ -1,0 +1,283 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件19"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-api-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件20"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-api-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件21"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_cam-capsule-api-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体5"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_front_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_horizontal_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_horizontal_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "follower_orientation_selection",
+      "passed": true
+    },
+    {
+      "check": "follower_orientation_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "cam_geometry_precondition",
+      "passed": true
+    },
+    {
+      "check": "capsule_has_two_tangent_arcs",
+      "passed": true
+    },
+    {
+      "check": "cam_follower_selection",
+      "passed": true
+    },
+    {
+      "check": "cam_follower_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "native_cam_mate_type",
+      "passed": true
+    },
+    {
+      "check": "angle_driver_selection",
+      "passed": true
+    },
+    {
+      "check": "rotate_cam_30",
+      "passed": true
+    },
+    {
+      "check": "cam_contact_30",
+      "passed": false,
+      "cam_deg": 29.999999999999996,
+      "follower_x_mm": -35.0,
+      "distance_mm": 4.999999999999996
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cleanup-1.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cleanup-2.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cleanup-3.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "a5a616e2628f36341829c0e0632be27073b17fea272a9fcbe9f9e4bd480cb8c5",
+  "options": {
+    "driver": "angle",
+    "profile": "capsule",
+    "mode": "cam"
+  },
+  "assembly_rebuild_suspended": false,
+  "native_mate_features": [
+    {
+      "name": "同心1",
+      "type": "MateConcentric"
+    },
+    {
+      "name": "重合1",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "重合2",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "重合3",
+      "type": "MateCoincident"
+    },
+    {
+      "name": "平行1",
+      "type": "MateParallel"
+    },
+    {
+      "name": "凸轮配合相切1",
+      "type": "MateCamTangent"
+    }
+  ],
+  "angle_mate_error": 1,
+  "closed_test_documents": [
+    {
+      "title": "装配体5",
+      "path": ""
+    },
+    {
+      "title": "cam-capsule-api-support.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cam-capsule-api-support.SLDPRT"
+    },
+    {
+      "title": "cam-capsule-api-driver.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cam-capsule-api-driver.SLDPRT"
+    },
+    {
+      "title": "cam-capsule-api-driven.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\cam-capsule-api\\cam-capsule-api-driven.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_mechanical.py\", line 177, in run\n    else:\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: cam_contact_30\n"
+}

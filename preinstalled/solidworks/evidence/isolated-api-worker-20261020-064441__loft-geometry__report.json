@@ -1,0 +1,122 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\loft-geometry",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件7"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_LoftStart",
+      "passed": true
+    },
+    {
+      "check": "offset_plane_created",
+      "passed": true
+    },
+    {
+      "check": "select_Rufa_EndPlane",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_LoftEnd",
+      "passed": true
+    },
+    {
+      "check": "loft_profiles_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Loft_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Loft_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "loft_surface_radius_samples",
+      "passed": true,
+      "sample_count": 221,
+      "max_deviation_mm": 3.469446951953614e-15
+    },
+    {
+      "check": "loft_sampled_height",
+      "passed": true
+    },
+    {
+      "check": "volume_within_declared_tolerance",
+      "passed": true,
+      "actual_mm3": 43982.08996408321,
+      "expected_mm3": 43982.2971502571,
+      "tolerance_mm3": 0.43982297150257105
+    },
+    {
+      "check": "single_solid",
+      "passed": true
+    },
+    {
+      "check": "save_loft-geometry-loft.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_loft-geometry-loft.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "feature_survives_reopen",
+      "passed": true,
+      "type": "Blend"
+    },
+    {
+      "check": "volume_survives_reopen",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\loft-geometry\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "owned_pid": 33212,
+  "source_sha256": "15020d5b55c4c45e1b401685b633f8574bdc80556320444e84d0295a4fe5bd7c",
+  "options": {
+    "mode": "loft"
+  },
+  "precise_mass_status": [
+    0,
+    0,
+    0
+  ],
+  "previews": [
+    {
+      "file": "<acceptance-root>\\isolated-api-worker-20261020-064441\\loft-geometry\\loft.bmp",
+      "rendered": true
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "loft-geometry-loft.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\loft-geometry\\loft-geometry-loft.SLDPRT"
+    }
+  ]
+}

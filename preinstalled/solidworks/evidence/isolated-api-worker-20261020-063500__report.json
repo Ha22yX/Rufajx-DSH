@@ -1,0 +1,84 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-063500",
+  "checks": [
+    {
+      "check": "dedicated_process_rot_found",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_pid_matches_launch",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_not_preexisting",
+      "passed": true
+    },
+    {
+      "check": "dedicated_process_no_documents",
+      "passed": true
+    },
+    {
+      "check": "SW2016",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "preexisting_pids": [
+    39288
+  ],
+  "registry_backup": [
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\ExtReferences",
+      "name": "SolidWorks Journal Folders",
+      "old_value": "<user-home>\\AppData\\Roaming\\SolidWorks\\SOLIDWORKS 2016",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-063500\\journal"
+    },
+    {
+      "key": "Software\\SolidWorks\\SOLIDWORKS 2016\\General",
+      "name": "AutoRecover Directory",
+      "old_value": "",
+      "kind": 1,
+      "temporary_value": "<acceptance-root>\\isolated-api-worker-20261020-063500\\recovery"
+    }
+  ],
+  "launched_pid": 43260,
+  "owned_pid": 43260,
+  "execution_mode": "Native COM only; hidden owned instance; no computer use",
+  "cases": [
+    {
+      "case": "gear-transform",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-transform\\report.json"
+    },
+    {
+      "case": "gear-angle",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-angle\\report.json"
+    },
+    {
+      "case": "gear-angle-multipose",
+      "complete": true,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063500\\gear-angle-multipose\\report.json"
+    },
+    {
+      "case": "cam-angle",
+      "complete": false,
+      "report": "<acceptance-root>\\isolated-api-worker-20261020-063500\\cam-angle\\report.json"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 54, in <module>\n    if list(get(owner.app,'GetDocuments') or []):raise RuntimeError('Documents remain after case; stop')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 12, in get\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetDocuments\n\nISOLATED CLEANUP/PROCESS ERROR\nTraceback (most recent call last):\n  File \"<acceptance-root>\\isolated_common.py\", line 95, in finish\n    assert int(get(self.app,'GetProcessID'))==self.pid and self.pid not in self.before_pids\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 12, in get\n    value = getattr(obj, name)\n            ^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\venv\\Lib\\site-packages\\win32com\\client\\dynamic.py\", line 631, in __getattr__\n    raise AttributeError(f\"{self._username_}.{attr}\")\nAttributeError: <unknown>.GetProcessID\n",
+  "registry_restoration": [
+    {
+      "name": "SolidWorks Journal Folders",
+      "status": "restored"
+    },
+    {
+      "name": "AutoRecover Directory",
+      "status": "restored"
+    }
+  ],
+  "preexisting_pids_still_running": [
+    39288
+  ]
+}

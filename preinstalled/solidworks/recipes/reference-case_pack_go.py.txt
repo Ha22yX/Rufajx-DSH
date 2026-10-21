@@ -1,0 +1,53 @@
+from more_common import *
+
+def run(r,options):
+    paths=[]
+    for i,size in enumerate([.02,.03]):
+        d=r.new();r.sketch(d,draw=lambda sm,s=size:sm.CreateCornerRectangle(0.,0.,0.,s,s,0.));extrude(r,d,.01,'Rufa_Block')
+        paths.append(r.save(d,'Block'+str(i)+'.SLDPRT'))
+    a=r.new('assembly')
+    for i,p in enumerate([paths[0],paths[1],paths[1]]):
+        r.check('insert_component_'+str(i),a.AddComponent5(str(p),0,'',False,'',i*.1,0.,0.) is not None)
+    original=r.save(a,'Assembly.SLDASM')
+    if options.get('reopen_first'):a=r.reopen(a,original,2)
+    if options.get('inspect_ui'):
+        r.app.Visible=True
+        r.report['ui_wait']='Inspect File / Pack and Go on owned assembly; do not modify SW installation';r.flush()
+        deadline=time.monotonic()+600
+        while not (r.out/'CONTINUE').exists() and time.monotonic()<deadline:
+            pythoncom.PumpWaitingMessages();time.sleep(.2)
+    destination=r.out/'delivery';destination.mkdir()
+    r.report['source_components']=[{'path':get(c,'GetPathName'),'virtual':get(c,'IsVirtual')} for c in a.GetComponents(True)];r.flush()
+    if options.get('dotnet'):
+        import subprocess
+        probe=subprocess.run([str(ROOT/'PackGoProbe.exe'),str(r.owner.pid),str(original),str(destination)],capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=60,creationflags=subprocess.CREATE_NO_WINDOW)
+        (r.out/'dotnet-result.txt').write_text(probe.stdout+probe.stderr,encoding='utf-8')
+        data=json.loads(probe.stdout.strip());r.report['dotnet_probe']=data;r.flush()
+        r.check('dotnet_pack_call',probe.returncode==0 and data['ok'])
+        r.check('three_dependency_documents',data['count']==3)
+        statuses=data['statuses']
+    else:
+        ext=a.Extension
+        pg=win32com.client.Dispatch(ext._oleobj_.InvokeTypes(ext._oleobj_.GetIDsOfNames('GetPackAndGo'),0,1,(9,0),()))
+        pg.IncludeDrawings=False;pg.IncludeSimulationResults=False;pg.IncludeToolboxComponents=False;pg.FlattenToSingleFolder=True
+        r.check('three_dependency_documents',get(pg,'GetDocumentNamesCount')==3)
+        r.check('pack_destination_set',pg.SetSaveToName(True,str(destination)))
+        pg.AddPrefix='Delivered_'
+        statuses=a.Extension.SavePackAndGo(pg)
+    r.check('pack_statuses_success',statuses is not None and len(statuses)==3 and all(x==0 for x in statuses),statuses=list(statuses or []))
+    expected=[destination/('Delivered_'+p.name) for p in [original]+paths]
+    r.check('all_expected_files_written',all(p.is_file() and p.stat().st_size>0 for p in expected))
+    for kind in (2,1):
+        for d in list(get(r.app,'GetDocuments') or []):
+            if get(d,'GetType')==kind:r.close_owned(d)
+    e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+    a=r.app.OpenDoc6(str(expected[0]),2,1,'',e,w)
+    for d in get(r.app,'GetDocuments') or []:
+        p=Path(get(d,'GetPathName')).resolve();assert p.is_relative_to(r.out.resolve());r.owned.add(get(d,'GetTitle'))
+    r.check('delivery_assembly_reopens_cleanly',a is not None and e.value==0 and w.value==0,errors=e.value,warnings=w.value)
+    comps=list(a.GetComponents(True));actual=[Path(get(c,'GetPathName')).resolve() for c in comps]
+    r.report['delivered_references']=[str(p) for p in actual];r.flush()
+    r.check('three_instances_all_use_delivered_parts',len(comps)==3 and set(actual)==set(p.resolve() for p in expected[1:]) and all(p.is_relative_to(destination.resolve()) for p in actual))
+    volumes=sorted(round(r.volume(get(c,'GetModelDoc2')),5) for c in comps)
+    r.check('delivered_geometries_correct',volumes==[4000.,9000.,9000.],volumes_mm3=volumes)
+    r.preview(a,'delivery')

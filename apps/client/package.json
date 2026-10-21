@@ -1,0 +1,100 @@
+{
+  "name": "@rufa/client",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "如发机械 DSH 企业桌面宿主，保留完整官方 Harness Web",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "dev": "npm run build && electron .",
+    "package:win": "npm run build && node scripts/check-runtime.mjs && node scripts/prepare-installer.mjs && electron-builder --win nsis --x64",
+    "package:dir": "npm run build && node scripts/check-runtime.mjs && electron-builder --dir --win --x64"
+  },
+  "dependencies": {
+    "electron-updater": "6.8.9"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3",
+    "typescript": "^5.9.3"
+  },
+  "build": {
+    "appId": "cn.rufa.dsh.enterprise",
+    "productName": "Rufajx-DSH",
+    "afterPack": "../../scripts/verify-packaged-preinstalled.mjs",
+    "afterSign": "../../scripts/install-packaged-bootstrap.mjs",
+    "artifactName": "Rufa-DSH-${version}-${arch}-Setup.${ext}",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "!dist/runtime/**/*",
+      "dist/runtime/empty-session-policy.mjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "runtime",
+        "to": "harness",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "runtime/node_modules",
+        "to": "harness/node_modules",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "runtime/company-tools/remotion/node_modules",
+        "to": "harness/company-tools/remotion/node_modules",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "node-runtime",
+        "to": "node",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "dist/runtime",
+        "to": "company-plugins",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "company-config.json",
+        "to": "company-config.json"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/rufajx-mark.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": false,
+      "packElevateHelper": false,
+      "include": "scripts/installer-per-user.nsh",
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "publish": {
+      "provider": "generic",
+      "url": "https://dsh.example.com/api/v1/client-updates/windows/x64/",
+      "channel": "latest"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+from more_common import *
+
+def run(r,options):
+    source=(ROOT/'isolated-api-worker-20261020-064441/cam-capsule-ui').resolve()
+    p=source/'cleanup-0.SLDASM';assert p.is_file()
+    e,w=VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0),VARIANT(pythoncom.VT_BYREF|pythoncom.VT_I4,0)
+    d=r.app.OpenDoc6(str(p),2,3,'',e,w)
+    try:
+        r.check('readonly_saved_ui_cam_open',d is not None and e.value==0,warnings=w.value)
+        result=[]
+        for f in r.features(d):
+            if get(f,'GetTypeName2')!='MateGroup':continue
+            s=get(f,'GetFirstSubFeature')
+            while s is not None:
+                m=get(s,'GetSpecificFeature2');values={'name':get(s,'Name'),'feature_type':get(s,'GetTypeName2')}
+                for key in ['Type','Alignment','Flipped','CanBeFlipped']:
+                    try:values[key]=get(m,key)
+                    except Exception:pass
+                result.append(values);s=get(s,'GetNextSubFeature')
+        r.report['native_ui_mates']=result;r.flush()
+        r.check('ui_cam_type9_present',sum(x.get('Type')==9 for x in result)==1)
+    finally:
+        for kind in (2,1):
+            for doc in list(get(r.app,'GetDocuments') or []):
+                if get(doc,'GetType')!=kind:continue
+                path=Path(get(doc,'GetPathName')).resolve()
+                assert path.is_relative_to(source),'unknown path; preserve'
+                r.app.CloseDoc(str(path))
+        r.check('readonly_inspection_closed',not list(get(r.app,'GetDocuments') or []))

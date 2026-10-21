@@ -1,0 +1,143 @@
+{
+  "output": "<acceptance-root>\\surface-sweep-trim-20261020-051208",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件47"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_RoundSection",
+      "passed": true
+    },
+    {
+      "check": "spatial_spline_created",
+      "passed": true
+    },
+    {
+      "check": "sweep_profile_path_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SpatialSurfaceSweep_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SpatialSurfaceSweep_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "spatial_sweep_surface_geometry",
+      "passed": true,
+      "area_mm2": 2900.74503568876,
+      "path_length_mm": 116.10113530510453
+    },
+    {
+      "check": "save_surface-sweep-trim-20261020-051208-untrimmed-spatial-sweep.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "preview_sweep",
+      "passed": true
+    },
+    {
+      "check": "trim_plane_created",
+      "passed": true
+    },
+    {
+      "check": "trim_tool_selected",
+      "passed": true
+    },
+    {
+      "check": "pretrim",
+      "passed": true
+    },
+    {
+      "check": "surface_intersection_two_regions",
+      "passed": true,
+      "regions": 2
+    },
+    {
+      "check": "trim_keep_region_selected",
+      "passed": true,
+      "point": [
+        0.0026276590015002687,
+        0.00012605710801903014,
+        0.015010850270625986,
+        0.9862575329871041,
+        0.1350067013907455
+      ]
+    },
+    {
+      "check": "Rufa_SurfaceTrim_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SurfaceTrim_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "surface_trim_removed_real_area",
+      "passed": true,
+      "original_area_mm2": 2900.74503568876,
+      "trimmed_area_mm2": 1207.1636670839341
+    },
+    {
+      "check": "trim_definition_access",
+      "passed": true
+    },
+    {
+      "check": "one_trim_tool_one_kept_piece",
+      "passed": true
+    },
+    {
+      "check": "save_surface-sweep-trim-20261020-051208-trimmed-spatial-sweep.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_surface-sweep-trim-20261020-051208-trimmed-spatial-sweep.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "trim_reopen_geometry",
+      "passed": true
+    },
+    {
+      "check": "preview_trimmed-sweep",
+      "passed": true
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "surface-sweep-trim-20261020-051208-trimmed-spatial-sweep.SLDPRT",
+      "path": "<acceptance-root>\\surface-sweep-trim-20261020-051208\\surface-sweep-trim-20261020-051208-trimmed-spatial-sweep.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ]
+}

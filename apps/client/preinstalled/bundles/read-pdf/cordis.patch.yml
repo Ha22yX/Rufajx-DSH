@@ -1,0 +1,6 @@
+- insert:
+    - id: pdf-reader
+      name: '@rufa/dsh-read-pdf-bundle'
+      config:
+        dpi: 200
+        timeoutMs: 120000

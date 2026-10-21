@@ -1,0 +1,85 @@
+{
+  "output": "<acceptance-root>\\surface-20261020-043512",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "extruded_surface_feature_type",
+      "passed": true
+    },
+    {
+      "check": "Rufa_ExtrudedSurface_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_ExtrudedSurface_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "surface_only",
+      "passed": true
+    },
+    {
+      "check": "surface_area_120x80",
+      "passed": true,
+      "area_mm2": 9600.0
+    },
+    {
+      "check": "select_surface_for_offset",
+      "passed": true
+    },
+    {
+      "check": "offset_surface_created",
+      "passed": true,
+      "return_value": null
+    },
+    {
+      "check": "offset_surface_distance_5mm",
+      "passed": true,
+      "boxes_mm": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          120.0,
+          0.0,
+          80.0
+        ],
+        [
+          0.0,
+          -5.0,
+          0.0,
+          120.0,
+          -5.0,
+          80.0
+        ]
+      ]
+    },
+    {
+      "check": "Rufa_Thicken3_created",
+      "passed": false
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\advanced_surface.py\", line 20, in <module>\n    thick=r.feature(d.FeatureManager.FeatureBossThicken(.003,0,0,False,True,False,True),'Rufa_Thicken3')\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<acceptance-root>\\advanced_common.py\", line 49, in feature\n    self.check(name+'_created',f is not None)\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Rufa_Thicken3_created\n"
+}

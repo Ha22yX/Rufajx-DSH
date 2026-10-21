@@ -1,0 +1,226 @@
+{
+  "output": "<acceptance-root>\\mechanical-gear-20261020-051514",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件53"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_SupportProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_SupportBase_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Axes",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_TwoShafts_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051514-support.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件54"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_driverProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driver_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051514-driver.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件55"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_drivenProfile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_driven_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_mechanical-gear-20261020-051514-driven.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体11"
+    },
+    {
+      "check": "assembly_insert_components",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driver_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driver_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_axis_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_axis_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "driven_front_selection",
+      "passed": true
+    },
+    {
+      "check": "driven_front_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "gear_ratio_2_to_1_selection",
+      "passed": true
+    },
+    {
+      "check": "gear_ratio_2_to_1_native_mate",
+      "passed": true,
+      "error": 1
+    },
+    {
+      "check": "drive_gear_rotation",
+      "passed": true
+    },
+    {
+      "check": "gear_real_motion_ratio",
+      "passed": false,
+      "driver_deg": 29.999999999999993,
+      "driven_deg": 0.0
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051514\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051514\\cleanup-1.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051514\\cleanup-2.SLDPRT"
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\mechanical-gear-20261020-051514\\cleanup-3.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "装配体11",
+      "path": ""
+    },
+    {
+      "title": "mechanical-gear-20261020-051514-support.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051514\\mechanical-gear-20261020-051514-support.SLDPRT"
+    },
+    {
+      "title": "mechanical-gear-20261020-051514-driver.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051514\\mechanical-gear-20261020-051514-driver.SLDPRT"
+    },
+    {
+      "title": "mechanical-gear-20261020-051514-driven.SLDPRT",
+      "path": "<acceptance-root>\\mechanical-gear-20261020-051514\\mechanical-gear-20261020-051514-driven.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_mechanical.py\", line 59, in <module>\n    r.check('gear_real_motion_ratio',abs(da)>0.01 and abs(abs(db/da)-2)<1e-5,driver_deg=math.degrees(da),driven_deg=math.degrees(db))\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: gear_real_motion_ratio\n"
+}

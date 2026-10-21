@@ -1,0 +1,144 @@
+{
+  "output": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened",
+  "checks": [
+    {
+      "check": "owned_instance_empty",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件42"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-reopened-Block0.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件43"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Profile",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Block_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_pack-go-reopened-Block1.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体12"
+    },
+    {
+      "check": "insert_component_0",
+      "passed": true
+    },
+    {
+      "check": "insert_component_1",
+      "passed": true
+    },
+    {
+      "check": "insert_component_2",
+      "passed": true
+    },
+    {
+      "check": "save_pack-go-reopened-Assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_pack-go-reopened-Assembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "dotnet_pack_call",
+      "passed": false
+    },
+    {
+      "check": "case_documents_closed",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "owned_pid": 33212,
+  "source_sha256": "ca7c4b8b2a2cd8897711c8dcbe90828c02ff335ced2a2c60a7dab08c05ae015c",
+  "options": {
+    "dotnet": true,
+    "reopen_first": true
+  },
+  "source_components": [
+    {
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Block1.SLDPRT",
+      "virtual": false
+    },
+    {
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Block1.SLDPRT",
+      "virtual": false
+    },
+    {
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Block0.SLDPRT",
+      "virtual": false
+    }
+  ],
+  "dotnet_probe": {
+    "ok": false,
+    "error": "System.Exception: Explicit destination names rejected\r\n   �� PackGoProbe.Run(String[] args)\r\n   �� PackGoProbe.Main(String[] args)"
+  },
+  "closed_test_documents": [
+    {
+      "title": "pack-go-reopened-Assembly.SLDASM",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Assembly.SLDASM"
+    },
+    {
+      "title": "pack-go-reopened-Block0.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Block0.SLDPRT"
+    },
+    {
+      "title": "pack-go-reopened-Block1.SLDPRT",
+      "path": "<acceptance-root>\\isolated-api-worker-20261020-064441\\pack-go-reopened\\pack-go-reopened-Block1.SLDPRT"
+    }
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\api_worker.py\", line 53, in <module>\n    namespace['run'](case,request.get('options',{}))\n  File \"<acceptance-root>\\case_pack_go.py\", line 26, in run\n    r.check('dotnet_pack_call',probe.returncode==0 and data['ok'])\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: dotnet_pack_call\n"
+}

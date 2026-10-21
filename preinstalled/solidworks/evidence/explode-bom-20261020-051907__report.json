@@ -1,0 +1,131 @@
+{
+  "output": "<acceptance-root>\\explode-bom-20261020-051907",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件64"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Plate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BasePlate_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BasePlate_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_explode-bom-20261020-051907-BasePlate.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件65"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Washer_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Washer_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_explode-bom-20261020-051907-Washer.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体15"
+    },
+    {
+      "check": "three_bom_components",
+      "passed": true
+    },
+    {
+      "check": "create_exploded_view",
+      "passed": true
+    },
+    {
+      "check": "explode_direction",
+      "passed": true
+    },
+    {
+      "check": "explode_component",
+      "passed": true
+    },
+    {
+      "check": "explode_marked_component",
+      "passed": true
+    },
+    {
+      "check": "explode_step_created",
+      "passed": false,
+      "created": true,
+      "count": 2,
+      "selections": [
+        1,
+        1
+      ]
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\explode-bom-20261020-051907\\cleanup-0.SLDASM"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "closed_test_documents": [
+    {
+      "title": "装配体15",
+      "path": ""
+    },
+    {
+      "title": "explode-bom-20261020-051907-Washer.SLDPRT",
+      "path": "<acceptance-root>\\explode-bom-20261020-051907\\explode-bom-20261020-051907-Washer.SLDPRT"
+    },
+    {
+      "title": "explode-bom-20261020-051907-BasePlate.SLDPRT",
+      "path": "<acceptance-root>\\explode-bom-20261020-051907\\explode-bom-20261020-051907-BasePlate.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ],
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\more_delivery.py\", line 46, in <module>\n    r.check('explode_step_created',step is not None and get(cfg,'GetNumberOfExplodeSteps')==1,created=step is not None,count=get(cfg,'GetNumberOfExplodeSteps'),selections=[asm.SelectionManager.GetSelectedObjectCount2(x) for x in [1,2]])\n  File \"<acceptance-root>\\advanced_common.py\", line 29, in check\n    if not ok: raise RuntimeError(name)\n               ^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: explode_step_created\n"
+}

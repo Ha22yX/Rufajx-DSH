@@ -1,0 +1,296 @@
+{
+  "output": "<acceptance-root>\\explode-bom-20261020-052341",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件1"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Plate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BasePlate_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_BasePlate_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_explode-bom-20261020-052341-BasePlate.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件2"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_Ring",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Washer_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Washer_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "save_explode-bom-20261020-052341-Washer.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "new_assembly",
+      "passed": true,
+      "title": "装配体1"
+    },
+    {
+      "check": "three_bom_components",
+      "passed": true
+    },
+    {
+      "check": "create_exploded_view",
+      "passed": true
+    },
+    {
+      "check": "explode_direction",
+      "passed": true
+    },
+    {
+      "check": "explode_component",
+      "passed": true
+    },
+    {
+      "check": "explode_marked_component",
+      "passed": true
+    },
+    {
+      "check": "explode_step_created",
+      "passed": true,
+      "created": true,
+      "initial_count": 1,
+      "count": 2,
+      "selections": [
+        1,
+        1
+      ]
+    },
+    {
+      "check": "actual_exploded_displacement50",
+      "passed": true,
+      "initial": [
+        0.02,
+        0.025,
+        0.0075
+      ],
+      "exploded": [
+        0.02,
+        0.025,
+        -0.0425
+      ]
+    },
+    {
+      "check": "unselected_component_stays",
+      "passed": true
+    },
+    {
+      "check": "preview_exploded",
+      "passed": true
+    },
+    {
+      "check": "collapse_restores_position",
+      "passed": true
+    },
+    {
+      "check": "save_explode-bom-20261020-052341-ExplodedAssembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_explode-bom-20261020-052341-ExplodedAssembly.SLDASM",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_exploded_view",
+      "passed": true
+    },
+    {
+      "check": "reopen_exploded_displacement",
+      "passed": true
+    },
+    {
+      "check": "new_drawing",
+      "passed": true
+    },
+    {
+      "check": "drawing_assembly_view",
+      "passed": true
+    },
+    {
+      "check": "native_bom_table",
+      "passed": true
+    },
+    {
+      "check": "bom_two_items_quantity_1_and_2",
+      "passed": true,
+      "cells": [
+        [
+          "<FONT size=3.5>项目号",
+          "<FONT size=3.5>零件号",
+          "<FONT size=3.5>说明",
+          "<FONT size=3.5>数量"
+        ],
+        [
+          "1",
+          "explode-bom-20261020-052341-BasePlate",
+          "",
+          "1"
+        ],
+        [
+          "2",
+          "explode-bom-20261020-052341-Washer",
+          "",
+          "2"
+        ]
+      ],
+      "counts": [
+        {
+          "row": 1,
+          "count": 1,
+          "paths": [
+            "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-BasePlate.SLDPRT"
+          ]
+        },
+        {
+          "row": 2,
+          "count": 2,
+          "paths": [
+            "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-Washer.SLDPRT",
+            "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-Washer.SLDPRT"
+          ]
+        }
+      ]
+    },
+    {
+      "check": "bom_exact_files",
+      "passed": true
+    },
+    {
+      "check": "save_explode-bom-20261020-052341-AssemblyBOM.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_explode-bom-20261020-052341-AssemblyBOM.SLDDRW",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_native_bom",
+      "passed": true
+    },
+    {
+      "check": "reopen_bom_values",
+      "passed": true
+    },
+    {
+      "check": "drawing_preview",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\explode-bom-20261020-052341\\cleanup-0.SLDDRW"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "bom_cells": [
+    [
+      "<FONT size=3.5>项目号",
+      "<FONT size=3.5>零件号",
+      "<FONT size=3.5>说明",
+      "<FONT size=3.5>数量"
+    ],
+    [
+      "1",
+      "explode-bom-20261020-052341-BasePlate",
+      "",
+      "1"
+    ],
+    [
+      "2",
+      "explode-bom-20261020-052341-Washer",
+      "",
+      "2"
+    ]
+  ],
+  "bom_counts": [
+    {
+      "row": 1,
+      "count": 1,
+      "paths": [
+        "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-BasePlate.SLDPRT"
+      ]
+    },
+    {
+      "row": 2,
+      "count": 2,
+      "paths": [
+        "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-Washer.SLDPRT",
+        "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-Washer.SLDPRT"
+      ]
+    }
+  ],
+  "closed_test_documents": [
+    {
+      "title": "explode-bom-20261020-052341-AssemblyBOM - 图纸1",
+      "path": "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-AssemblyBOM.SLDDRW"
+    },
+    {
+      "title": "explode-bom-20261020-052341-ExplodedAssembly.SLDASM",
+      "path": "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-ExplodedAssembly.SLDASM"
+    },
+    {
+      "title": "explode-bom-20261020-052341-Washer.SLDPRT",
+      "path": "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-Washer.SLDPRT"
+    },
+    {
+      "title": "explode-bom-20261020-052341-BasePlate.SLDPRT",
+      "path": "<acceptance-root>\\explode-bom-20261020-052341\\explode-bom-20261020-052341-BasePlate.SLDPRT"
+    }
+  ],
+  "remaining_documents": []
+}

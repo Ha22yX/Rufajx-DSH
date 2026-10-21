@@ -1,0 +1,125 @@
+{
+  "output": "<acceptance-root>\\weld-gusset-20261020-050812",
+  "checks": [
+    {
+      "check": "SW2016",
+      "passed": true
+    },
+    {
+      "check": "new_part",
+      "passed": true,
+      "title": "零件41"
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_BasePlate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Base_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "select_前视基准面",
+      "passed": true
+    },
+    {
+      "check": "sketch_Rufa_UprightPlate",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Upright_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Upright_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "Rufa_Weldment_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Weldment_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "gusset_supports_selected",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Gusset_created",
+      "passed": true
+    },
+    {
+      "check": "Rufa_Gusset_error_free",
+      "passed": true,
+      "code": 0,
+      "warning": false
+    },
+    {
+      "check": "triangular_gusset_actual_volume",
+      "passed": true,
+      "added_volume_mm3": 1350.0,
+      "bodies": 3
+    },
+    {
+      "check": "save_weld-gusset-20261020-050812-weld-gusset.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "reopen_weld-gusset-20261020-050812-weld-gusset.SLDPRT",
+      "passed": true,
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "check": "weld_native_feature_persisted",
+      "passed": true,
+      "type": "Gusset"
+    },
+    {
+      "check": "weld_reopen_geometry",
+      "passed": true
+    },
+    {
+      "check": "preview_weld-gusset",
+      "passed": true
+    },
+    {
+      "check": "backup_test_state_before_close",
+      "passed": true,
+      "file": "<acceptance-root>\\weld-gusset-20261020-050812\\cleanup-0.SLDPRT"
+    },
+    {
+      "check": "original_documents_preserved",
+      "passed": true
+    }
+  ],
+  "complete": true,
+  "closed_test_documents": [
+    {
+      "title": "weld-gusset-20261020-050812-weld-gusset.SLDPRT",
+      "path": "<acceptance-root>\\weld-gusset-20261020-050812\\weld-gusset-20261020-050812-weld-gusset.SLDPRT"
+    }
+  ],
+  "remaining_documents": [
+    "零件1",
+    "零件2"
+  ]
+}

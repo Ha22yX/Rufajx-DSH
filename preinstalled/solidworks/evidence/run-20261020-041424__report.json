@@ -1,0 +1,95 @@
+{
+  "output": "<acceptance-root>\\run-20261020-041424",
+  "checks": [
+    {
+      "check": "version_2016",
+      "passed": true,
+      "revision": "24.5.0"
+    },
+    {
+      "check": "new_isolated_document",
+      "passed": true,
+      "title": "零件4"
+    },
+    {
+      "check": "select_front_plane_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "active_sketch_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "rectangle",
+      "passed": true
+    },
+    {
+      "check": "closed_sketch_feature_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "select_sketch_Rufa_BaseSketch",
+      "passed": true
+    },
+    {
+      "check": "extrude_8mm",
+      "passed": true
+    },
+    {
+      "check": "base_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 76800.00000000001,
+      "expected_mm3": 76800
+    },
+    {
+      "check": "select_front_plane_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "active_sketch_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "circle_10_10",
+      "passed": true
+    },
+    {
+      "check": "circle_110_10",
+      "passed": true
+    },
+    {
+      "check": "circle_10_70",
+      "passed": true
+    },
+    {
+      "check": "circle_110_70",
+      "passed": true
+    },
+    {
+      "check": "closed_sketch_feature_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "select_sketch_Rufa_HoleSketch",
+      "passed": true
+    },
+    {
+      "check": "2016_cut3_four_through_holes",
+      "passed": true
+    },
+    {
+      "check": "cut_volume",
+      "passed": true,
+      "bodies": 1,
+      "volume_mm3": 74764.2479604738,
+      "expected_mm3": 74764.24796047382
+    },
+    {
+      "check": "editable_native_depth_dimension",
+      "passed": true
+    }
+  ],
+  "complete": false,
+  "error": "Traceback (most recent call last):\n  File \"<acceptance-root>\\smoke_part.py\", line 106, in <module>\n    doc.EditRebuild3()\nTypeError: 'bool' object is not callable\n"
+}
