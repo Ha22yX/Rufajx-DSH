@@ -1,44 +1,137 @@
-# Rufajx-DSH
+<p align="center">
+  <strong>English</strong> · <a href="README.zh-CN.md">简体中文</a>
+</p>
 
-面向企业员工的 Windows 智能体工作台，基于固定版本的 **DeepSeek Harness**，提供公司账号、集中模型中转、完整会话同步和管理中心。
+<p align="center">
+  <img src="docs/assets/readme-cover.svg" alt="Rufajx-DSH — a little help for a lot of real work. Built for my dad’s company." width="100%">
+</p>
 
-本仓库是整理后的**源码快照**，包含企业客户端、服务端、工具、测试和构建脚本。它不是已经配置好公司服务的安装包，也不包含公司的账号、密钥、会话或业务文件。公开副本的服务地址使用 `https://dsh.example.com` 占位符。
+<p align="center">
+  <strong>An AI workspace I’m building for my dad’s company, Rufa Machinery Co., Ltd.</strong><br>
+  For the everyday office work and design tasks that take up a little too much time.
+</p>
 
-## 主要功能
+<p align="center">
+  <a href="#why-im-building-this">The story</a> ·
+  <a href="#what-it-can-help-with">Features</a> ·
+  <a href="#a-look-inside">Screenshots</a> ·
+  <a href="#try-the-source">Get started</a> ·
+  <a href="#built-with-help-from">Credits</a>
+</p>
 
-- **公司账号与管理中心**：员工/管理员角色、账号生命周期、员工和会话检索、完整历史阅读与用量统计。
-- **原生工作台**：保留 Harness 工具与事件语义，支持项目、多文件夹、个人工作偏好和智能体团队。
-- **文件与办公**：Office、PDF、OCR，文件修改前快照、历史版本分支、可读差异与恢复。
-- **电脑操作**：独立电脑操作子任务、实时桌面进度、Esc 停止、逐工具审查。
-- **音视频**：原文件直接解码预览，以及按需加载的 Remotion 视频制作技能。
-- **SolidWorks 2016**：查询本机接口、同会话复用独立可见实例、分步骤建模、检查并保留成果窗口；需要用户已安装并授权的 SolidWorks。
-- **更新架构**：签名清单、内容寻址更新、稳定启动入口与旧安装器兼容路径。
+<p align="center">
+  <a href="https://github.com/Ha22yX/Rufajx-DSH/actions/workflows/source-checks.yml"><img src="https://github.com/Ha22yX/Rufajx-DSH/actions/workflows/source-checks.yml/badge.svg" alt="Source checks"></a>
+  <br><sub>Windows x64 · Based on DeepSeek Harness · Actively being worked on</sub>
+</p>
 
-所有模型请求由公司服务端鉴权和中转；文件、命令、桌面与 CAD 工具在员工电脑执行。管理员阅读会话不会因此获得员工电脑的操作权限。
+## Why I’m building this
 
-## 仓库结构
+I’m building **Rufajx-DSH to help my dad’s company work more efficiently**, both in the office and on the design side.
 
-| 目录 | 内容 |
+The idea is pretty simple: if someone needs to organize a spreadsheet, prepare a presentation, find information in a document, or work on a SolidWorks model, they should be able to explain what they need in normal language. They shouldn’t have to learn programming or set up a collection of AI tools first.
+
+That’s what I’m trying to bring together here: a Windows app that fits around the files, software, and accounts people already use at work. I’m approaching it as a student project with a very practical goal—make something useful for my dad and the people he works with. I’m learning as I go, and there’s still plenty to improve.
+
+**The goal is less repetitive work, more time for the parts that need a person’s judgment.**
+
+## What it can help with
+
+<table>
+<tr>
+<td width="50%" valign="top">
+<h3>01 · Everyday office work</h3>
+<p>Work with spreadsheets, documents, presentations, PDFs, and scanned text. Keep the conversation close to the files instead of copying everything between separate tools.</p>
+</td>
+<td width="50%" valign="top">
+<h3>02 · Step-by-step CAD work</h3>
+<p>Connect to SolidWorks 2016, plan a task, work through modeling steps, and inspect the results. Keep one dedicated, visible instance through a conversation so the process is easier to follow.</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<h3>03 · A hand on the computer</h3>
+<p>Give desktop actions to a separate computer-use agent. A small overlay shows the current step even when the main app is in the background. Press Esc to stop.</p>
+</td>
+<td valign="top">
+<h3>04 · A way back for files</h3>
+<p>Save earlier versions before supported file changes, see what changed, and restore an older version. The history is shown as a branch tree, with ordinary labels instead of Git terminology.</p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<h3>05 · Projects, media, and preferences</h3>
+<p>Keep projects and reference folders organized, save explicit working preferences, preview audio and video, and use the bundled Remotion skill for video-making tasks.</p>
+</td>
+<td valign="top">
+<h3>06 · One app for the company</h3>
+<p>Employees use their company accounts. Administrators get account controls, conversation search, a readable history viewer, and recorded model usage. Model API keys stay on the server.</p>
+</td>
+</tr>
+</table>
+
+These are capabilities in the code, not a promise that every file, video format, or CAD operation will work perfectly. Important documents and engineering results still need a person to check them.
+
+## A look inside
+
+The screenshots below are **the real management interface running with synthetic test data**. Names, conversation contents, and usage numbers are examples, not employee records or production metrics. The app’s current interface is mainly Chinese.
+
+### A quick view of the workspace
+
+Accounts, saved conversations, and recorded usage in one place, so it’s easier to see how the app is being used.
+
+<p align="center">
+  <img src="docs/assets/admin-overview.png" alt="Management overview showing account status, saved conversations and model usage with synthetic data" width="100%">
+</p>
+
+### Conversations you can actually read
+
+Find a conversation, read the full reply, and open the details when needed. Tables stay tables, long histories can continue loading, and the viewer makes it clear how much has been loaded.
+
+<p align="center">
+  <img src="docs/assets/admin-readable-reply.png" alt="Read-only conversation viewer with a formatted supplier comparison table and a visible history loading count" width="100%">
+</p>
+
+## The kind of requests I’m building for
+
+| At work | An example request |
 | --- | --- |
-| `apps/client/` | Electron 客户端、界面、企业运行时插件、更新器、安装器 |
-| `apps/server/` | Node.js 服务端、SQLite、账号、模型网关、会话与审计 |
-| `preinstalled/` | 预装组件锁、电脑进度源码、CAD 工具与参考样例 |
-| `scripts/` | 上游准备、可重放补丁、校验、构建与发行工具 |
-| `tests/` | 本地模拟集成测试及显式启用的实机测试 |
-| `infra/` | 空凭据环境模板、systemd 和可选部署草案 |
-| `docs/` | 接口、安全边界、构建和功能说明 |
+| Preparing for a meeting | “Use these spreadsheets to make a short presentation. Flag anything that needs checking.” |
+| Comparing information | “Compare these supplier documents and put the differences into a table.” |
+| Working on a design | “Help me model this mounting bracket in SolidWorks 2016. Let’s check each main step.” |
+| Doing a desktop task | “Open the browser, find the official product manual, and download it to this project.” |
+| Picking up a task later | “Continue from where we stopped, but check what has already been done first.” |
 
-## 从哪里开始
+These are a few example prompts to start with. The available tools, input files, and local software determine what can be completed.
 
-- [开发与验证](docs/development.md)：依赖安装、编译、模拟测试。
-- [服务端部署](docs/server.md)：Node + SQLite、首次管理员、HTTPS、备份。
-- [Windows 客户端构建](docs/client.md)：固定上游、全部离线预装、更新信任根、安装包门禁。
-- [接口约定](docs/contract.md) · [管理面板](docs/admin-panel.md) · [增量更新](docs/incremental-updates.md)
-- [SolidWorks 工具](docs/solidworks-toolkit.md) · [公开范围](docs/public-source.md) · [第三方与许可](THIRD_PARTY_NOTICES.md)
+## How it fits together
 
-开发基础检查（Node 24.16.0、在本地磁盘工作目录执行）：
+<p align="center">
+  <img src="docs/assets/how-it-works.svg" alt="The Windows app runs local tools, the company server manages accounts and saved records, and model requests go through the company gateway" width="100%">
+</p>
+
+The Windows app handles local files, desktop actions, and CAD tools. The company server handles login, permissions, saved conversation events, and the connection to the model service.
+
+A few details matter to me:
+
+- **Employees don’t need their own model API keys.** Model requests go through the company server.
+- **Local actions still go through tool approval.** A company login isn’t permission to do anything on the computer.
+- **Computer-use details stay in a separate task.** The main conversation gets a shorter result instead of every screenshot and click.
+- **CAD work should be visible and continuous.** The dedicated instance is kept between steps; existing user windows and unsaved models aren’t automatically taken over.
+- **Updates should be less disruptive.** The update code can reuse unchanged files, show progress, and retain a compatibility path for older installers. Some upgrades still need a full package.
+
+Conversation sync is not a backup of every file on a computer. File-version protection also has a defined scope; it is not a whole-drive backup.
+
+## Try the source
+
+> **This repository is a source release, not a ready-to-install public app.** The employee experience I’m aiming for is “install, sign in, and work.” Building that complete package from this repository takes additional setup.
+
+The public copy uses `https://dsh.example.com` as a placeholder. It does not connect you to my dad’s company service, and it includes no company accounts, credentials, conversations, or business files.
+
+For a first look at the code, use **Node.js 24.16.0** and a local disk checkout:
 
 ```powershell
+git clone https://github.com/Ha22yX/Rufajx-DSH.git
+cd Rufajx-DSH
 npm ci --ignore-scripts
 npm run build
 npm run typecheck
@@ -46,10 +139,66 @@ npm test --workspace @rufa/server
 npm run test:integration
 ```
 
-这些命令编译企业层并运行模拟测试，**不会下载全部 Harness/视频运行环境，也不生成可分发客户端**。完整客户端须按构建文档准备固定上游、离线依赖和本机 SolidWorks 接口目录。无硬件/运行时的源码检查不能替代 Windows 实机验收。
+This compiles the company client and server and runs simulated checks. It does **not** prepare the full Harness environment or produce a Windows installer. Full desktop builds also need the pinned upstream, bundled dependencies, update configuration, and the documented SolidWorks inputs.
 
-## 来源与许可
+| If you want to… | Start here |
+| --- | --- |
+| Explore the code and run checks | [Development guide](docs/development.md) |
+| Set up your own company server | [Server setup](docs/server.md) |
+| Build the complete Windows client | [Client build guide](docs/client.md) |
+| Understand the CAD integration | [SolidWorks toolkit](docs/solidworks-toolkit.md) |
+| See what was checked | [Source validation notes](docs/validation.md) |
+| Understand what is included | [Public source scope](docs/public-source.md) |
 
-固定上游为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)，精确版本记录在 `upstream.lock.json`。预装来源及摘要由各 lock 文件记录；上游源码通过构建获取，不在本仓库复制整个依赖树。
+The detailed engineering notes are currently mostly in Chinese. This README is the English introduction; the [Chinese README](README.zh-CN.md) covers the same project overview.
 
-本次公开未为项目自有代码新增开源许可证；公开可见不代表授予任意商业使用或再分发许可。第三方保留各自许可证，详见 [NOTICE](NOTICE.md) 和 [第三方说明](THIRD_PARTY_NOTICES.md)。Remotion 商业授权、SolidWorks 软件及授权不随仓库提供。
+<details>
+<summary><strong>A small map of the code</strong></summary>
+
+```text
+apps/
+  client/       Windows app, interface, local tools, and updater
+  server/       Accounts, model gateway, conversation storage, and admin APIs
+preinstalled/   Pinned plugin inputs, desktop overlay, and CAD references
+scripts/        Build preparation, compatibility patches, and checks
+tests/          Simulated integration tests and opt-in desktop tests
+infra/          Deployment templates with no real credentials
+docs/           Setup guides and implementation notes
+```
+
+The desktop uses **Electron and TypeScript**. The company service uses **Node.js, Fastify, and SQLite** by default. **DeepSeek Harness** provides the agent foundation, with local Python and native Windows helpers for some tools.
+
+</details>
+
+## Where the project is now
+
+This is an ongoing project, and this public repository is a cleaned source snapshot. Some parts need more testing on different machines and real work tasks.
+
+- The initial source checks passed locally: **189 server tests, 42 selected client tests, and 7 cross-end tests**. One test requiring the full Harness runtime was skipped. The [validation notes](docs/validation.md) explain the scope and known dependency warnings.
+- **SolidWorks 2016 must already be installed and licensed.** The app doesn’t include SolidWorks or its license. Interface metadata is generated from a local installation; it isn’t shipped in this public repository.
+- **Video tools have their own requirements and licenses.** The Remotion skill doesn’t include a commercial Remotion license.
+- **A passing source check isn’t full desktop acceptance.** Installers, local tools, playback, updates, and CAD need their own isolated tests.
+
+The next things I want to focus on are making setup easier to reproduce, explaining errors more clearly, and getting feedback on the office and design tasks people actually need help with.
+
+## Built with help from
+
+This project depends on a lot of other people’s work. **DeepSeek Harness provides the agent foundation; my work here is putting the company workflow around it.**
+
+- [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — the foundation for the agent workspace.
+- [dsh-computer-use-win](https://github.com/Yu-tao-Li/dsh-computer-use-win) — Windows computer-use tooling.
+- [claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) — the starting point for the video-making skill.
+- [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar), [dsh-read-pdf](https://github.com/xiaoxuPekingUniversity/dsh-read-pdf), and the other plugin authors — useful pieces that make the workspace more complete.
+
+The exact versions and sources are recorded in the lock files. See [third-party notices](THIRD_PARTY_NOTICES.md) for the broader list and license references.
+
+### A note about licensing
+
+I haven’t added a general open-source license for the project’s own code yet. The repository is public, but please check [NOTICE](NOTICE.md) before reusing or redistributing it. Third-party components keep their own licenses; the company branding and commercial software licenses are separate.
+
+---
+
+<p align="center">
+  <strong>Made for my dad’s company. Still learning, still improving.</strong><br>
+  <sub>If you spot something confusing or have a practical idea, I’d be glad to hear it in an <a href="https://github.com/Ha22yX/Rufajx-DSH/issues">issue</a>. Please leave out private company data.</sub>
+</p>

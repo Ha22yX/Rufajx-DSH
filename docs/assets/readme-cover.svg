@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-labelledby="title desc">
+<title id="title">Rufajx-DSH — built for my dad's company</title>
+<desc id="desc">A personal project to make everyday office and design work easier at Rufa Machinery Co., Ltd. A simple illustration connects a request to office work, design work, and useful files.</desc>
+<defs>
+ <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#c4d3de" stroke-opacity=".045"/></pattern>
+ <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#212c34"/><stop offset="1" stop-color="#182128"/></linearGradient>
+</defs>
+<rect width="1280" height="620" rx="24" fill="#11181e"/>
+<rect x="640" y="0" width="640" height="620" fill="url(#grid)"/>
+<rect x="1" y="1" width="1278" height="618" rx="23" fill="none" stroke="#33414a"/>
+<g font-family="Segoe UI, Arial, sans-serif">
+ <rect x="58" y="48" width="38" height="38" rx="10" fill="#b7ebd7"/>
+ <path d="M69 75V59H76C84 59 84 68 76 68H69M76 68L84 75" stroke="#18251f" stroke-width="2.8" fill="none" stroke-linejoin="round"/>
+ <text x="111" y="75" fill="#f5f8fa" font-size="27" font-weight="650">Rufajx-DSH</text>
+ <text x="60" y="143" fill="#a7d8c5" font-size="12" letter-spacing="2.1" font-weight="600">A PERSONAL PROJECT. A REAL WORKPLACE.</text>
+ <text x="56" y="226" fill="#f4f7f8" font-size="64" font-weight="650" letter-spacing="-2">A little help</text>
+ <text x="56" y="300" fill="#f4f7f8" font-size="64" font-weight="650" letter-spacing="-2">for a lot of</text>
+ <text x="56" y="374" fill="#b7ebd7" font-size="64" font-weight="650" letter-spacing="-2">real work.</text>
+ <text x="60" y="429" fill="#ecf0f3" font-size="21">Built for my dad’s company.</text>
+ <text x="60" y="461" fill="#a7b4bd" font-size="17">Making everyday office and design tasks a little easier.</text>
+ <path d="M60 510H574" stroke="#34434d"/>
+ <text x="60" y="549" fill="#abb9c2" font-size="14">Rufa Machinery Co., Ltd.</text>
+ <text x="60" y="574" fill="#7e919d" font-size="12">Windows desktop · DeepSeek Harness · Work in progress</text>
+
+ <rect x="676" y="79" width="536" height="451" rx="21" fill="url(#paper)" stroke="#3a4b57"/>
+ <circle cx="700" cy="104" r="4" fill="#627781"/><circle cx="716" cy="104" r="4" fill="#627781"/><circle cx="732" cy="104" r="4" fill="#627781"/>
+ <text x="1185" y="109" text-anchor="end" fill="#90a5b1" font-size="11" letter-spacing="1.2">THE IDEA</text>
+ <path d="M676 125H1212" stroke="#364650"/>
+ <rect x="707" y="149" width="473" height="58" rx="12" fill="#10181e" stroke="#4b6866"/>
+ <path d="M728 168H746V180H738L732 185V180H728Z" fill="none" stroke="#b7ebd7" stroke-width="1.8" stroke-linejoin="round"/>
+ <text x="762" y="184" fill="#edf6f1" font-size="19">“Can you help me with this?”</text>
+ <path d="M740 207V442" fill="none" stroke="#4f6f6a" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+ <circle cx="740" cy="257" r="17" fill="#244c43"/>
+ <path d="M734 250H746V264H734ZM734 255H746M738 250V264" fill="none" stroke="#b7ebd7" stroke-width="1.4"/>
+ <text x="774" y="251" fill="#eef5f6" font-size="20" font-weight="600">Office work</text>
+ <text x="774" y="277" fill="#a5b9c5" font-size="14">Spreadsheets, documents, slides, PDFs</text>
+ <path d="M774 300H1178" stroke="#334650"/>
+
+ <circle cx="740" cy="341" r="17" fill="#4a4130"/>
+ <path d="M731 339L740 334L749 339V348L740 353L731 348ZM731 339L740 344L749 339M740 344V353" transform="translate(0,-3)" fill="none" stroke="#f2d5a0" stroke-width="1.4" stroke-linejoin="round"/>
+ <text x="774" y="335" fill="#eef5f6" font-size="20" font-weight="600">Design work</text>
+ <text x="774" y="361" fill="#a5b9c5" font-size="14">Plan, model, inspect, and improve</text>
+ <path d="M774 384H1178" stroke="#334650"/>
+
+ <circle cx="740" cy="425" r="17" fill="#2f4055"/>
+ <path d="M732 417L748 426L740 428L736 435Z" fill="none" stroke="#b1c9ed" stroke-width="1.5" stroke-linejoin="round"/>
+ <text x="774" y="419" fill="#eef5f6" font-size="20" font-weight="600">A hand on the computer</text>
+ <text x="774" y="445" fill="#a5b9c5" font-size="14">Visible steps, with a way to stop</text>
+ <rect x="707" y="475" width="473" height="32" rx="8" fill="#243a33"/>
+ <circle cx="726" cy="491" r="3" fill="#b7ebd7"/>
+ <text x="739" y="496" fill="#c4e2d6" font-size="12">The goal: useful work people can check and keep.</text>
+ <text x="944" y="559" text-anchor="middle" fill="#7e919d" font-size="11">Concept illustration · real application screenshots below</text>
+</g></svg>
